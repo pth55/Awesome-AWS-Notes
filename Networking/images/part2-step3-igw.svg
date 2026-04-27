@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="440" font-family="'Segoe UI', Arial, sans-serif">
+  <!-- Background -->
+  <rect width="720" height="440" fill="white"/>
+
+  <!-- Region label -->
+  <text x="14" y="22" font-size="12" fill="#555" font-weight="bold">AWS REGION: us-east-1</text>
+
+  <!-- VPC boundary -->
+  <rect x="10" y="30" width="700" height="310" rx="7" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="24" y="52" font-size="13" fill="#7b5ea7" font-weight="bold">VPC: my-demo-vpc (192.168.1.0/24)</text>
+
+  <!-- AZ us-east-1a -->
+  <rect x="30" y="62" width="300" height="195" rx="5" fill="none" stroke="#bdbdbd" stroke-dasharray="6,3" stroke-width="1.5"/>
+  <text x="44" y="79" font-size="11" fill="#777" font-weight="bold">AZ: us-east-1a</text>
+
+  <!-- public-subnet-1-1a -->
+  <rect x="46" y="88" width="268" height="52" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.5"/>
+  <text x="62" y="108" font-size="12" fill="#2e7d32" font-weight="bold">public-subnet-1-1a</text>
+  <text x="62" y="126" font-size="10" fill="#388e3c">192.168.1.0/26</text>
+
+  <!-- private-subnet-1-1a -->
+  <rect x="46" y="155" width="268" height="52" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.5"/>
+  <text x="62" y="175" font-size="12" fill="#1565c0" font-weight="bold">private-subnet-1-1a</text>
+  <text x="62" y="193" font-size="10" fill="#1976d2">192.168.1.64/26</text>
+
+  <!-- AZ us-east-1b -->
+  <rect x="360" y="62" width="320" height="195" rx="5" fill="none" stroke="#bdbdbd" stroke-dasharray="6,3" stroke-width="1.5"/>
+  <text x="374" y="79" font-size="11" fill="#777" font-weight="bold">AZ: us-east-1b</text>
+
+  <!-- public-subnet-2-1b -->
+  <rect x="376" y="88" width="284" height="52" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.5"/>
+  <text x="392" y="108" font-size="12" fill="#2e7d32" font-weight="bold">public-subnet-2-1b</text>
+  <text x="392" y="126" font-size="10" fill="#388e3c">192.168.1.128/26</text>
+
+  <!-- private-subnet-2-1b -->
+  <rect x="376" y="155" width="284" height="52" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.5"/>
+  <text x="392" y="175" font-size="12" fill="#1565c0" font-weight="bold">private-subnet-2-1b</text>
+  <text x="392" y="193" font-size="10" fill="#1976d2">192.168.1.192/26</text>
+
+  <!-- Main Route Table -->
+  <rect x="200" y="275" width="320" height="46" rx="5" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="360" y="294" font-size="12" fill="#f57f17" text-anchor="middle" font-weight="bold">Main Route Table</text>
+  <text x="360" y="311" font-size="10" fill="#888" text-anchor="middle">192.168.1.0/24 → local  (no internet route)</text>
+
+  <!-- Line from subnets down to route table -->
+  <line x1="180" y1="257" x2="270" y2="275" stroke="#bdbdbd" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="520" y1="257" x2="450" y2="275" stroke="#bdbdbd" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- IGW box inside VPC -->
+  <rect x="265" y="336" width="190" height="0" rx="4"/>
+
+  <!-- IGW note -->
+  <text x="360" y="356" font-size="11" fill="#ffa000" text-anchor="middle" font-weight="bold">my-demo-igw — attached but not yet wired</text>
+
+  <!-- IGW box -->
+  <rect x="240" y="340" width="240" height="0" rx="4" fill="#fff8e1" stroke="#ffa000" stroke-width="1.5"/>
+
+  <!-- Internet label below -->
+  <text x="360" y="430" font-size="13" fill="#1565c0" text-anchor="middle" font-weight="bold">Internet</text>
+  <line x1="360" y1="340" x2="360" y2="415" stroke="#ffa000" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="370" y="385" font-size="10" fill="#ffa000">attached but not yet routing</text>
+
+  <!-- IGW box proper -->
+  <rect x="258" y="355" width="205" height="38" rx="4" fill="#fff8e1" stroke="#ffa000" stroke-width="1.5"/>
+  <text x="361" y="374" font-size="12" fill="#e65100" text-anchor="middle" font-weight="bold">my-demo-igw</text>
+  <text x="361" y="388" font-size="10" fill="#888" text-anchor="middle">Status: Attached</text>
+
+  <!-- Arrow from route table to IGW -->
+  <line x1="360" y1="321" x2="360" y2="355" stroke="#bdbdbd" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+</svg>

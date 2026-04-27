@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="440" viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, Helvetica, sans-serif">
+
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text x="450" y="24" text-anchor="middle" font-size="14" fill="#212121" font-weight="bold">VPN Termination on Transit Gateway (Multi-VPC)</text>
+
+  <!-- ── On-Premises ── -->
+  <rect x="10" y="44" width="195" height="240" rx="6" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.8"/>
+  <text x="107" y="64" text-anchor="middle" font-size="11" fill="#424242" font-weight="bold">On-Premises</text>
+  <line x1="10" y1="70" x2="205" y2="70" stroke="#9e9e9e" stroke-width="0.8"/>
+
+  <!-- Routers -->
+  <rect x="25" y="82" width="165" height="50" rx="4" fill="#546e7a"/>
+  <text x="107" y="101" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Customer Gateway</text>
+  <text x="107" y="116" text-anchor="middle" font-size="9" fill="white">cgw-1 · 203.0.113.10 · ASN 65000</text>
+
+  <rect x="25" y="148" width="165" height="50" rx="4" fill="#ff9800"/>
+  <text x="107" y="167" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Corp Servers</text>
+  <text x="107" y="182" text-anchor="middle" font-size="9" fill="white">192.168.0.0/16</text>
+
+  <!-- Summary note -->
+  <rect x="25" y="214" width="165" height="56" rx="3" fill="#fff8e1" stroke="#ffa000" stroke-width="1"/>
+  <text x="107" y="230" text-anchor="middle" font-size="9" fill="#e65100" font-weight="bold">Key Advantage</text>
+  <text x="35" y="246" font-size="9" fill="#555">One VPN connection</text>
+  <text x="35" y="260" font-size="9" fill="#555">reaches ALL VPCs via TGW</text>
+
+  <!-- ── Tunnel arrows to TGW ── -->
+  <line x1="207" y1="152" x2="338" y2="200" stroke="#5c6bc0" stroke-width="2" stroke-dasharray="7,3"/>
+  <polygon points="340,201 330,196 333,206" fill="#5c6bc0"/>
+  <text x="268" y="168" text-anchor="middle" font-size="8" fill="#3949ab">Tunnel 1</text>
+
+  <line x1="207" y1="182" x2="338" y2="230" stroke="#5c6bc0" stroke-width="2" stroke-dasharray="7,3"/>
+  <polygon points="340,231 330,226 333,236" fill="#5c6bc0"/>
+  <text x="268" y="202" text-anchor="middle" font-size="8" fill="#3949ab">Tunnel 2</text>
+
+  <!-- ── Transit Gateway ── -->
+  <rect x="340" y="154" width="210" height="148" rx="7" fill="#e0f2f1" stroke="#00897b" stroke-width="2"/>
+  <text x="445" y="174" text-anchor="middle" font-size="12" fill="#00695c" font-weight="bold">Transit Gateway</text>
+  <text x="445" y="190" text-anchor="middle" font-size="9" fill="#00897b">tgw-1 · ASN 64512</text>
+  <line x1="340" y1="196" x2="550" y2="196" stroke="#00897b" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- TGW route table inside -->
+  <rect x="356" y="204" width="178" height="86" rx="3" fill="#ffffff" stroke="#00897b" stroke-width="1"/>
+  <text x="445" y="220" text-anchor="middle" font-size="9" fill="#00695c" font-weight="bold">TGW Route Table</text>
+  <line x1="356" y1="225" x2="534" y2="225" stroke="#00897b" stroke-width="0.6" opacity="0.5"/>
+  <text x="366" y="239" font-size="8" fill="#555" font-family="'Courier New', monospace">10.1.0.0/16  → vpc-a</text>
+  <text x="366" y="253" font-size="8" fill="#555" font-family="'Courier New', monospace">10.2.0.0/16  → vpc-b</text>
+  <text x="366" y="267" font-size="8" fill="#555" font-family="'Courier New', monospace">10.3.0.0/16  → vpc-c</text>
+  <text x="366" y="281" font-size="8" fill="#5c6bc0" font-family="'Courier New', monospace">192.168.0.0/16 → vpn</text>
+
+  <!-- ── Spoke arrows TGW → VPCs ── -->
+  <!-- VPC A (top) -->
+  <line x1="552" y1="188" x2="636" y2="130" stroke="#00897b" stroke-width="1.5"/>
+  <polygon points="638,129 629,128 633,137" fill="#00897b"/>
+
+  <!-- VPC B (middle) -->
+  <line x1="552" y1="228" x2="636" y2="228" stroke="#00897b" stroke-width="1.5"/>
+  <polygon points="638,228 629,223 629,233" fill="#00897b"/>
+
+  <!-- VPC C (bottom) -->
+  <line x1="552" y1="268" x2="636" y2="330" stroke="#00897b" stroke-width="1.5"/>
+  <polygon points="638,331 631,321 639,320" fill="#00897b"/>
+
+  <!-- ── VPC A ── -->
+  <rect x="638" y="80" width="250" height="96" rx="6" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="1.8"/>
+  <text x="763" y="99" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">VPC-A · 10.1.0.0/16</text>
+  <rect x="654" y="108" width="218" height="54" rx="4" fill="#e8f5e9" stroke="#43a047" stroke-width="1.2"/>
+  <text x="763" y="127" text-anchor="middle" font-size="9" fill="#1b5e20">Dev / Staging workloads</text>
+  <text x="763" y="143" text-anchor="middle" font-size="8" fill="#555">RT: 192.168.0.0/16 → tgw-1</text>
+
+  <!-- ── VPC B ── -->
+  <rect x="638" y="194" width="250" height="96" rx="6" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="1.8"/>
+  <text x="763" y="213" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">VPC-B · 10.2.0.0/16</text>
+  <rect x="654" y="222" width="218" height="54" rx="4" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.2"/>
+  <text x="763" y="241" text-anchor="middle" font-size="9" fill="#0d47a1">Production workloads</text>
+  <text x="763" y="257" text-anchor="middle" font-size="8" fill="#555">RT: 192.168.0.0/16 → tgw-1</text>
+
+  <!-- ── VPC C ── -->
+  <rect x="638" y="308" width="250" height="96" rx="6" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="1.8"/>
+  <text x="763" y="327" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">VPC-C · 10.3.0.0/16</text>
+  <rect x="654" y="336" width="218" height="54" rx="4" fill="#e8f5e9" stroke="#43a047" stroke-width="1.2"/>
+  <text x="763" y="355" text-anchor="middle" font-size="9" fill="#1b5e20">Shared Services</text>
+  <text x="763" y="371" text-anchor="middle" font-size="8" fill="#555">RT: 192.168.0.0/16 → tgw-1</text>
+
+  <!-- ── Compare VGW vs TGW note ── -->
+  <rect x="10" y="306" width="322" height="118" rx="5" fill="#fff3e0" stroke="#ffa000" stroke-width="1"/>
+  <text x="171" y="322" text-anchor="middle" font-size="10" fill="#e65100" font-weight="bold">VGW vs TGW for VPN</text>
+  <line x1="10" y1="328" x2="332" y2="328" stroke="#ffa000" stroke-width="0.7"/>
+  <text x="24" y="344" font-size="9" fill="#555">VGW → VPN serves only 1 VPC</text>
+  <text x="24" y="360" font-size="9" fill="#555">TGW → VPN serves ALL attached VPCs</text>
+  <text x="24" y="376" font-size="9" fill="#555">ECMP on TGW → both tunnels active</text>
+  <text x="24" y="392" font-size="9" fill="#00897b">TGW bandwidth per VPN: up to 2.5 Gbps</text>
+  <text x="24" y="408" font-size="9" fill="#5c6bc0">Use TGW when you have 2+ VPCs</text>
+
+</svg>

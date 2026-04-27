@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Multi-Region TGW: Limitation and Peering Solution</text>
+
+  <!-- ===== STATE 1: Limitation ===== -->
+  <text x="400" y="55" text-anchor="middle" font-size="12" fill="#888">State 1: TGW cannot attach cross-region VPCs directly</text>
+
+  <!-- Arrow marker defs -->
+  <defs>
+    <marker id="arrow-tgw-end" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#00897b"/>
+    </marker>
+    <marker id="arrow-tgw-start" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto-start-reverse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#00897b"/>
+    </marker>
+    <marker id="arrow-peer-end" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#7b5ea7"/>
+    </marker>
+    <marker id="arrow-peer-start" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto-start-reverse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#7b5ea7"/>
+    </marker>
+    <marker id="arrow-block-end" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#e53935"/>
+    </marker>
+  </defs>
+
+  <!-- us-east-1 region (left) — State 1 -->
+  <rect x="30" y="70" width="320" height="160" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="8,4" fill="none" rx="8"/>
+  <text x="50" y="86" font-size="10" fill="#9e9e9e">us-east-1</text>
+
+  <!-- tgw-1 in us-east-1 -->
+  <rect x="80" y="100" width="150" height="70" fill="#e0f2f1" stroke="#00897b" stroke-width="2" rx="6"/>
+  <text x="155" y="122" text-anchor="middle" font-size="12" fill="#004d40" font-weight="bold">tgw-1</text>
+  <text x="155" y="138" text-anchor="middle" font-size="10" fill="#004d40">us-east-1</text>
+  <text x="155" y="152" text-anchor="middle" font-size="9" fill="#555">vpc-a, vpc-b, vpc-c attached</text>
+
+  <!-- us-west-2 region (right) — State 1 -->
+  <rect x="450" y="70" width="320" height="160" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="8,4" fill="none" rx="8"/>
+  <text x="470" y="86" font-size="10" fill="#9e9e9e">us-west-2</text>
+
+  <!-- vpc-d in us-west-2 -->
+  <rect x="560" y="105" width="150" height="65" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="635" y="128" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-d</text>
+  <text x="635" y="144" text-anchor="middle" font-size="10" fill="#7b5ea7">172.16.1.0/24</text>
+  <text x="635" y="160" text-anchor="middle" font-size="10" fill="#555">ec2-d  172.16.1.20</text>
+
+  <!-- Blocked cross-region arrow -->
+  <line x1="235" y1="135" x2="555" y2="135"
+        stroke="#e53935" stroke-width="2" stroke-dasharray="6,3"
+        marker-end="url(#arrow-block-end)"/>
+  <text x="400" y="125" text-anchor="middle" font-size="10" fill="#e53935">CANNOT attach vpc-d to tgw-1</text>
+  <text x="400" y="156" text-anchor="middle" font-size="10" fill="#e53935">(different region)</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="250" x2="770" y2="250" stroke="#ddd" stroke-width="1" stroke-dasharray="6,3"/>
+
+  <!-- ===== STATE 2: TGW Peering Solution ===== -->
+  <text x="400" y="274" text-anchor="middle" font-size="12" fill="#888">State 2: TGW Peering — connect tgw-1 to tgw-2 across regions</text>
+
+  <!-- us-east-1 region (left) — State 2 -->
+  <rect x="30" y="288" width="320" height="200" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="8,4" fill="none" rx="8"/>
+  <text x="50" y="304" font-size="10" fill="#9e9e9e">us-east-1</text>
+
+  <!-- tgw-1 -->
+  <rect x="55" y="315" width="150" height="70" fill="#e0f2f1" stroke="#00897b" stroke-width="2" rx="6"/>
+  <text x="130" y="337" text-anchor="middle" font-size="12" fill="#004d40" font-weight="bold">tgw-1</text>
+  <text x="130" y="353" text-anchor="middle" font-size="10" fill="#004d40">us-east-1</text>
+
+  <!-- vpc-a, vpc-b, vpc-c spokes (left) -->
+  <rect x="55" y="400" width="65" height="34" stroke="#7b5ea7" stroke-width="1.5" fill="#fdf8ff" rx="5"/>
+  <text x="88" y="415" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">vpc-a</text>
+  <text x="88" y="426" text-anchor="middle" font-size="9" fill="#555">10.0.1/24</text>
+
+  <rect x="130" y="400" width="65" height="34" stroke="#7b5ea7" stroke-width="1.5" fill="#fdf8ff" rx="5"/>
+  <text x="163" y="415" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">vpc-b</text>
+  <text x="163" y="426" text-anchor="middle" font-size="9" fill="#555">10.0.2/24</text>
+
+  <rect x="205" y="400" width="65" height="34" stroke="#7b5ea7" stroke-width="1.5" fill="#fdf8ff" rx="5"/>
+  <text x="238" y="415" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">vpc-c</text>
+  <text x="238" y="426" text-anchor="middle" font-size="9" fill="#555">10.0.3/24</text>
+
+  <!-- Spokes from tgw-1 to vpc-a/b/c -->
+  <line x1="100" y1="388" x2="88" y2="400" stroke="#00897b" stroke-width="1.5" marker-end="url(#arrow-tgw-end)"/>
+  <line x1="130" y1="388" x2="163" y2="400" stroke="#00897b" stroke-width="1.5" marker-end="url(#arrow-tgw-end)"/>
+  <line x1="160" y1="388" x2="238" y2="400" stroke="#00897b" stroke-width="1.5" marker-end="url(#arrow-tgw-end)"/>
+
+  <!-- us-west-2 region (right) — State 2 -->
+  <rect x="450" y="288" width="320" height="200" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="8,4" fill="none" rx="8"/>
+  <text x="470" y="304" font-size="10" fill="#9e9e9e">us-west-2</text>
+
+  <!-- tgw-2 -->
+  <rect x="595" y="315" width="150" height="70" fill="#e0f2f1" stroke="#00897b" stroke-width="2" rx="6"/>
+  <text x="670" y="337" text-anchor="middle" font-size="12" fill="#004d40" font-weight="bold">tgw-2</text>
+  <text x="670" y="353" text-anchor="middle" font-size="10" fill="#004d40">us-west-2</text>
+
+  <!-- vpc-d, vpc-e spokes (right) -->
+  <rect x="570" y="400" width="65" height="34" stroke="#7b5ea7" stroke-width="1.5" fill="#fdf8ff" rx="5"/>
+  <text x="603" y="415" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">vpc-d</text>
+  <text x="603" y="426" text-anchor="middle" font-size="9" fill="#555">172.16.1/24</text>
+
+  <rect x="645" y="400" width="65" height="34" stroke="#7b5ea7" stroke-width="1.5" fill="#fdf8ff" rx="5"/>
+  <text x="678" y="415" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">vpc-e</text>
+  <text x="678" y="426" text-anchor="middle" font-size="9" fill="#555">172.16.2/24</text>
+
+  <!-- Spokes from tgw-2 to vpc-d/e -->
+  <line x1="645" y1="388" x2="603" y2="400" stroke="#00897b" stroke-width="1.5" marker-end="url(#arrow-tgw-end)"/>
+  <line x1="670" y1="388" x2="678" y2="400" stroke="#00897b" stroke-width="1.5" marker-end="url(#arrow-tgw-end)"/>
+
+  <!-- TGW Peering attachment (bidirectional) between tgw-1 and tgw-2 -->
+  <line x1="210" y1="350" x2="590" y2="350"
+        stroke="#7b5ea7" stroke-width="2.5"
+        marker-start="url(#arrow-peer-start)"
+        marker-end="url(#arrow-peer-end)"/>
+  <rect x="330" y="336" width="140" height="28" fill="#f3e5f5" stroke="#7b5ea7" stroke-width="1" rx="4"/>
+  <text x="400" y="352" text-anchor="middle" font-size="10" fill="#7b5ea7" font-weight="bold">peering attachment</text>
+
+  <!-- Note about static routes -->
+  <rect x="220" y="452" width="360" height="50" fill="#fff8e1" stroke="#f9a825" stroke-width="1" rx="4"/>
+  <text x="400" y="468" text-anchor="middle" font-size="10" fill="#555" font-weight="bold">Static routes required on BOTH TGW route tables</text>
+  <text x="400" y="482" text-anchor="middle" font-size="10" fill="#555">No automatic propagation across TGW peering</text>
+  <text x="400" y="496" text-anchor="middle" font-size="9" fill="#888">e.g. tgw-1: 172.16.0.0/16 → peering-attach  |  tgw-2: 10.0.0.0/8 → peering-attach</text>
+</svg>

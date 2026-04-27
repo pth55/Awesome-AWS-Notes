@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="520" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <!-- Region label -->
+  <text x="16" y="18" font-size="10" fill="#9e9e9e" font-style="italic">Region: us-east-1  —  High Availability: One NAT Gateway Per AZ</text>
+
+  <!-- Internet ellipse -->
+  <ellipse cx="400" cy="35" rx="60" ry="18" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.5"/>
+  <text x="400" y="40" text-anchor="middle" font-size="11" fill="#424242" font-weight="bold">Internet</text>
+
+  <!-- Arrow: Internet ↔ IGW -->
+  <line x1="400" y1="53" x2="400" y2="71" stroke="#9e9e9e" stroke-width="1.5"/>
+  <polygon points="400,77 394,69 406,69" fill="#9e9e9e"/>
+
+  <!-- IGW box -->
+  <rect x="272" y="77" width="256" height="40" rx="5" fill="#fff8e1" stroke="#ffa000" stroke-width="1.8"/>
+  <text x="400" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">Internet Gateway  (my-igw)</text>
+  <text x="400" y="109" text-anchor="middle" font-size="9" fill="#bf360c">highly available across all AZs</text>
+
+  <!-- Arrow: IGW → VPC -->
+  <line x1="400" y1="117" x2="400" y2="131" stroke="#9e9e9e" stroke-width="1.5"/>
+  <polygon points="400,137 394,129 406,129" fill="#9e9e9e"/>
+
+  <!-- VPC boundary -->
+  <rect x="16" y="137" width="768" height="368" rx="7" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="400" y="156" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">VPC: my-vpc</text>
+
+  <!-- AZ us-east-1a boundary -->
+  <rect x="28" y="164" width="366" height="328" rx="5" fill="none" stroke="#bdbdbd" stroke-width="1.2" stroke-dasharray="6,3"/>
+  <text x="44" y="180" font-size="10" fill="#757575" font-style="italic">Availability Zone: us-east-1a</text>
+
+  <!-- Public subnet 1a -->
+  <rect x="40" y="188" width="342" height="120" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.8"/>
+  <text x="211" y="206" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">public-subnet  (10.0.0.0/25)</text>
+  <line x1="40" y1="212" x2="382" y2="212" stroke="#43a047" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- NAT GW 1a -->
+  <rect x="56" y="220" width="140" height="64" rx="4" fill="#ff9800"/>
+  <text x="126" y="240" text-anchor="middle" font-size="10" fill="white" font-weight="bold">NAT Gateway</text>
+  <text x="126" y="255" text-anchor="middle" font-size="9" fill="white">nat-gw  (us-east-1a)</text>
+  <text x="126" y="270" text-anchor="middle" font-size="9" fill="white">EIP: 54.10.10.10</text>
+
+  <!-- Route tag 1a public -->
+  <text x="210" y="298" text-anchor="middle" font-size="8" fill="#2e7d32" font-family="'Courier New', monospace">0.0.0.0/0 → my-igw</text>
+
+  <!-- Arrow: NAT GW 1a → private subnet 1a -->
+  <line x1="126" y1="308" x2="126" y2="342" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="126,348 120,340 132,340" fill="#ff9800"/>
+
+  <!-- Private subnet 1a -->
+  <rect x="40" y="352" width="342" height="110" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.8"/>
+  <text x="211" y="370" text-anchor="middle" font-size="11" fill="#0d47a1" font-weight="bold">private-subnet  (10.0.0.128/25)</text>
+  <line x1="40" y1="376" x2="382" y2="376" stroke="#1e88e5" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- private-ec2 1a -->
+  <rect x="56" y="384" width="140" height="55" rx="4" fill="#ff9800"/>
+  <text x="126" y="404" text-anchor="middle" font-size="10" fill="white" font-weight="bold">EC2 Instance</text>
+  <text x="126" y="419" text-anchor="middle" font-size="9" fill="white">private-ec2</text>
+  <text x="126" y="432" text-anchor="middle" font-size="9" fill="white">10.0.0.140</text>
+
+  <!-- Route tag 1a private -->
+  <text x="280" y="418" text-anchor="middle" font-size="8" fill="#1565c0" font-family="'Courier New', monospace">0.0.0.0/0 → nat-gw</text>
+  <text x="280" y="430" text-anchor="middle" font-size="8" fill="#43a047" font-weight="bold">same AZ ✓</text>
+
+  <!-- AZ us-east-1b boundary -->
+  <rect x="406" y="164" width="366" height="328" rx="5" fill="none" stroke="#bdbdbd" stroke-width="1.2" stroke-dasharray="6,3"/>
+  <text x="422" y="180" font-size="10" fill="#757575" font-style="italic">Availability Zone: us-east-1b</text>
+
+  <!-- Public subnet 1b -->
+  <rect x="418" y="188" width="342" height="120" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.8"/>
+  <text x="589" y="206" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">public-subnet-2  (10.0.2.0/25)</text>
+  <line x1="418" y1="212" x2="760" y2="212" stroke="#43a047" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- NAT GW 1b -->
+  <rect x="434" y="220" width="140" height="64" rx="4" fill="#ff9800"/>
+  <text x="504" y="240" text-anchor="middle" font-size="10" fill="white" font-weight="bold">NAT Gateway</text>
+  <text x="504" y="255" text-anchor="middle" font-size="9" fill="white">nat-gw-2  (us-east-1b)</text>
+  <text x="504" y="270" text-anchor="middle" font-size="9" fill="white">EIP: 54.20.20.20</text>
+
+  <!-- Route tag 1b public -->
+  <text x="590" y="298" text-anchor="middle" font-size="8" fill="#2e7d32" font-family="'Courier New', monospace">0.0.0.0/0 → my-igw</text>
+
+  <!-- Arrow: NAT GW 1b → private subnet 1b -->
+  <line x1="504" y1="308" x2="504" y2="342" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <polygon points="504,348 498,340 510,340" fill="#ff9800"/>
+
+  <!-- Private subnet 1b -->
+  <rect x="418" y="352" width="342" height="110" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.8"/>
+  <text x="589" y="370" text-anchor="middle" font-size="11" fill="#0d47a1" font-weight="bold">private-subnet-2  (10.0.2.128/25)</text>
+  <line x1="418" y1="376" x2="760" y2="376" stroke="#1e88e5" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- private-ec2 1b -->
+  <rect x="434" y="384" width="140" height="55" rx="4" fill="#ff9800"/>
+  <text x="504" y="404" text-anchor="middle" font-size="10" fill="white" font-weight="bold">EC2 Instance</text>
+  <text x="504" y="419" text-anchor="middle" font-size="9" fill="white">private-ec2-2</text>
+  <text x="504" y="432" text-anchor="middle" font-size="9" fill="white">10.0.2.140</text>
+
+  <!-- Route tag 1b private -->
+  <text x="656" y="418" text-anchor="middle" font-size="8" fill="#1565c0" font-family="'Courier New', monospace">0.0.0.0/0 → nat-gw-2</text>
+  <text x="656" y="430" text-anchor="middle" font-size="8" fill="#43a047" font-weight="bold">same AZ ✓</text>
+
+  <!-- AZ failure annotation -->
+  <text x="400" y="498" text-anchor="middle" font-size="9" fill="#757575" font-style="italic">If us-east-1a fails: nat-gw goes down, but nat-gw-2 keeps us-east-1b instances online independently.</text>
+
+</svg>
