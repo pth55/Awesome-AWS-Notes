@@ -1,0 +1,147 @@
+<svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="500" y="30" font-size="22" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Architecture Decision Tree
+  </text>
+
+  <!-- Starting Point -->
+  <rect x="400" y="60" width="200" height="60" fill="#527FFF" stroke="#2E5FAF" stroke-width="3" rx="8"/>
+  <text x="500" y="85" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Starting Point:</text>
+  <text x="500" y="105" font-size="13" text-anchor="middle" fill="white">Planning RDS Deployment</text>
+
+  <!-- Database Engine Selection -->
+  <rect x="50" y="160" width="900" height="100" fill="#F0F0F0" stroke="#232F3E" stroke-width="2" rx="5"/>
+  <text x="70" y="185" font-size="14" font-weight="bold" fill="#232F3E">1️⃣ Choose Database Engine</text>
+
+  <rect x="70" y="200" width="130" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="85" y="218" font-size="10" fill="white">MySQL</text>
+  <text x="85" y="233" font-size="9" fill="white">Web apps, CMS</text>
+
+  <rect x="220" y="200" width="130" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="235" y="218" font-size="10" fill="white">PostgreSQL</text>
+  <text x="235" y="233" font-size="9" fill="white">Analytics, complex</text>
+
+  <rect x="370" y="200" width="130" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="385" y="218" font-size="10" fill="white">Aurora</text>
+  <text x="385" y="233" font-size="9" fill="white">High performance</text>
+
+  <rect x="520" y="200" width="130" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="535" y="218" font-size="10" fill="white">SQL Server</text>
+  <text x="535" y="233" font-size="9" fill="white">.NET apps</text>
+
+  <rect x="670" y="200" width="130" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="685" y="218" font-size="10" fill="white">Oracle</text>
+  <text x="685" y="233" font-size="9" fill="white">Enterprise apps</text>
+
+  <rect x="820" y="200" width="110" height="40" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="835" y="218" font-size="10" fill="white">MariaDB</text>
+  <text x="835" y="233" font-size="9" fill="white">MySQL fork</text>
+
+  <!-- High Availability Decision -->
+  <rect x="50" y="290" width="450" height="180" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="5"/>
+  <text x="70" y="315" font-size="14" font-weight="bold" fill="#0073BB">2️⃣ High Availability Strategy</text>
+
+  <rect x="70" y="335" width="190" height="110" fill="#95A5FF" stroke="#5566CC" stroke-width="2" rx="3"/>
+  <text x="90" y="355" font-size="12" font-weight="bold" fill="white">Multi-AZ</text>
+  <text x="90" y="375" font-size="10" fill="white">✓ Automatic failover</text>
+  <text x="90" y="390" font-size="10" fill="white">✓ Zero data loss</text>
+  <text x="90" y="405" font-size="10" fill="white">✓ RTO: 1-2 min</text>
+  <text x="90" y="425" font-size="9" fill="white">Use: Production DBs</text>
+
+  <rect x="280" y="335" width="200" height="110" fill="#FFA500" stroke="#FF8C00" stroke-width="2" rx="3"/>
+  <text x="300" y="355" font-size="12" font-weight="bold" fill="white">Multi-AZ DB Cluster</text>
+  <text x="300" y="375" font-size="10" fill="white">✓ 2 readable standbys</text>
+  <text x="300" y="390" font-size="10" fill="white">✓ Faster failover (35s)</text>
+  <text x="300" y="405" font-size="10" fill="white">✓ Read scaling</text>
+  <text x="300" y="425" font-size="9" fill="white">Use: High-perf production</text>
+
+  <!-- Read Scaling Decision -->
+  <rect x="530" y="290" width="420" height="180" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="5"/>
+  <text x="550" y="315" font-size="14" font-weight="bold" fill="#D45B07">3️⃣ Read Scaling & DR</text>
+
+  <rect x="550" y="335" width="180" height="110" fill="#FF6B6B" stroke="#D32F2F" stroke-width="2" rx="3"/>
+  <text x="570" y="355" font-size="12" font-weight="bold" fill="white">Read Replicas</text>
+  <text x="570" y="375" font-size="10" fill="white">✓ Offload reads</text>
+  <text x="570" y="390" font-size="10" fill="white">✓ Up to 5 replicas</text>
+  <text x="570" y="405" font-size="10" fill="white">✓ Async replication</text>
+  <text x="570" y="425" font-size="9" fill="white">Use: Read-heavy apps</text>
+
+  <rect x="750" y="335" width="180" height="110" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="3"/>
+  <text x="770" y="355" font-size="12" font-weight="bold" fill="white">Cross-Region</text>
+  <text x="770" y="375" font-size="10" fill="white">✓ Disaster recovery</text>
+  <text x="770" y="390" font-size="10" fill="white">✓ Low latency (geo)</text>
+  <text x="770" y="405" font-size="10" fill="white">✓ Manual promotion</text>
+  <text x="770" y="425" font-size="9" fill="white">Use: Multi-region apps</text>
+
+  <!-- Performance Optimization -->
+  <rect x="50" y="500" width="450" height="120" fill="#E1F5E1" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="70" y="525" font-size="14" font-weight="bold" fill="#2E7D32">4️⃣ Performance & Storage</text>
+
+  <rect x="70" y="540" width="120" height="60" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="85" y="560" font-size="11" font-weight="bold" fill="white">gp3</text>
+  <text x="85" y="578" font-size="9" fill="white">95% workloads</text>
+  <text x="85" y="593" font-size="9" fill="white">3K-16K IOPS</text>
+
+  <rect x="210" y="540" width="120" height="60" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="3"/>
+  <text x="225" y="560" font-size="11" font-weight="bold" fill="white">io2</text>
+  <text x="225" y="578" font-size="9" fill="white">High IOPS</text>
+  <text x="225" y="593" font-size="9" fill="white">>16K IOPS</text>
+
+  <rect x="350" y="540" width="130" height="60" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="3"/>
+  <text x="365" y="560" font-size="11" font-weight="bold" fill="white">RDS Proxy</text>
+  <text x="365" y="578" font-size="9" fill="white">Connection pool</text>
+  <text x="365" y="593" font-size="9" fill="white">For Lambda/spikes</text>
+
+  <!-- Security -->
+  <rect x="530" y="500" width="420" height="120" fill="#FCE4EC" stroke="#C2185B" stroke-width="2" rx="5"/>
+  <text x="550" y="525" font-size="14" font-weight="bold" fill="#C2185B">5️⃣ Security Configuration</text>
+
+  <rect x="550" y="540" width="110" height="60" fill="#FF6B6B" stroke="#D32F2F" stroke-width="2" rx="3"/>
+  <text x="565" y="560" font-size="10" font-weight="bold" fill="white">Encryption</text>
+  <text x="565" y="578" font-size="8" fill="white">At rest (KMS)</text>
+  <text x="565" y="593" font-size="8" fill="white">In transit (SSL)</text>
+
+  <rect x="680" y="540" width="110" height="60" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" rx="3"/>
+  <text x="695" y="560" font-size="10" font-weight="bold" fill="white">IAM Auth</text>
+  <text x="695" y="578" font-size="8" fill="white">No passwords</text>
+  <text x="695" y="593" font-size="8" fill="white">Temp tokens</text>
+
+  <rect x="810" y="540" width="120" height="60" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="3"/>
+  <text x="825" y="560" font-size="10" font-weight="bold" fill="white">Private Subnet</text>
+  <text x="825" y="578" font-size="8" fill="white">No public IP</text>
+  <text x="825" y="593" font-size="8" fill="white">VPC isolation</text>
+
+  <!-- Monitoring -->
+  <rect x="50" y="650" width="900" height="110" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" rx="5"/>
+  <text x="70" y="675" font-size="14" font-weight="bold" fill="#7B1FA2">6️⃣ Monitoring & Maintenance</text>
+
+  <rect x="70" y="690" width="130" height="50" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="3"/>
+  <text x="85" y="710" font-size="10" fill="white">CloudWatch</text>
+  <text x="85" y="728" font-size="8" fill="white">Basic metrics</text>
+
+  <rect x="220" y="690" width="150" height="50" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="3"/>
+  <text x="235" y="710" font-size="10" fill="white">Enhanced Mon.</text>
+  <text x="235" y="728" font-size="8" fill="white">OS-level, 1-sec</text>
+
+  <rect x="390" y="690" width="160" height="50" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="3"/>
+  <text x="405" y="710" font-size="10" fill="white">Performance Insights</text>
+  <text x="405" y="728" font-size="8" fill="white">Query analysis</text>
+
+  <rect x="570" y="690" width="130" height="50" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="3"/>
+  <text x="585" y="710" font-size="10" fill="white">Backups</text>
+  <text x="585" y="728" font-size="8" fill="white">7-35 day retention</text>
+
+  <rect x="720" y="690" width="110" height="50" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="3"/>
+  <text x="735" y="710" font-size="10" fill="white">Alarms</text>
+  <text x="735" y="728" font-size="8" fill="white">SNS alerts</text>
+
+  <rect x="850" y="690" width="80" height="50" fill="#2196F3" stroke="#1976D2" stroke-width="2" rx="3"/>
+  <text x="865" y="710" font-size="10" fill="white">Logs</text>
+  <text x="865" y="728" font-size="8" fill="white">Audit trail</text>
+
+  <!-- Recommended Production Setup -->
+  <rect x="150" y="775" width="700" height="30" fill="#FFFBCC" stroke="#FFA000" stroke-width="2" rx="5"/>
+  <text x="250" y="795" font-size="11" font-weight="bold" fill="#232F3E">
+    ⭐ Production Best Practice: Multi-AZ + Read Replicas + Encryption + Enhanced Monitoring
+  </text>
+</svg>

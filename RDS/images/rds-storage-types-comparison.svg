@@ -1,0 +1,109 @@
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Storage Types Comparison
+  </text>
+
+  <!-- gp3 (General Purpose SSD) -->
+  <rect x="50" y="70" width="250" height="280" fill="#E8F4F8" stroke="#0073BB" stroke-width="3" rx="8"/>
+  <text x="175" y="100" font-size="16" font-weight="bold" text-anchor="middle" fill="#0073BB">gp3 (Latest)</text>
+  <text x="175" y="125" font-size="13" text-anchor="middle" fill="#232F3E" font-weight="bold">General Purpose SSD</text>
+
+  <!-- gp3 specs -->
+  <rect x="70" y="145" width="210" height="180" fill="white" stroke="#0073BB" stroke-width="2" rx="5"/>
+  <text x="90" y="170" font-size="12" font-weight="bold" fill="#232F3E">Performance:</text>
+  <text x="90" y="190" font-size="10" fill="#232F3E">• 3,000 IOPS baseline</text>
+  <text x="90" y="207" font-size="10" fill="#232F3E">• Up to 16,000 IOPS</text>
+  <text x="90" y="224" font-size="10" fill="#232F3E">• 125 MB/s baseline</text>
+  <text x="90" y="241" font-size="10" fill="#232F3E">• Up to 1,000 MB/s</text>
+
+  <text x="90" y="265" font-size="12" font-weight="bold" fill="#232F3E">Cost:</text>
+  <text x="90" y="283" font-size="10" fill="#232F3E">$0.115/GB-month</text>
+
+  <text x="90" y="305" font-size="11" font-weight="bold" fill="#4CAF50">✓ Best for 95% workloads</text>
+
+  <!-- gp2 (Legacy) -->
+  <rect x="325" y="70" width="250" height="280" fill="#FFF4E6" stroke="#D45B07" stroke-width="3" rx="8"/>
+  <text x="450" y="100" font-size="16" font-weight="bold" text-anchor="middle" fill="#D45B07">gp2 (Legacy)</text>
+  <text x="450" y="125" font-size="13" text-anchor="middle" fill="#232F3E" font-weight="bold">General Purpose SSD</text>
+
+  <!-- gp2 specs -->
+  <rect x="345" y="145" width="210" height="180" fill="white" stroke="#D45B07" stroke-width="2" rx="5"/>
+  <text x="365" y="170" font-size="12" font-weight="bold" fill="#232F3E">Performance:</text>
+  <text x="365" y="190" font-size="10" fill="#232F3E">• 3 IOPS per GB</text>
+  <text x="365" y="207" font-size="10" fill="#232F3E">• Burst to 3,000 IOPS</text>
+  <text x="365" y="224" font-size="10" fill="#232F3E">• Max 16,000 IOPS</text>
+  <text x="365" y="241" font-size="10" fill="#232F3E">• Tied to storage size</text>
+
+  <text x="365" y="265" font-size="12" font-weight="bold" fill="#232F3E">Cost:</text>
+  <text x="365" y="283" font-size="10" fill="#232F3E">$0.115/GB-month</text>
+
+  <text x="365" y="305" font-size="11" font-weight="bold" fill="#FF9800">⚠ Migrate to gp3</text>
+
+  <!-- io2 (Provisioned IOPS) -->
+  <rect x="600" y="70" width="250" height="280" fill="#E1F5E1" stroke="#2E7D32" stroke-width="3" rx="8"/>
+  <text x="725" y="100" font-size="16" font-weight="bold" text-anchor="middle" fill="#2E7D32">io2 Block Express</text>
+  <text x="725" y="125" font-size="13" text-anchor="middle" fill="#232F3E" font-weight="bold">Provisioned IOPS SSD</text>
+
+  <!-- io2 specs -->
+  <rect x="620" y="145" width="210" height="180" fill="white" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="640" y="170" font-size="12" font-weight="bold" fill="#232F3E">Performance:</text>
+  <text x="640" y="190" font-size="10" fill="#232F3E">• Up to 64,000 IOPS</text>
+  <text x="640" y="207" font-size="10" fill="#232F3E">• 1,000 IOPS per GB</text>
+  <text x="640" y="224" font-size="10" fill="#232F3E">• Up to 1,000 MB/s</text>
+  <text x="640" y="241" font-size="10" fill="#232F3E">• 99.999% durability</text>
+
+  <text x="640" y="265" font-size="12" font-weight="bold" fill="#232F3E">Cost:</text>
+  <text x="640" y="283" font-size="10" fill="#232F3E">$0.138/GB + $0.119/IOPS</text>
+
+  <text x="640" y="305" font-size="11" font-weight="bold" fill="#E74C3C">💰 Most expensive</text>
+
+  <!-- Performance Comparison Chart -->
+  <rect x="50" y="380" width="800" height="280" fill="#F0F0F0" stroke="#232F3E" stroke-width="2" rx="8"/>
+  <text x="450" y="410" font-size="16" font-weight="bold" text-anchor="middle" fill="#232F3E">IOPS Performance Comparison</text>
+
+  <!-- Y-axis -->
+  <line x1="100" y1="440" x2="100" y2="620" stroke="#232F3E" stroke-width="2"/>
+  <text x="85" y="445" font-size="10" text-anchor="end" fill="#232F3E">64K</text>
+  <text x="85" y="485" font-size="10" text-anchor="end" fill="#232F3E">48K</text>
+  <text x="85" y="525" font-size="10" text-anchor="end" fill="#232F3E">32K</text>
+  <text x="85" y="565" font-size="10" text-anchor="end" fill="#232F3E">16K</text>
+  <text x="85" y="605" font-size="10" text-anchor="end" fill="#232F3E">3K</text>
+  <text x="85" y="625" font-size="10" text-anchor="end" fill="#232F3E">0</text>
+  <text x="50" y="530" font-size="11" font-weight="bold" fill="#232F3E" transform="rotate(-90 50 530)">IOPS</text>
+
+  <!-- X-axis -->
+  <line x1="100" y1="620" x2="800" y2="620" stroke="#232F3E" stroke-width="2"/>
+  <text x="250" y="640" font-size="11" fill="#232F3E">gp3</text>
+  <text x="450" y="640" font-size="11" fill="#232F3E">gp2</text>
+  <text x="650" y="640" font-size="11" fill="#232F3E">io2</text>
+
+  <!-- Bars -->
+  <!-- gp3 baseline -->
+  <rect x="180" y="605" width="100" height="15" fill="#0073BB" stroke="#005A8F" stroke-width="1"/>
+  <text x="230" y="598" font-size="9" text-anchor="middle" fill="#232F3E">3K baseline</text>
+
+  <!-- gp3 max -->
+  <rect x="180" y="532" width="100" height="88" fill="#0073BB" fill-opacity="0.5" stroke="#005A8F" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="230" y="525" font-size="9" text-anchor="middle" fill="#232F3E">16K max</text>
+
+  <!-- gp2 small volume -->
+  <rect x="400" y="595" width="80" height="25" fill="#D45B07" stroke="#A34505" stroke-width="1"/>
+  <text x="440" y="612" font-size="8" text-anchor="middle" fill="white">Small vol</text>
+
+  <!-- gp2 burst -->
+  <rect x="400" y="605" width="80" height="15" fill="#D45B07" fill-opacity="0.5" stroke="#A34505" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="440" y="590" font-size="8" text-anchor="middle" fill="#232F3E">Burst</text>
+
+  <!-- io2 -->
+  <rect x="600" y="440" width="100" height="180" fill="#2E7D32" stroke="#1B5E20" stroke-width="1"/>
+  <text x="650" y="525" font-size="10" text-anchor="middle" fill="white" font-weight="bold">64K</text>
+  <text x="650" y="540" font-size="9" text-anchor="middle" fill="white">IOPS</text>
+
+  <!-- Use Case Guide -->
+  <rect x="70" y="665" font-size="11" fill="#232F3E">
+    <text x="0" y="0" font-size="11" font-weight="bold" fill="#232F3E">📋 Selection Guide:</text>
+    <text x="0" y="18" font-size="10" fill="#232F3E">• <tspan font-weight="bold">gp3</tspan> → Most workloads, cost-effective, flexible</text>
+    <text x="350" y="18" font-size="10" fill="#232F3E">• <tspan font-weight="bold">io2</tspan> → Latency-sensitive, >16K IOPS, high durability</text>
+  </rect>
+</svg>

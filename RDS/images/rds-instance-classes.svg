@@ -1,0 +1,123 @@
+<svg viewBox="0 0 1000 650" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="500" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Instance Classes and Sizing
+  </text>
+
+  <!-- Instance Class Families -->
+  <rect x="50" y="60" width="900" height="220" fill="#F0F0F0" stroke="#232F3E" stroke-width="2" rx="8"/>
+  <text x="70" y="90" font-size="16" font-weight="bold" fill="#232F3E">Instance Families</text>
+
+  <!-- T-family (Burstable) -->
+  <rect x="80" y="110" width="200" height="150" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="5"/>
+  <text x="180" y="135" font-size="14" font-weight="bold" text-anchor="middle" fill="#D45B07">T Family (Burstable)</text>
+  <text x="100" y="160" font-size="11" fill="#232F3E">db.t3.micro, small, medium</text>
+  <text x="100" y="180" font-size="10" fill="#232F3E">• Variable CPU</text>
+  <text x="100" y="197" font-size="10" fill="#232F3E">• Burst credits</text>
+  <text x="100" y="214" font-size="10" fill="#232F3E">• Cheapest option</text>
+  <text x="100" y="235" font-size="9" fill="#666">Use: Dev/test, low traffic</text>
+  <text x="100" y="250" font-size="9" font-weight="bold" fill="#E74C3C">❌ Not for production</text>
+
+  <!-- M-family (General Purpose) -->
+  <rect x="300" y="110" width="200" height="150" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="5"/>
+  <text x="400" y="135" font-size="14" font-weight="bold" text-anchor="middle" fill="#0073BB">M Family (General Purpose)</text>
+  <text x="320" y="160" font-size="11" fill="#232F3E">db.m6g.large, xlarge, 2xlarge</text>
+  <text x="320" y="180" font-size="10" fill="#232F3E">• Balanced CPU/memory</text>
+  <text x="320" y="197" font-size="10" fill="#232F3E">• Consistent performance</text>
+  <text x="320" y="214" font-size="10" fill="#232F3E">• Good for most apps</text>
+  <text x="320" y="235" font-size="9" fill="#666">Use: Production workloads</text>
+  <text x="320" y="250" font-size="9" font-weight="bold" fill="#4CAF50">✓ Recommended</text>
+
+  <!-- R-family (Memory Optimized) -->
+  <rect x="520" y="110" width="200" height="150" fill="#E1F5E1" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="620" y="135" font-size="14" font-weight="bold" text-anchor="middle" fill="#2E7D32">R Family (Memory)</text>
+  <text x="540" y="160" font-size="11" fill="#232F3E">db.r6g.large, xlarge, 2xlarge</text>
+  <text x="540" y="180" font-size="10" fill="#232F3E">• High memory/CPU ratio</text>
+  <text x="540" y="197" font-size="10" fill="#232F3E">• Large datasets</text>
+  <text x="540" y="214" font-size="10" fill="#232F3E">• In-memory caching</text>
+  <text x="540" y="235" font-size="9" fill="#666">Use: Memory-intensive DBs</text>
+  <text x="540" y="250" font-size="9" font-weight="bold" fill="#FF9800">💰 Higher cost</text>
+
+  <!-- X-family (Extreme Memory) -->
+  <rect x="740" y="110" width="190" height="150" fill="#FCE4EC" stroke="#C2185B" stroke-width="2" rx="5"/>
+  <text x="835" y="135" font-size="14" font-weight="bold" text-anchor="middle" fill="#C2185B">X Family (Extreme)</text>
+  <text x="760" y="160" font-size="11" fill="#232F3E">db.x2g.xlarge, 2xlarge</text>
+  <text x="760" y="180" font-size="10" fill="#232F3E">• Up to 4 TB memory</text>
+  <text x="760" y="197" font-size="10" fill="#232F3E">• In-memory databases</text>
+  <text x="760" y="214" font-size="10" fill="#232F3E">• SAP HANA</text>
+  <text x="760" y="235" font-size="9" fill="#666">Use: Very large datasets</text>
+  <text x="760" y="250" font-size="9" font-weight="bold" fill="#E74C3C">💰💰 Most expensive</text>
+
+  <!-- Sizing Comparison Chart -->
+  <rect x="50" y="300" width="900" height="310" fill="#F0F0F0" stroke="#232F3E" stroke-width="2" rx="8"/>
+  <text x="500" y="330" font-size="16" font-weight="bold" text-anchor="middle" fill="#232F3E">Common Instance Sizes (M Family - Graviton)</text>
+
+  <!-- Table Header -->
+  <rect x="80" y="350" width="840" height="30" fill="#527FFF" stroke="#2E5FAF" stroke-width="2"/>
+  <text x="150" y="372" font-size="11" font-weight="bold" fill="white">Instance</text>
+  <text x="280" y="372" font-size="11" font-weight="bold" fill="white">vCPU</text>
+  <text x="380" y="372" font-size="11" font-weight="bold" fill="white">Memory</text>
+  <text x="500" y="372" font-size="11" font-weight="bold" fill="white">Network</text>
+  <text x="670" y="372" font-size="11" font-weight="bold" fill="white">Cost/Month</text>
+  <text x="820" y="372" font-size="11" font-weight="bold" fill="white">Use Case</text>
+
+  <!-- Row 1: t3.micro -->
+  <rect x="80" y="380" width="840" height="35" fill="white" stroke="#D45B07" stroke-width="1"/>
+  <text x="100" y="402" font-size="10" fill="#232F3E">db.t3.micro</text>
+  <text x="280" y="402" font-size="10" fill="#232F3E">2</text>
+  <text x="380" y="402" font-size="10" fill="#232F3E">1 GB</text>
+  <text x="500" y="402" font-size="10" fill="#232F3E">Low</text>
+  <text x="670" y="402" font-size="10" fill="#232F3E">~$15</text>
+  <text x="780" y="402" font-size="9" fill="#666">Dev/test only</text>
+
+  <!-- Row 2: t3.small -->
+  <rect x="80" y="415" width="840" height="35" fill="#FFF9F0" stroke="#D45B07" stroke-width="1"/>
+  <text x="100" y="437" font-size="10" fill="#232F3E">db.t3.small</text>
+  <text x="280" y="437" font-size="10" fill="#232F3E">2</text>
+  <text x="380" y="437" font-size="10" fill="#232F3E">2 GB</text>
+  <text x="500" y="437" font-size="10" fill="#232F3E">Low</text>
+  <text x="670" y="437" font-size="10" fill="#232F3E">~$30</text>
+  <text x="780" y="437" font-size="9" fill="#666">Small apps</text>
+
+  <!-- Row 3: m6g.large -->
+  <rect x="80" y="450" width="840" height="35" fill="white" stroke="#0073BB" stroke-width="2"/>
+  <text x="100" y="472" font-size="10" fill="#232F3E" font-weight="bold">db.m6g.large</text>
+  <text x="280" y="472" font-size="10" fill="#232F3E">2</text>
+  <text x="380" y="472" font-size="10" fill="#232F3E">8 GB</text>
+  <text x="500" y="472" font-size="10" fill="#232F3E">Up to 10 Gbps</text>
+  <text x="670" y="472" font-size="10" fill="#232F3E">~$140</text>
+  <text x="780" y="472" font-size="9" fill="#4CAF50" font-weight="bold">✓ Small prod</text>
+
+  <!-- Row 4: m6g.xlarge -->
+  <rect x="80" y="485" width="840" height="35" fill="#F0F8FF" stroke="#0073BB" stroke-width="2"/>
+  <text x="100" y="507" font-size="10" fill="#232F3E" font-weight="bold">db.m6g.xlarge</text>
+  <text x="280" y="507" font-size="10" fill="#232F3E">4</text>
+  <text x="380" y="507" font-size="10" fill="#232F3E">16 GB</text>
+  <text x="500" y="507" font-size="10" fill="#232F3E">Up to 10 Gbps</text>
+  <text x="670" y="507" font-size="10" fill="#232F3E">~$280</text>
+  <text x="780" y="507" font-size="9" fill="#4CAF50" font-weight="bold">✓ Medium prod</text>
+
+  <!-- Row 5: m6g.2xlarge -->
+  <rect x="80" y="520" width="840" height="35" fill="white" stroke="#0073BB" stroke-width="2"/>
+  <text x="100" y="542" font-size="10" fill="#232F3E">db.m6g.2xlarge</text>
+  <text x="280" y="542" font-size="10" fill="#232F3E">8</text>
+  <text x="380" y="542" font-size="10" fill="#232F3E">32 GB</text>
+  <text x="500" y="542" font-size="10" fill="#232F3E">Up to 12 Gbps</text>
+  <text x="670" y="542" font-size="10" fill="#232F3E">~$560</text>
+  <text x="780" y="542" font-size="9" fill="#666">Large prod</text>
+
+  <!-- Row 6: r6g.xlarge -->
+  <rect x="80" y="555" width="840" height="35" fill="#F0FFF0" stroke="#2E7D32" stroke-width="2"/>
+  <text x="100" y="577" font-size="10" fill="#232F3E">db.r6g.xlarge</text>
+  <text x="280" y="577" font-size="10" fill="#232F3E">4</text>
+  <text x="380" y="577" font-size="10" fill="#232F3E">32 GB</text>
+  <text x="500" y="577" font-size="10" fill="#232F3E">Up to 10 Gbps</text>
+  <text x="670" y="577" font-size="10" fill="#232F3E">~$350</text>
+  <text x="780" y="577" font-size="9" fill="#666">High memory</text>
+
+  <!-- Footer note -->
+  <rect x="100" y="615" width="800" height="25" fill="#FFFBCC" stroke="#FFA000" stroke-width="2" rx="5"/>
+  <text x="500" y="633" font-size="10" text-anchor="middle" fill="#232F3E">
+    💡 Use Graviton (m6g, r6g) for 40% better price-performance vs Intel (m6i, r6i)
+  </text>
+</svg>

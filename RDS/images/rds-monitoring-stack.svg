@@ -1,0 +1,108 @@
+<svg viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Monitoring Architecture
+  </text>
+
+  <!-- RDS Instance (Center) -->
+  <rect x="350" y="350" width="200" height="100" fill="#527FFF" stroke="#2E5FAF" stroke-width="3" rx="8"/>
+  <text x="450" y="385" font-size="16" font-weight="bold" text-anchor="middle" fill="white">RDS Instance</text>
+  <text x="450" y="410" font-size="12" text-anchor="middle" fill="white">Production Database</text>
+  <text x="450" y="430" font-size="11" text-anchor="middle" fill="white">MySQL 8.0</text>
+
+  <!-- CloudWatch Metrics -->
+  <rect x="50" y="70" width="250" height="180" fill="#FF9900" stroke="#FF6600" stroke-width="3" rx="8"/>
+  <text x="175" y="100" font-size="15" font-weight="bold" text-anchor="middle" fill="white">📊 CloudWatch Metrics</text>
+  <rect x="70" y="115" width="210" height="120" fill="white" stroke="#FF6600" stroke-width="2" rx="5"/>
+  <text x="90" y="140" font-size="11" fill="#232F3E">• CPU Utilization</text>
+  <text x="90" y="160" font-size="11" fill="#232F3E">• Storage Space</text>
+  <text x="90" y="180" font-size="11" fill="#232F3E">• IOPS (Read/Write)</text>
+  <text x="90" y="200" font-size="11" fill="#232F3E">• Database Connections</text>
+  <text x="90" y="220" font-size="10" fill="#666">Granularity: 1 minute</text>
+
+  <!-- Enhanced Monitoring -->
+  <rect x="325" y="70" width="250" height="180" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="3" rx="8"/>
+  <text x="450" y="100" font-size="15" font-weight="bold" text-anchor="middle" fill="white">🔍 Enhanced Monitoring</text>
+  <rect x="345" y="115" width="210" height="120" fill="white" stroke="#6A3BBF" stroke-width="2" rx="5"/>
+  <text x="365" y="140" font-size="11" fill="#232F3E">• Per-process CPU</text>
+  <text x="365" y="160" font-size="11" fill="#232F3E">• Per-process Memory</text>
+  <text x="365" y="180" font-size="11" fill="#232F3E">• File system metrics</text>
+  <text x="365" y="200" font-size="11" fill="#232F3E">• Network I/O</text>
+  <text x="365" y="220" font-size="10" fill="#666">Granularity: 1 second</text>
+
+  <!-- Performance Insights -->
+  <rect x="600" y="70" width="250" height="180" fill="#4CAF50" stroke="#2E7D32" stroke-width="3" rx="8"/>
+  <text x="725" y="100" font-size="15" font-weight="bold" text-anchor="middle" fill="white">⚡ Performance Insights</text>
+  <rect x="620" y="115" width="210" height="120" fill="white" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="640" y="140" font-size="11" fill="#232F3E">• Top SQL queries</text>
+  <text x="640" y="160" font-size="11" fill="#232F3E">• Wait event analysis</text>
+  <text x="640" y="180" font-size="11" fill="#232F3E">• Database load</text>
+  <text x="640" y="200" font-size="11" fill="#232F3E">• Query performance</text>
+  <text x="640" y="220" font-size="10" fill="#666">Real-time + 7 days free</text>
+
+  <!-- Database Logs -->
+  <rect x="50" y="520" width="250" height="180" fill="#FF6B6B" stroke="#D32F2F" stroke-width="3" rx="8"/>
+  <text x="175" y="550" font-size="15" font-weight="bold" text-anchor="middle" fill="white">📝 Database Logs</text>
+  <rect x="70" y="565" width="210" height="120" fill="white" stroke="#D32F2F" stroke-width="2" rx="5"/>
+  <text x="90" y="590" font-size="11" fill="#232F3E">• Error log</text>
+  <text x="90" y="610" font-size="11" fill="#232F3E">• Slow query log</text>
+  <text x="90" y="630" font-size="11" fill="#232F3E">• General log</text>
+  <text x="90" y="650" font-size="11" fill="#232F3E">• Audit log</text>
+  <text x="90" y="670" font-size="10" fill="#666">Export to CloudWatch Logs</text>
+
+  <!-- CloudWatch Alarms -->
+  <rect x="325" y="520" width="250" height="180" fill="#FFA500" stroke="#FF8C00" stroke-width="3" rx="8"/>
+  <text x="450" y="550" font-size="15" font-weight="bold" text-anchor="middle" fill="white">🚨 CloudWatch Alarms</text>
+  <rect x="345" y="565" width="210" height="120" fill="white" stroke="#FF8C00" stroke-width="2" rx="5"/>
+  <text x="365" y="590" font-size="11" fill="#232F3E">• High CPU alert</text>
+  <text x="365" y="610" font-size="11" fill="#232F3E">• Low storage alert</text>
+  <text x="365" y="630" font-size="11" fill="#232F3E">• High connections</text>
+  <text x="365" y="650" font-size="11" fill="#232F3E">• Replication lag</text>
+  <text x="365" y="670" font-size="10" fill="#666">SNS → Email/Slack/PagerDuty</text>
+
+  <!-- CloudTrail -->
+  <rect x="600" y="520" width="250" height="180" fill="#2196F3" stroke="#1976D2" stroke-width="3" rx="8"/>
+  <text x="725" y="550" font-size="15" font-weight="bold" text-anchor="middle" fill="white">🔐 CloudTrail</text>
+  <rect x="620" y="565" width="210" height="120" fill="white" stroke="#1976D2" stroke-width="2" rx="5"/>
+  <text x="640" y="590" font-size="11" fill="#232F3E">• RDS API calls</text>
+  <text x="640" y="610" font-size="11" fill="#232F3E">• Who created/modified</text>
+  <text x="640" y="630" font-size="11" fill="#232F3E">• Security changes</text>
+  <text x="640" y="650" font-size="11" fill="#232F3E">• Compliance audit</text>
+  <text x="640" y="670" font-size="10" fill="#666">90 days event history</text>
+
+  <!-- Arrows from monitoring tools to RDS -->
+  <defs>
+    <marker id="arrowmon" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#232F3E"/>
+    </marker>
+  </defs>
+
+  <!-- CloudWatch to RDS -->
+  <line x1="175" y1="250" x2="380" y2="350" stroke="#FF9900" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowmon)"/>
+  <text x="250" y="290" font-size="9" fill="#666">Collects</text>
+
+  <!-- Enhanced Mon to RDS -->
+  <line x1="450" y1="250" x2="450" y2="350" stroke="#8C4FFF" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowmon)"/>
+  <text x="460" y="290" font-size="9" fill="#666">OS metrics</text>
+
+  <!-- Performance Insights to RDS -->
+  <line x1="725" y1="250" x2="520" y2="350" stroke="#4CAF50" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowmon)"/>
+  <text x="630" y="290" font-size="9" fill="#666">Query analysis</text>
+
+  <!-- RDS to Logs -->
+  <line x1="380" y1="450" x2="175" y2="520" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowmon)"/>
+  <text x="250" y="490" font-size="9" fill="#666">Exports</text>
+
+  <!-- CloudWatch to Alarms -->
+  <line x1="300" y1="250" x2="400" y2="520" stroke="#FFA500" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowmon)"/>
+  <text x="340" y="380" font-size="9" fill="#666">Triggers</text>
+
+  <!-- Data Flow Summary -->
+  <rect x="100" y="730" width="700" height="50" fill="#FFFBCC" stroke="#FFA000" stroke-width="2" rx="5"/>
+  <text x="450" y="755" font-size="12" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    💡 Best Practice: Enable all monitoring tools for production databases
+  </text>
+  <text x="450" y="772" font-size="10" text-anchor="middle" fill="#232F3E">
+    CloudWatch (free) + Enhanced Monitoring (~$2.50/mo) + Performance Insights (7 days free)
+  </text>
+</svg>
