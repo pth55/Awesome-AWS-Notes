@@ -53,6 +53,167 @@ Both ALB and NLB route traffic to **Target Groups**. A Target Group is just a co
 
 ---
 
+## VPC Setup: Create `my-vpc-1` (Prerequisite for All Tasks)
+
+> **Do this FIRST before anything else.** All 3 tasks run inside this VPC. If you already have `my-vpc-1` from a previous lab, skip to Pre-Setup.
+
+This is a simpler VPC than the one in Part 2 — we only need **2 public subnets** across 2 AZs (no private subnets, no NAT Gateway). The ALB requires subnets in at least 2 different AZs.
+
+### What We're Building
+
+```
+AWS REGION: ap-south-1 (Mumbai)
+┌──────────────────────────────────────────────────────────────────┐
+│  VPC: my-vpc-1  (10.0.0.0/16)                                   │
+│                                                                  │
+│  ┌─────────────────────────┐   ┌─────────────────────────┐      │
+│  │  my-vpc-1-public-1      │   │  my-vpc-1-public-2      │      │
+│  │  10.0.1.0/24            │   │  10.0.2.0/24            │      │
+│  │  ap-south-1a            │   │  ap-south-1b            │      │
+│  │                         │   │                         │      │
+│  │  ┌───────────────────┐  │   │  ┌───────────────────┐  │      │
+│  │  │  app-server-1     │  │   │  │  app-server-2     │  │      │
+│  │  │  10.0.1.x         │  │   │  │  10.0.2.x         │  │      │
+│  │  └───────────────────┘  │   │  └───────────────────┘  │      │
+│  └─────────────────────────┘   └─────────────────────────┘      │
+│                                                                  │
+│                    ┌──────────────┐                               │
+│                    │  IGW         │                               │
+│                    │  my-vpc-1-igw│                               │
+│                    └──────┬───────┘                               │
+└───────────────────────────┼──────────────────────────────────────┘
+                            │
+                        INTERNET
+```
+
+---
+
+### Step 1: Create the VPC
+
+1. Go to **VPC Console > Your VPCs > Create VPC**
+2. Settings:
+
+```
+VPC Settings:
+────────────────────────────────────────────
+Resources to create:  VPC only
+Name tag:             my-vpc-1
+IPv4 CIDR block:      10.0.0.0/16
+IPv6 CIDR block:      No IPv6 CIDR block
+Tenancy:              Default
+────────────────────────────────────────────
+```
+
+3. Click **Create VPC**
+
+> **Why 10.0.0.0/16?** It gives 65,536 addresses — way more than we need, but it's the standard starting point for lab VPCs and leaves plenty of room for subnets. It also won't overlap with the Part 2 VPC (`192.168.1.0/24`) if you kept that.
+
+---
+
+### Step 2: Create Two Public Subnets
+
+We need exactly 2 public subnets in **different Availability Zones**. ALBs require at least 2 AZs.
+
+#### Subnet 1: `my-vpc-1-public-1`
+
+1. Go to **VPC Console > Subnets > Create Subnet**
+2. Settings:
+
+```
+Settings:
+────────────────────────────────────────────────────
+VPC ID:                  my-vpc-1
+Subnet name:             my-vpc-1-public-1
+Availability Zone:       ap-south-1a
+IPv4 subnet CIDR block:  10.0.1.0/24
+────────────────────────────────────────────────────
+```
+
+#### Subnet 2: `my-vpc-1-public-2`
+
+1. Same flow, different settings:
+
+```
+Settings:
+────────────────────────────────────────────────────
+VPC ID:                  my-vpc-1
+Subnet name:             my-vpc-1-public-2
+Availability Zone:       ap-south-1b          ← DIFFERENT AZ
+IPv4 subnet CIDR block:  10.0.2.0/24
+────────────────────────────────────────────────────
+```
+
+> **Why different AZs?** ALB places a load balancer node in each subnet/AZ you select. Having subnets in at least 2 AZs gives high availability — if one AZ fails, the ALB still routes traffic to the surviving AZ.
+
+---
+
+### Step 3: Create and Attach an Internet Gateway
+
+1. Go to **VPC Console > Internet Gateways > Create Internet Gateway**
+2. Name: `my-vpc-1-igw`
+3. Click **Create**
+4. Select `my-vpc-1-igw` > **Actions > Attach to VPC** > Select `my-vpc-1` > **Attach**
+
+---
+
+### Step 4: Create a Public Route Table and Associate Subnets
+
+#### Create the route table
+
+1. Go to **VPC Console > Route Tables > Create Route Table**
+2. Name: `my-vpc-1-public-rt`
+3. VPC: `my-vpc-1`
+4. Click **Create**
+
+#### Add the internet route
+
+1. Select `my-vpc-1-public-rt` > **Routes tab > Edit Routes > Add Route**
+
+```
+Destination:   0.0.0.0/0
+Target:        Internet Gateway → my-vpc-1-igw
+```
+
+2. Click **Save Changes**
+
+#### Associate both public subnets
+
+1. Select `my-vpc-1-public-rt` > **Subnet Associations tab > Edit Subnet Associations**
+2. Check both:
+   - `my-vpc-1-public-1`
+   - `my-vpc-1-public-2`
+3. Click **Save Associations**
+
+---
+
+### Step 5: Enable Auto-Assign Public IP on Both Subnets
+
+Instances need public IPs so you can SSH into them and so the internet can reach the ALB.
+
+1. Go to **VPC Console > Subnets**
+2. Select `my-vpc-1-public-1` > **Actions > Edit Subnet Settings**
+3. Check **Enable auto-assign public IPv4 address** > **Save**
+4. Repeat for `my-vpc-1-public-2`
+
+---
+
+### Verify the VPC Setup
+
+Before moving on, confirm:
+
+| Component | Expected State |
+|-----------|---------------|
+| VPC `my-vpc-1` | Created, CIDR `10.0.0.0/16` |
+| Subnet `my-vpc-1-public-1` | `10.0.1.0/24`, `ap-south-1a`, auto-assign public IP **ON** |
+| Subnet `my-vpc-1-public-2` | `10.0.2.0/24`, `ap-south-1b`, auto-assign public IP **ON** |
+| IGW `my-vpc-1-igw` | Attached to `my-vpc-1` |
+| Route Table `my-vpc-1-public-rt` | `0.0.0.0/0 → IGW`, associated with both subnets |
+
+> **Note:** You'll select these subnets by name when launching EC2 instances and creating the ALB in later steps.
+
+---
+---
+
 ## Pre-Setup: The App + EC2 Instances + Security Groups
 
 > **Do this ONCE. All 3 tasks reuse these EC2 instances.**
@@ -64,49 +225,81 @@ This is the app you'll run on BOTH EC2 instances. It has 3 routes:
 ```javascript
 // app.js
 const http = require('http');
-const os = require('os');
 
-// Get instance's private IP
-const INSTANCE_IP = os.networkInterfaces()['eth0']?.[0]?.address || 'unknown';
+// Fetch instance IP using IMDSv2 (EC2 metadata service)
+// IMDSv2 requires a token - simple GET (IMDSv1) is blocked on newer instances
+function getInstanceIP() {
+  return new Promise((resolve) => {
+    // Step 1: Get a token via PUT request
+    const tokenReq = http.request('http://169.254.169.254/latest/api/token', {
+      method: 'PUT',
+      headers: { 'X-aws-ec2-metadata-token-ttl-seconds': '21600' }
+    }, (tokenRes) => {
+      let token = '';
+      tokenRes.on('data', (d) => token += d);
+      tokenRes.on('end', () => {
+        // Step 2: Use token to fetch private IP
+        const ipReq = http.request('http://169.254.169.254/latest/meta-data/local-ipv4', {
+          headers: { 'X-aws-ec2-metadata-token': token }
+        }, (ipRes) => {
+          let ip = '';
+          ipRes.on('data', (d) => ip += d);
+          ipRes.on('end', () => resolve(ip || 'unknown'));
+        });
+        ipReq.on('error', () => resolve('unknown'));
+        ipReq.end();
+      });
+    });
+    tokenReq.on('error', () => resolve('unknown'));
+    tokenReq.end();
+  });
+}
 
-// Simple in-memory todos
-const todos = [
-  { id: 1, task: "Learn ALB", done: false },
-  { id: 2, task: "Learn NLB", done: false },
-  { id: 3, task: "Build multi-AZ setup", done: false }
-];
+async function main() {
+  const INSTANCE_IP = await getInstanceIP();
 
-const server = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'application/json');
+  const todos = [
+    { id: 1, task: "Learn ALB", done: false },
+    { id: 2, task: "Learn NLB", done: false },
+    { id: 3, task: "Build multi-AZ setup", done: false }
+  ];
 
-  if (req.url === '/' || req.url === '/home') {
-    res.end(JSON.stringify({
-      message: "Hello from EC2!",
-      instance_ip: INSTANCE_IP,
-      route: req.url
-    }, null, 2));
-  }
-  else if (req.url === '/getTodos') {
-    res.end(JSON.stringify({
-      todos: todos,
-      instance_ip: INSTANCE_IP,
-      route: "/getTodos"
-    }, null, 2));
-  }
-  else {
-    res.statusCode = 404;
-    res.end(JSON.stringify({
-      error: "Route not found",
-      instance_ip: INSTANCE_IP,
-      available_routes: ["/home", "/getTodos"]
-    }, null, 2));
-  }
-});
+  const server = http.createServer((req, res) => {
+    res.setHeader('Content-Type', 'application/json');
 
-server.listen(8080, () => {
-  console.log(`Server running on port 8080 | Instance IP: ${INSTANCE_IP}`);
-});
+    if (req.url === '/' || req.url === '/home') {
+      res.end(JSON.stringify({
+        message: "Hello from EC2!",
+        instance_ip: INSTANCE_IP,
+        route: req.url
+      }, null, 2));
+    }
+    else if (req.url === '/getTodos') {
+      res.end(JSON.stringify({
+        todos: todos,
+        instance_ip: INSTANCE_IP,
+        route: "/getTodos"
+      }, null, 2));
+    }
+    else {
+      res.statusCode = 404;
+      res.end(JSON.stringify({
+        error: "Route not found",
+        instance_ip: INSTANCE_IP,
+        available_routes: ["/home", "/getTodos"]
+      }, null, 2));
+    }
+  });
+
+  server.listen(8080, () => {
+    console.log(`Server running on port 8080 | Instance IP: ${INSTANCE_IP}`);
+  });
+}
+
+main();
 ```
+
+> **Why IMDSv2?** Newer EC2 instances enforce IMDSv2 by default, which requires a token (PUT request first, then GET with that token). The old approach using `os.networkInterfaces()['eth0']` or simple GET to metadata service will return `unknown` or `401 Unauthorized`. This code handles it correctly.
 
 Save this somewhere on your local machine - you'll paste it into both EC2s.
 
@@ -142,9 +335,10 @@ You need **2 Security Groups** in your VPC (`my-vpc-1`):
    | Type | Protocol | Port | Source | Description |
    |------|----------|------|--------|-------------|
    | Custom TCP | TCP | 8080 | `alb-sg` (select the SG) | Only ALB can hit app port |
-   | SSH | TCP | 22 | Your IP (My IP) | SSH access for setup |
 
    > **IMPORTANT**: For the port 8080 rule, the Source is the **Security Group ID** of `alb-sg`, NOT an IP address. This means only traffic originating from the ALB (which uses `alb-sg`) can reach your EC2s on 8080. This is the proper way to secure backend instances.
+   >
+   > **No SSH rule needed** if you're using SSM Session Manager to connect (recommended). Add SSH rule only if you prefer SSH access.
 
 6. **Outbound Rules:** Leave default (All traffic)
 7. Click **Create**
@@ -159,26 +353,28 @@ You need **2 Security Groups** in your VPC (`my-vpc-1`):
 2. **Name**: `app-server-1`
 3. **AMI**: Amazon Linux 2023 (free tier eligible)
 4. **Instance Type**: `t2.micro`
-5. **Key Pair**: Select your existing key pair (or create one)
+5. **Key Pair**: Select your existing key pair (or create one — not needed if using SSM only)
 6. **Network Settings** - Click **Edit**:
    - VPC: `my-vpc-1`
-   - Subnet: `my-vpc-1-public-1` (`subnet-0f27153bbe1b8f0d5`)
+   - Subnet: `my-vpc-1-public-1`
    - Auto-assign Public IP: **Enable**
    - Security Group: Select **existing** > `ec2-app-sg`
-7. Click **Launch Instance**
+7. **Advanced Details** (expand):
+   - IAM instance profile: Select a role with `AmazonSSMManagedInstanceCore` policy (so you can connect via Session Manager without SSH)
+8. Click **Launch Instance**
 
 #### EC2-2 (in subnet: `my-vpc-1-public-2`)
 
 1. Same as above but:
    - **Name**: `app-server-2`
-   - Subnet: `my-vpc-1-public-2` (`subnet-0e4c3c8ec084b7756`)
+   - Subnet: `my-vpc-1-public-2`
    - Everything else identical
 
 ---
 
 ### Step 3: Deploy the App on BOTH EC2s
 
-SSH into **each** EC2 and run:
+Connect to **each** EC2 via **SSM Session Manager** (EC2 Console > Select instance > Connect > Session Manager) and run:
 
 ```bash
 # Install Node.js
@@ -187,49 +383,77 @@ sudo yum install -y nodejs
 # Create app directory
 mkdir ~/todoapp && cd ~/todoapp
 
-# Create the app file
+# Create the app file (uses IMDSv2 for fetching instance IP)
 cat << 'EOF' > app.js
 const http = require('http');
-const os = require('os');
 
-const INSTANCE_IP = os.networkInterfaces()['eth0']?.[0]?.address || 'unknown';
+function getInstanceIP() {
+  return new Promise((resolve) => {
+    const tokenReq = http.request('http://169.254.169.254/latest/api/token', {
+      method: 'PUT',
+      headers: { 'X-aws-ec2-metadata-token-ttl-seconds': '21600' }
+    }, (tokenRes) => {
+      let token = '';
+      tokenRes.on('data', (d) => token += d);
+      tokenRes.on('end', () => {
+        const ipReq = http.request('http://169.254.169.254/latest/meta-data/local-ipv4', {
+          headers: { 'X-aws-ec2-metadata-token': token }
+        }, (ipRes) => {
+          let ip = '';
+          ipRes.on('data', (d) => ip += d);
+          ipRes.on('end', () => resolve(ip || 'unknown'));
+        });
+        ipReq.on('error', () => resolve('unknown'));
+        ipReq.end();
+      });
+    });
+    tokenReq.on('error', () => resolve('unknown'));
+    tokenReq.end();
+  });
+}
 
-const todos = [
-  { id: 1, task: "Learn ALB", done: false },
-  { id: 2, task: "Learn NLB", done: false },
-  { id: 3, task: "Build multi-AZ setup", done: false }
-];
+async function main() {
+  const INSTANCE_IP = await getInstanceIP();
 
-const server = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'application/json');
+  const todos = [
+    { id: 1, task: "Learn ALB", done: false },
+    { id: 2, task: "Learn NLB", done: false },
+    { id: 3, task: "Build multi-AZ setup", done: false }
+  ];
 
-  if (req.url === '/' || req.url === '/home') {
-    res.end(JSON.stringify({
-      message: "Hello from EC2!",
-      instance_ip: INSTANCE_IP,
-      route: req.url
-    }, null, 2));
-  }
-  else if (req.url === '/getTodos') {
-    res.end(JSON.stringify({
-      todos: todos,
-      instance_ip: INSTANCE_IP,
-      route: "/getTodos"
-    }, null, 2));
-  }
-  else {
-    res.statusCode = 404;
-    res.end(JSON.stringify({
-      error: "Route not found",
-      instance_ip: INSTANCE_IP,
-      available_routes: ["/home", "/getTodos"]
-    }, null, 2));
-  }
-});
+  const server = http.createServer((req, res) => {
+    res.setHeader('Content-Type', 'application/json');
 
-server.listen(8080, () => {
-  console.log(`Server running on port 8080 | Instance IP: ${INSTANCE_IP}`);
-});
+    if (req.url === '/' || req.url === '/home') {
+      res.end(JSON.stringify({
+        message: "Hello from EC2!",
+        instance_ip: INSTANCE_IP,
+        route: req.url
+      }, null, 2));
+    }
+    else if (req.url === '/getTodos') {
+      res.end(JSON.stringify({
+        todos: todos,
+        instance_ip: INSTANCE_IP,
+        route: "/getTodos"
+      }, null, 2));
+    }
+    else {
+      res.statusCode = 404;
+      res.end(JSON.stringify({
+        error: "Route not found",
+        instance_ip: INSTANCE_IP,
+        available_routes: ["/home", "/getTodos"]
+      }, null, 2));
+    }
+  });
+
+  server.listen(8080, () => {
+    console.log(`Server running on port 8080 | Instance IP: ${INSTANCE_IP}`);
+  });
+}
+
+main();
 EOF
 
 # Run the app in background (survives terminal close)
@@ -317,8 +541,8 @@ Both should respond with their respective private IPs. You're ready for the task
 4. **Network Mapping**:
    - VPC: `my-vpc-1`
    - Mappings: Select **both subnets**:
-     - `my-vpc-1-public-1` (`subnet-0f27153bbe1b8f0d5`)
-     - `my-vpc-1-public-2` (`subnet-0e4c3c8ec084b7756`)
+     - `my-vpc-1-public-1`
+     - `my-vpc-1-public-2`
    > **Why select subnets?** The ALB places a node in each selected subnet. Even though both are in the same AZ, the ALB needs at least one subnet selected. Selecting both means the ALB can reach instances in both subnets.
 5. **Security Group**: Select `alb-sg` (remove the default SG if auto-selected)
 6. **Listeners and Routing**:
@@ -333,11 +557,11 @@ Both should respond with their respective private IPs. You're ready for the task
 
 1. Go to **Load Balancers**, select `my-basic-alb`
 2. Wait for **State** to become `Active` (takes 2-3 minutes)
-3. Copy the **DNS Name** (looks like `my-basic-alb-123456.us-east-1.elb.amazonaws.com`)
+3. Copy the **DNS Name** (looks like `my-basic-alb-123456.ap-south-1.elb.amazonaws.com`)
 4. Go to **Target Groups > tg-basic-alb > Targets tab**
    - Wait until both targets show **Status: healthy**
    - If they show `unhealthy`, check:
-     - Is the app running? (SSH in and run `curl localhost:8080/home`)
+     - Is the app running? (Connect via SSM and run `curl localhost:8080/home`)
      - Is the SG correct? (ec2-app-sg must allow 8080 from alb-sg)
 
 5. **Test in browser:**
@@ -601,7 +825,7 @@ http://<NLB-DNS-NAME>/
 2. Under **Network mapping**, you'll see the assigned IPv4 address for each subnet
 3. You can actually use these IPs directly in the browser instead of the DNS name!
 
-**To verify client IP preservation** (SSH into an EC2):
+**To verify client IP preservation** (connect to an EC2 via SSM):
 ```bash
 # Check app log to see incoming connections
 tail -f ~/todoapp/app.log
@@ -655,7 +879,7 @@ Need both smart routing +
 ## What's Next?
 
 After mastering these single-AZ tasks, the next steps are:
-1. **Multi-AZ Setup**: Place subnets in different AZs (us-east-1a, us-east-1c) for high availability
+1. **Multi-AZ Setup**: Place subnets in different AZs (ap-south-1a, ap-south-1c) for high availability
 2. **HTTPS/TLS**: Add certificates and HTTPS listeners
 3. **Auto Scaling Groups**: Let AWS automatically add/remove EC2s based on traffic
 4. **NLB + ALB Combo**: Use NLB for static IPs in front, ALB behind for smart routing
