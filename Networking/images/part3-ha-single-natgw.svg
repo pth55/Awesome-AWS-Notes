@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="460" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="18" text-anchor="middle" font-size="11" fill="#c62828" font-weight="bold">Single NAT Gateway Setup — AZ Failure Problem</text>
+  <text x="400" y="32" text-anchor="middle" font-size="9" fill="#9e9e9e" font-style="italic">Region: us-east-1</text>
+
+  <!-- Internet ellipse -->
+  <ellipse cx="400" cy="55" rx="60" ry="18" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.5"/>
+  <text x="400" y="60" text-anchor="middle" font-size="11" fill="#424242" font-weight="bold">Internet</text>
+
+  <!-- Arrow: Internet ↔ IGW -->
+  <line x1="400" y1="73" x2="400" y2="91" stroke="#9e9e9e" stroke-width="1.5"/>
+  <polygon points="400,97 394,89 406,89" fill="#9e9e9e"/>
+
+  <!-- IGW box -->
+  <rect x="272" y="97" width="256" height="40" rx="5" fill="#fff8e1" stroke="#ffa000" stroke-width="1.8"/>
+  <text x="400" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">Internet Gateway  (my-igw)</text>
+  <text x="400" y="130" text-anchor="middle" font-size="9" fill="#bf360c">shared across all AZs</text>
+
+  <!-- Arrow: IGW → VPC -->
+  <line x1="400" y1="137" x2="400" y2="151" stroke="#9e9e9e" stroke-width="1.5"/>
+  <polygon points="400,157 394,149 406,149" fill="#9e9e9e"/>
+
+  <!-- VPC boundary -->
+  <rect x="16" y="157" width="768" height="268" rx="7" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="400" y="175" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">VPC: my-vpc</text>
+
+  <!-- AZ us-east-1a boundary — RED (failing) -->
+  <rect x="28" y="182" width="366" height="230" rx="5" fill="#ffebee" stroke="#e53935" stroke-width="1.8" stroke-dasharray="6,3"/>
+  <text x="44" y="198" font-size="10" fill="#c62828" font-style="italic" font-weight="bold">AZ: us-east-1a  ⚠ FAILING</text>
+
+  <!-- Public subnet 1a (red tint) -->
+  <rect x="40" y="205" width="342" height="90" rx="5" fill="#ffcdd2" stroke="#e53935" stroke-width="1.4"/>
+  <text x="211" y="222" text-anchor="middle" font-size="11" fill="#b71c1c" font-weight="bold">public-subnet</text>
+
+  <!-- NAT GW 1a — red/offline -->
+  <rect x="56" y="230" width="140" height="55" rx="4" fill="#ef9a9a"/>
+  <text x="126" y="250" text-anchor="middle" font-size="10" fill="#b71c1c" font-weight="bold">NAT Gateway</text>
+  <text x="126" y="265" text-anchor="middle" font-size="9" fill="#b71c1c">nat-gw  ✗ DOWN</text>
+  <text x="126" y="278" text-anchor="middle" font-size="9" fill="#b71c1c">EIP: 54.10.10.10</text>
+
+  <!-- Private subnet 1a (red tint) -->
+  <rect x="40" y="302" width="342" height="96" rx="5" fill="#ffcdd2" stroke="#e53935" stroke-width="1.4"/>
+  <text x="211" y="319" text-anchor="middle" font-size="11" fill="#b71c1c" font-weight="bold">private-subnet</text>
+
+  <!-- private-ec2 1a offline -->
+  <rect x="56" y="328" width="140" height="55" rx="4" fill="#ef9a9a"/>
+  <text x="126" y="348" text-anchor="middle" font-size="10" fill="#b71c1c" font-weight="bold">EC2 Instance</text>
+  <text x="126" y="363" text-anchor="middle" font-size="9" fill="#b71c1c">private-ec2  ✗ down</text>
+
+  <!-- Cross arrow for 1a -->
+  <text x="280" y="360" text-anchor="middle" font-size="20" fill="#c62828">✗</text>
+  <text x="310" y="363" font-size="8" fill="#c62828">no internet</text>
+  <text x="308" y="373" font-size="8" fill="#757575">(expected)</text>
+
+  <!-- AZ us-east-1b boundary — GRAY (healthy but impacted) -->
+  <rect x="406" y="182" width="366" height="230" rx="5" fill="none" stroke="#bdbdbd" stroke-width="1.2" stroke-dasharray="6,3"/>
+  <text x="422" y="198" font-size="10" fill="#757575" font-style="italic">AZ: us-east-1b  (healthy)</text>
+
+  <!-- Public subnet 1b (no NAT GW) -->
+  <rect x="418" y="205" width="342" height="90" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.4"/>
+  <text x="589" y="222" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">public-subnet-2</text>
+  <text x="589" y="260" text-anchor="middle" font-size="9" fill="#757575" font-style="italic">No NAT Gateway here</text>
+
+  <!-- Cross-AZ route arrow (red, dashed — the bad path) -->
+  <path d="M 504 295 Q 350 310 200 295" stroke="#e53935" stroke-width="1.8" stroke-dasharray="5,3" fill="none"/>
+  <polygon points="200,295 210,289 208,301" fill="#e53935"/>
+  <text x="352" y="320" text-anchor="middle" font-size="8" fill="#c62828" font-weight="bold">0.0.0.0/0 → nat-gw (other AZ!)</text>
+
+  <!-- Private subnet 1b -->
+  <rect x="418" y="302" width="342" height="96" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.8"/>
+  <text x="589" y="319" text-anchor="middle" font-size="11" fill="#0d47a1" font-weight="bold">private-subnet-2</text>
+
+  <!-- private-ec2 1b — running but no internet -->
+  <rect x="434" y="328" width="140" height="55" rx="4" fill="#ff9800"/>
+  <text x="504" y="348" text-anchor="middle" font-size="10" fill="white" font-weight="bold">EC2 Instance</text>
+  <text x="504" y="363" text-anchor="middle" font-size="9" fill="white">private-ec2-2</text>
+  <text x="504" y="376" text-anchor="middle" font-size="9" fill="white">10.0.2.140  (running)</text>
+
+  <!-- Problem label for 1b -->
+  <text x="624" y="348" font-size="9" fill="#c62828" font-weight="bold">✗ no internet</text>
+  <text x="624" y="362" font-size="8" fill="#c62828">PROBLEM!</text>
+  <text x="624" y="374" font-size="8" fill="#757575">healthy AZ, but</text>
+  <text x="624" y="384" font-size="8" fill="#757575">NAT GW is gone</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="440" text-anchor="middle" font-size="9" fill="#c62828" font-style="italic">Fix: Deploy one NAT Gateway per AZ and point each AZ's private route table to its own NAT Gateway.</text>
+
+</svg>

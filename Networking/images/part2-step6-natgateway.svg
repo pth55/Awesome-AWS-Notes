@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" font-family="'Segoe UI', Arial, sans-serif">
+  <!-- Background -->
+  <rect width="720" height="520" fill="white"/>
+
+  <!-- Region label -->
+  <text x="14" y="20" font-size="12" fill="#555" font-weight="bold">AWS REGION: us-east-1</text>
+
+  <!-- VPC boundary -->
+  <rect x="10" y="28" width="700" height="435" rx="7" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="24" y="48" font-size="13" fill="#7b5ea7" font-weight="bold">VPC: my-demo-vpc (192.168.1.0/24)</text>
+
+  <!-- ── AZ us-east-1a ── -->
+  <rect x="28" y="58" width="310" height="270" rx="5" fill="none" stroke="#bdbdbd" stroke-dasharray="6,3" stroke-width="1.5"/>
+  <text x="42" y="74" font-size="11" fill="#777" font-weight="bold">AZ: us-east-1a</text>
+
+  <!-- public-subnet-1-1a -->
+  <rect x="42" y="82" width="282" height="88" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.5"/>
+  <text x="58" y="101" font-size="12" fill="#2e7d32" font-weight="bold">public-subnet-1-1a  192.168.1.0/26</text>
+  <!-- NAT GW box -->
+  <rect x="58" y="110" width="110" height="34" rx="4" fill="#ff9800"/>
+  <text x="113" y="125" font-size="10" fill="white" text-anchor="middle" font-weight="bold">NAT Gateway</text>
+  <text x="113" y="138" font-size="9" fill="white" text-anchor="middle">EIP: 54.x.x.x</text>
+  <!-- EC2 box -->
+  <rect x="184" y="110" width="124" height="34" rx="4" fill="#ff9800"/>
+  <text x="246" y="131" font-size="10" fill="white" text-anchor="middle" font-weight="bold">EC2 Instances</text>
+  <text x="58" y="163" font-size="10" fill="#888">route: 0.0.0.0/0 → my-demo-igw</text>
+
+  <!-- private-subnet-1-1a -->
+  <rect x="42" y="188" width="282" height="124" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.5"/>
+  <text x="58" y="207" font-size="12" fill="#1565c0" font-weight="bold">private-subnet-1-1a  192.168.1.64/26</text>
+  <!-- EC2 box private -->
+  <rect x="58" y="216" width="124" height="34" rx="4" fill="#ff9800"/>
+  <text x="120" y="237" font-size="10" fill="white" text-anchor="middle" font-weight="bold">EC2 / RDS</text>
+  <text x="58" y="267" font-size="10" fill="#888">route: 0.0.0.0/0 → NAT Gateway</text>
+  <text x="58" y="280" font-size="10" fill="#555">no public IP — outbound via NAT</text>
+  <text x="58" y="293" font-size="10" fill="#c62828">inbound from internet: BLOCKED</text>
+
+  <!-- ── AZ us-east-1b ── -->
+  <rect x="380" y="58" width="316" height="270" rx="5" fill="none" stroke="#bdbdbd" stroke-dasharray="6,3" stroke-width="1.5"/>
+  <text x="394" y="74" font-size="11" fill="#777" font-weight="bold">AZ: us-east-1b</text>
+
+  <!-- public-subnet-2-1b -->
+  <rect x="394" y="82" width="286" height="88" rx="5" fill="#e8f5e9" stroke="#43a047" stroke-width="1.5"/>
+  <text x="410" y="101" font-size="12" fill="#2e7d32" font-weight="bold">public-subnet-2-1b  192.168.1.128/26</text>
+  <!-- EC2 box public 1b -->
+  <rect x="410" y="110" width="124" height="34" rx="4" fill="#ff9800"/>
+  <text x="472" y="131" font-size="10" fill="white" text-anchor="middle" font-weight="bold">EC2 Instances</text>
+  <text x="410" y="163" font-size="10" fill="#888">route: 0.0.0.0/0 → my-demo-igw</text>
+
+  <!-- private-subnet-2-1b -->
+  <rect x="394" y="188" width="286" height="124" rx="5" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.5"/>
+  <text x="410" y="207" font-size="12" fill="#1565c0" font-weight="bold">private-subnet-2-1b  192.168.1.192/26</text>
+  <!-- EC2 box private 1b -->
+  <rect x="410" y="216" width="124" height="34" rx="4" fill="#ff9800"/>
+  <text x="472" y="237" font-size="10" fill="white" text-anchor="middle" font-weight="bold">EC2 / RDS</text>
+  <text x="410" y="267" font-size="10" fill="#888">route: 0.0.0.0/0 → NAT Gateway</text>
+  <text x="410" y="280" font-size="10" fill="#555">no public IP — outbound via NAT</text>
+  <text x="410" y="293" font-size="10" fill="#c62828">inbound from internet: BLOCKED</text>
+
+  <!-- ── Route Table summary box ── -->
+  <rect x="28" y="350" width="660" height="98" rx="5" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="358" y="368" font-size="11" fill="#f57f17" font-weight="bold" text-anchor="middle">Route Tables</text>
+  <text x="48" y="386" font-size="10" fill="#555" font-weight="bold">public-route-table</text>
+  <text x="48" y="401" font-size="10" fill="#555">  192.168.1.0/24 → local    |    0.0.0.0/0 → my-demo-igw</text>
+  <text x="48" y="416" font-size="10" fill="#555" font-weight="bold">private-route-table</text>
+  <text x="48" y="431" font-size="10" fill="#555">  192.168.1.0/24 → local    |    0.0.0.0/0 → my-demo-nat-gateway</text>
+
+  <!-- IGW and Internet -->
+  <rect x="270" y="462" width="180" height="38" rx="4" fill="#fff8e1" stroke="#ffa000" stroke-width="2"/>
+  <text x="360" y="481" font-size="12" fill="#e65100" text-anchor="middle" font-weight="bold">my-demo-igw</text>
+  <text x="360" y="495" font-size="10" fill="#888" text-anchor="middle">Internet Gateway</text>
+
+  <line x1="360" y1="448" x2="360" y2="462" stroke="#ffa000" stroke-width="2"/>
+  <polygon points="360,462 355,452 365,452" fill="#ffa000"/>
+
+  <text x="600" y="490" font-size="13" fill="#1565c0" font-weight="bold">Internet</text>
+  <line x1="450" y1="481" x2="590" y2="481" stroke="#1565c0" stroke-width="2"/>
+  <polygon points="590,481 580,476 580,486" fill="#1565c0"/>
+
+  <!-- Arrow from NAT GW box to route table area -->
+  <line x1="113" y1="144" x2="113" y2="188" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+</svg>

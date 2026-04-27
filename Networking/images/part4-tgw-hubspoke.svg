@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="800" height="480" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Transit Gateway — Hub-and-Spoke (us-east-1)</text>
+
+  <!-- Region boundary -->
+  <rect x="20" y="45" width="760" height="320" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="8,4" fill="none" rx="8"/>
+  <text x="40" y="62" font-size="10" fill="#9e9e9e">us-east-1</text>
+
+  <!-- Arrow marker defs -->
+  <defs>
+    <marker id="arrow-end" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#00897b"/>
+    </marker>
+    <marker id="arrow-start" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto-start-reverse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#00897b"/>
+    </marker>
+  </defs>
+
+  <!-- TGW (center hub) -->
+  <rect x="300" y="145" width="200" height="80" fill="#e0f2f1" stroke="#00897b" stroke-width="2" rx="6"/>
+  <text x="400" y="170" text-anchor="middle" font-size="13" fill="#004d40" font-weight="bold">tgw-1</text>
+  <text x="400" y="187" text-anchor="middle" font-size="10" fill="#004d40">(Transit Gateway)</text>
+  <text x="400" y="201" text-anchor="middle" font-size="10" fill="#004d40">us-east-1</text>
+
+  <!-- vpc-a (left) -->
+  <rect x="50" y="150" width="160" height="90" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="130" y="172" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-a</text>
+  <text x="130" y="188" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.1.0/24</text>
+  <rect x="75" y="198" width="110" height="32" fill="#ff9800" rx="4"/>
+  <text x="130" y="217" text-anchor="middle" font-size="10" fill="white">ec2-a  10.0.1.10</text>
+
+  <!-- vpc-b (bottom-left) -->
+  <rect x="160" y="290" width="160" height="65" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="240" y="310" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-b</text>
+  <text x="240" y="326" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.2.0/24</text>
+  <text x="240" y="342" text-anchor="middle" font-size="10" fill="#555">ec2-b  10.0.2.10</text>
+
+  <!-- vpc-c (bottom-right) -->
+  <rect x="480" y="290" width="160" height="65" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="560" y="310" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-c</text>
+  <text x="560" y="326" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.3.0/24</text>
+  <text x="560" y="342" text-anchor="middle" font-size="10" fill="#555">ec2-c  10.0.3.10</text>
+
+  <!-- Spoke: vpc-a <-> tgw-1 -->
+  <line x1="215" y1="195" x2="297" y2="185"
+        stroke="#00897b" stroke-width="2"
+        marker-start="url(#arrow-start)"
+        marker-end="url(#arrow-end)"/>
+  <text x="252" y="183" text-anchor="middle" font-size="9" fill="#555">tgw-attach-a</text>
+
+  <!-- Spoke: vpc-b <-> tgw-1 -->
+  <line x1="295" y1="290" x2="355" y2="228"
+        stroke="#00897b" stroke-width="2"
+        marker-start="url(#arrow-start)"
+        marker-end="url(#arrow-end)"/>
+  <text x="308" y="266" text-anchor="middle" font-size="9" fill="#555">tgw-attach-b</text>
+
+  <!-- Spoke: vpc-c <-> tgw-1 -->
+  <line x1="505" y1="290" x2="445" y2="228"
+        stroke="#00897b" stroke-width="2"
+        marker-start="url(#arrow-start)"
+        marker-end="url(#arrow-end)"/>
+  <text x="492" y="266" text-anchor="middle" font-size="9" fill="#555">tgw-attach-c</text>
+
+  <!-- TGW Route Table -->
+  <rect x="250" y="390" width="300" height="80" fill="#f5f5f5" stroke="#00897b" stroke-width="1.5" rx="6"/>
+  <text x="400" y="407" text-anchor="middle" font-size="11" font-weight="bold" fill="#004d40">TGW Default Route Table</text>
+  <text x="270" y="423" font-size="10" fill="#333">10.0.1.0/24  →  tgw-attach-a  (propagated)</text>
+  <text x="270" y="438" font-size="10" fill="#333">10.0.2.0/24  →  tgw-attach-b  (propagated)</text>
+  <text x="270" y="453" font-size="10" fill="#333">10.0.3.0/24  →  tgw-attach-c  (propagated)</text>
+
+  <!-- Arrow from TGW to route table label -->
+  <line x1="400" y1="228" x2="400" y2="385" stroke="#00897b" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="412" y="320" font-size="9" fill="#888">populates</text>
+</svg>

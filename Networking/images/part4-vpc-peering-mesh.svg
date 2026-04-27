@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">VPC Peering — Full Mesh (vpc-a, vpc-b, vpc-c)</text>
+
+  <!-- ===== STATE 1: Three Isolated VPCs ===== -->
+  <text x="400" y="60" text-anchor="middle" font-size="12" fill="#888">State 1: Isolated (no connectivity)</text>
+
+  <!-- vpc-a (left) -->
+  <rect x="50" y="80" width="160" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="130" y="100" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-a</text>
+  <text x="130" y="116" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.1.0/24</text>
+  <rect x="70" y="125" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="130" y="144" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-a</text>
+  <text x="130" y="158" text-anchor="middle" font-size="10" fill="white">10.0.1.10</text>
+
+  <!-- vpc-b (center) -->
+  <rect x="320" y="80" width="160" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="400" y="100" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-b</text>
+  <text x="400" y="116" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.2.0/24</text>
+  <rect x="340" y="125" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="400" y="144" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-b</text>
+  <text x="400" y="158" text-anchor="middle" font-size="10" fill="white">10.0.2.10</text>
+
+  <!-- vpc-c (right) -->
+  <rect x="590" y="80" width="160" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="670" y="100" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-c</text>
+  <text x="670" y="116" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.3.0/24</text>
+  <rect x="610" y="125" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="670" y="144" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-c</text>
+  <text x="670" y="158" text-anchor="middle" font-size="10" fill="white">10.0.3.10</text>
+
+  <!-- Blocked arrows for state 1 -->
+  <line x1="215" y1="135" x2="315" y2="135" stroke="#e53935" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="265" y="128" text-anchor="middle" font-size="10" fill="#e53935">no route</text>
+  <line x1="485" y1="135" x2="585" y2="135" stroke="#e53935" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="535" y="128" text-anchor="middle" font-size="10" fill="#e53935">no route</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="215" x2="770" y2="215" stroke="#ddd" stroke-width="1" stroke-dasharray="6,3"/>
+
+  <!-- ===== STATE 2: Full Mesh ===== -->
+  <text x="400" y="240" text-anchor="middle" font-size="12" fill="#888">State 2: Full Mesh (all VPCs connected)</text>
+
+  <!-- Arrow marker definitions -->
+  <defs>
+    <marker id="arrowBoth-start" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#7b5ea7"/>
+    </marker>
+    <marker id="arrowBoth-end" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#7b5ea7"/>
+    </marker>
+  </defs>
+
+  <!-- vpc-a top (full mesh) -->
+  <rect x="300" y="258" width="200" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="400" y="278" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-a</text>
+  <text x="400" y="294" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.1.0/24</text>
+  <rect x="340" y="303" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="400" y="322" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-a</text>
+  <text x="400" y="336" text-anchor="middle" font-size="10" fill="white">10.0.1.10</text>
+
+  <!-- vpc-b bottom-left (full mesh) -->
+  <rect x="70" y="400" width="200" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="170" y="420" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-b</text>
+  <text x="170" y="436" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.2.0/24</text>
+  <rect x="110" y="445" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="170" y="464" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-b</text>
+  <text x="170" y="478" text-anchor="middle" font-size="10" fill="white">10.0.2.10</text>
+
+  <!-- vpc-c bottom-right (full mesh) -->
+  <rect x="530" y="400" width="200" height="110" stroke="#7b5ea7" stroke-width="2" fill="#fdf8ff" rx="7"/>
+  <text x="630" y="420" text-anchor="middle" font-size="12" fill="#7b5ea7" font-weight="bold">vpc-c</text>
+  <text x="630" y="436" text-anchor="middle" font-size="10" fill="#7b5ea7">10.0.3.0/24</text>
+  <rect x="570" y="445" width="120" height="50" fill="#ff9800" rx="4"/>
+  <text x="630" y="464" text-anchor="middle" font-size="10" fill="white" font-weight="bold">ec2-c</text>
+  <text x="630" y="478" text-anchor="middle" font-size="10" fill="white">10.0.3.10</text>
+
+  <!-- Peering arrows: vpc-a <-> vpc-b (pcx-ab) diagonal left-down -->
+  <line x1="340" y1="368" x2="230" y2="400"
+        stroke="#7b5ea7" stroke-width="2"
+        marker-start="url(#arrowBoth-start)"
+        marker-end="url(#arrowBoth-end)"/>
+  <text x="267" y="388" text-anchor="middle" font-size="10" fill="#555">pcx-ab</text>
+
+  <!-- Peering arrows: vpc-a <-> vpc-c (pcx-ac) diagonal right-down -->
+  <line x1="460" y1="368" x2="570" y2="400"
+        stroke="#7b5ea7" stroke-width="2"
+        marker-start="url(#arrowBoth-start)"
+        marker-end="url(#arrowBoth-end)"/>
+  <text x="530" y="388" text-anchor="middle" font-size="10" fill="#555">pcx-ac</text>
+
+  <!-- Peering arrows: vpc-b <-> vpc-c (pcx-bc) horizontal -->
+  <line x1="275" y1="455" x2="525" y2="455"
+        stroke="#7b5ea7" stroke-width="2"
+        marker-start="url(#arrowBoth-start)"
+        marker-end="url(#arrowBoth-end)"/>
+  <text x="400" y="447" text-anchor="middle" font-size="10" fill="#555">pcx-bc</text>
+</svg>

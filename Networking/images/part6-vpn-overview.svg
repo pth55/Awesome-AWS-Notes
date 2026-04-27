@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="460" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, Helvetica, sans-serif">
+
+  <rect width="900" height="460" fill="#ffffff"/>
+  <text x="450" y="24" text-anchor="middle" font-size="14" fill="#212121" font-weight="bold">Site-to-Site VPN: Reference Architecture</text>
+
+  <!-- ── On-Premises Data Center ── -->
+  <rect x="10" y="44" width="210" height="252" rx="6" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.8"/>
+  <text x="115" y="64" text-anchor="middle" font-size="11" fill="#424242" font-weight="bold">On-Premises Data Center</text>
+  <line x1="10" y1="70" x2="220" y2="70" stroke="#9e9e9e" stroke-width="0.8"/>
+
+  <!-- Server -->
+  <rect x="25" y="80" width="95" height="48" rx="4" fill="#ff9800"/>
+  <text x="72" y="100" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Server</text>
+  <text x="72" y="114" text-anchor="middle" font-size="9" fill="white">192.168.1.50</text>
+
+  <!-- CGW -->
+  <rect x="25" y="148" width="185" height="62" rx="4" fill="#546e7a"/>
+  <text x="117" y="168" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Customer Gateway (CGW)</text>
+  <text x="117" y="183" text-anchor="middle" font-size="9" fill="white">corp-cgw  ·  203.0.113.10</text>
+  <text x="117" y="196" text-anchor="middle" font-size="9" fill="white">BGP ASN: 65000</text>
+
+  <!-- On-prem route note -->
+  <rect x="25" y="226" width="185" height="56" rx="3" fill="#fff8e1" stroke="#ffa000" stroke-width="1"/>
+  <text x="117" y="242" text-anchor="middle" font-size="9" fill="#e65100" font-weight="bold">On-Prem Route Table</text>
+  <text x="35" y="257" font-size="9" fill="#555" font-family="'Courier New', monospace">10.0.0.0/16  →  CGW</text>
+  <text x="35" y="271" font-size="9" fill="#757575">BGP learned or static</text>
+
+  <!-- ── Tunnel 1 (top) ── -->
+  <line x1="222" y1="162" x2="654" y2="162" stroke="#5c6bc0" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="656,162 647,157 647,167" fill="#5c6bc0"/>
+  <text x="438" y="153" text-anchor="middle" font-size="10" fill="#3949ab" font-weight="bold">Tunnel 1</text>
+  <text x="438" y="174" text-anchor="middle" font-size="8" fill="#5c6bc0">169.254.10.0/30  ·  IKEv2  ·  AES-256  ·  SHA-256</text>
+
+  <!-- ── Tunnel 2 (bottom) ── -->
+  <line x1="222" y1="202" x2="654" y2="202" stroke="#5c6bc0" stroke-width="2" stroke-dasharray="8,4"/>
+  <polygon points="656,202 647,197 647,207" fill="#5c6bc0"/>
+  <text x="438" y="193" text-anchor="middle" font-size="10" fill="#3949ab" font-weight="bold">Tunnel 2</text>
+  <text x="438" y="214" text-anchor="middle" font-size="8" fill="#5c6bc0">169.254.11.0/30  ·  IKEv2  ·  AES-256  ·  SHA-256</text>
+  <text x="438" y="232" text-anchor="middle" font-size="8" fill="#9e9e9e" font-style="italic">Bidirectional encrypted traffic · Each tunnel up to 1.25 Gbps</text>
+
+  <!-- ── AWS VPC ── -->
+  <rect x="658" y="44" width="232" height="388" rx="7" fill="#fdf8ff" stroke="#7b5ea7" stroke-width="2"/>
+  <text x="774" y="64" text-anchor="middle" font-size="11" fill="#7b5ea7" font-weight="bold">VPC: my-vpc</text>
+  <text x="774" y="79" text-anchor="middle" font-size="9" fill="#7b5ea7">10.0.0.0/16  ·  us-east-1</text>
+
+  <!-- VGW -->
+  <rect x="671" y="92" width="205" height="62" rx="4" fill="#ffa000"/>
+  <text x="773" y="112" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Virtual Private Gateway</text>
+  <text x="773" y="127" text-anchor="middle" font-size="9" fill="white">vgw-1  ·  BGP ASN 64512</text>
+  <text x="773" y="140" text-anchor="middle" font-size="9" fill="white">Attached to my-vpc</text>
+
+  <!-- Public subnet -->
+  <rect x="671" y="170" width="205" height="100" rx="4" fill="#e8f5e9" stroke="#43a047" stroke-width="1.5"/>
+  <text x="773" y="188" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">public-subnet · 10.0.1.0/24</text>
+  <line x1="671" y1="193" x2="876" y2="193" stroke="#43a047" stroke-width="0.7" opacity="0.5"/>
+  <rect x="706" y="202" width="134" height="48" rx="4" fill="#ff9800"/>
+  <text x="773" y="221" text-anchor="middle" font-size="10" fill="white" font-weight="bold">EC2 Instance</text>
+  <text x="773" y="235" text-anchor="middle" font-size="9" fill="white">ec2-aws · 10.0.1.10</text>
+
+  <!-- Private subnet -->
+  <rect x="671" y="284" width="205" height="80" rx="4" fill="#e3f2fd" stroke="#1e88e5" stroke-width="1.5"/>
+  <text x="773" y="302" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">private-subnet · 10.0.2.0/24</text>
+  <text x="773" y="322" text-anchor="middle" font-size="9" fill="#1565c0">App servers · RDS</text>
+
+  <!-- VPC route note -->
+  <rect x="671" y="378" width="205" height="42" rx="3" fill="#ede7f6"/>
+  <text x="773" y="394" text-anchor="middle" font-size="9" fill="#4527a0" font-weight="bold">VPC Route Table</text>
+  <text x="773" y="410" text-anchor="middle" font-size="8" fill="#4527a0" font-family="'Courier New', monospace">192.168.0.0/16  →  vgw-1</text>
+
+  <!-- ── Phase summary ── -->
+  <rect x="10" y="310" width="638" height="138" rx="5" fill="#f9f9f9" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="329" y="328" text-anchor="middle" font-size="10" fill="#424242" font-weight="bold">IPSec Tunnel Phases</text>
+  <line x1="10" y1="334" x2="648" y2="334" stroke="#e0e0e0" stroke-width="0.8"/>
+  <text x="24" y="350" font-size="9" fill="#555">IKE Phase 1:   Peers authenticate (pre-shared key) → negotiate IKE SA → establish secure channel</text>
+  <text x="24" y="366" font-size="9" fill="#555">IKE Phase 2:   Negotiate IPSec SA → agree AES-256 + SHA-256 → data encryption starts</text>
+  <text x="24" y="382" font-size="9" fill="#555">DH Group:      Key exchange — group 14 / 19 / 20 recommended (group 2 is legacy / weak)</text>
+  <text x="24" y="398" font-size="9" fill="#555">DPD:           30s idle → keepalive sent → 3 failures → tunnel torn down and renegotiated</text>
+  <text x="24" y="414" font-size="9" fill="#5c6bc0">VGW mode:      One tunnel active at a time → failover ~60s when primary goes down</text>
+  <text x="24" y="430" font-size="9" fill="#00897b">TGW + ECMP:    Both tunnels active simultaneously → 2 × 1.25 Gbps = 2.5 Gbps per VPN connection</text>
+  <text x="24" y="446" font-size="9" fill="#555">Rekey:         IKE SA every 8 hrs · IPSec SA every 1 hr or 1 GB transferred (whichever first)</text>
+
+</svg>
