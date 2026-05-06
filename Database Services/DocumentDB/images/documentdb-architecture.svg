@@ -1,0 +1,86 @@
+<svg viewBox="0 0 960 580" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">Amazon DocumentDB — Cluster Architecture</text>
+
+  <defs>
+    <marker id="arrd" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#232F3E"/>
+    </marker>
+    <marker id="arrdg" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1B7C42"/>
+    </marker>
+    <marker id="arrdb" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0073BB"/>
+    </marker>
+  </defs>
+
+  <!-- Application Layer -->
+  <rect x="350" y="45" width="260" height="55" fill="#FF9900" stroke="#C7510A" stroke-width="2" rx="6"/>
+  <text x="480" y="69" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <text x="480" y="87" font-size="10" text-anchor="middle" fill="white">MongoDB-compatible driver (4.0)</text>
+
+  <!-- Endpoints -->
+  <rect x="180" y="140" width="230" height="40" fill="#E8F4F8" stroke="#0073BB" stroke-width="1.5" rx="4"/>
+  <text x="295" y="157" font-size="10" font-weight="bold" text-anchor="middle" fill="#0073BB">Cluster Endpoint (Writer)</text>
+  <text x="295" y="172" font-size="9" text-anchor="middle" fill="#555">mycluster.cluster-xxx.us-east-1.docdb.amazonaws.com:27017</text>
+
+  <rect x="550" y="140" width="230" height="40" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="4"/>
+  <text x="665" y="157" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Reader Endpoint (Load Balanced)</text>
+  <text x="665" y="172" font-size="9" text-anchor="middle" fill="#555">mycluster.cluster-ro-xxx.us-east-1.docdb.amazonaws.com:27017</text>
+
+  <!-- Arrow from app to endpoints -->
+  <line x1="420" y1="100" x2="310" y2="140" stroke="#C7510A" stroke-width="1.5" marker-end="url(#arrd)"/>
+  <line x1="540" y1="100" x2="650" y2="140" stroke="#C7510A" stroke-width="1.5" marker-end="url(#arrd)"/>
+
+  <!-- Primary Instance -->
+  <rect x="180" y="230" width="230" height="80" fill="#527FFF" stroke="#2E5FAF" stroke-width="2" rx="6"/>
+  <text x="295" y="255" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Primary Instance</text>
+  <text x="295" y="272" font-size="9" text-anchor="middle" fill="#dce8ff">Reads + Writes</text>
+  <text x="295" y="287" font-size="9" text-anchor="middle" fill="#dce8ff">db.r6g.large / db.r6g.xlarge</text>
+  <text x="295" y="302" font-size="9" text-anchor="middle" fill="#dce8ff">AZ: us-east-1a</text>
+
+  <!-- Replica Instances -->
+  <rect x="450" y="230" width="200" height="75" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="550" y="253" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Read Replica 1</text>
+  <text x="550" y="269" font-size="9" text-anchor="middle" fill="#555">Reads only</text>
+  <text x="550" y="283" font-size="9" text-anchor="middle" fill="#555">AZ: us-east-1b</text>
+  <text x="550" y="297" font-size="9" text-anchor="middle" fill="#555">Failover priority: 1</text>
+
+  <rect x="700" y="230" width="200" height="75" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="800" y="253" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Read Replica 2</text>
+  <text x="800" y="269" font-size="9" text-anchor="middle" fill="#555">Reads only</text>
+  <text x="800" y="283" font-size="9" text-anchor="middle" fill="#555">AZ: us-east-1c</text>
+  <text x="800" y="297" font-size="9" text-anchor="middle" fill="#555">Failover priority: 2</text>
+
+  <!-- Arrows from cluster endpoint to primary -->
+  <line x1="295" y1="180" x2="295" y2="230" stroke="#0073BB" stroke-width="2" marker-end="url(#arrdb)"/>
+  <!-- Arrows from reader endpoint to replicas -->
+  <line x1="665" y1="180" x2="580" y2="230" stroke="#1B7C42" stroke-width="1.5" marker-end="url(#arrdg)"/>
+  <line x1="730" y1="180" x2="780" y2="230" stroke="#1B7C42" stroke-width="1.5" marker-end="url(#arrdg)"/>
+
+  <!-- Storage Layer -->
+  <rect x="60" y="375" width="840" height="100" fill="#FFF8E7" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="480" y="399" font-size="13" font-weight="bold" text-anchor="middle" fill="#D45B07">Shared Distributed Storage Layer (6 copies across 3 AZs)</text>
+  <text x="480" y="417" font-size="10" text-anchor="middle" fill="#555">Data is automatically replicated 6 ways — 2 copies per AZ</text>
+  <text x="480" y="433" font-size="10" text-anchor="middle" fill="#555">Storage auto-grows in 10 GB increments up to 128 TiB</text>
+  <text x="480" y="449" font-size="10" text-anchor="middle" fill="#555">Compute instances share the same storage — no storage per-replica, replication is at storage layer</text>
+  <text x="480" y="465" font-size="9" text-anchor="middle" fill="#888">Storage I/O: $0.20/million I/O operations  ·  Storage: $0.10/GB-month</text>
+
+  <!-- Arrows from instances to storage -->
+  <line x1="295" y1="310" x2="295" y2="375" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrd)"/>
+  <line x1="550" y1="305" x2="480" y2="375" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrd)"/>
+  <line x1="800" y1="305" x2="700" y2="375" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrd)"/>
+
+  <!-- Failover note -->
+  <rect x="60" y="490" width="400" height="70" fill="#F0F0FF" stroke="#6677CC" rx="5"/>
+  <text x="260" y="510" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Automatic Failover</text>
+  <text x="260" y="526" font-size="9" text-anchor="middle" fill="#555">Primary fails → replica promoted in ~30 seconds</text>
+  <text x="260" y="541" font-size="9" text-anchor="middle" fill="#555">Cluster endpoint DNS updated automatically</text>
+  <text x="260" y="556" font-size="9" text-anchor="middle" fill="#555">Up to 15 replicas per cluster</text>
+
+  <!-- Backup note -->
+  <rect x="500" y="490" width="400" height="70" fill="#F5F5F5" stroke="#CCC" rx="5"/>
+  <text x="700" y="510" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Backup &amp; Encryption</text>
+  <text x="700" y="526" font-size="9" text-anchor="middle" fill="#555">Continuous backup to S3 (PITR: 1–35 days)</text>
+  <text x="700" y="541" font-size="9" text-anchor="middle" fill="#555">Encryption at rest with KMS (create-time only)</text>
+  <text x="700" y="556" font-size="9" text-anchor="middle" fill="#555">TLS in transit with MongoDB TLS options</text>
+</svg>

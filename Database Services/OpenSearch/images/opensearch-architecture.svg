@@ -1,0 +1,105 @@
+<svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">Amazon OpenSearch Service — Domain Architecture</text>
+
+  <defs>
+    <marker id="arro" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#232F3E"/>
+    </marker>
+    <marker id="arrog" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1B7C42"/>
+    </marker>
+  </defs>
+
+  <!-- Data Sources (left) -->
+  <rect x="20" y="55" width="160" height="340" fill="#FFF8E7" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="100" y="78" font-size="11" font-weight="bold" text-anchor="middle" fill="#D45B07">Data Sources</text>
+  <rect x="35" y="90" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="108" font-size="9" font-weight="bold" text-anchor="middle" fill="white">Application logs</text>
+  <rect x="35" y="124" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="142" font-size="9" font-weight="bold" text-anchor="middle" fill="white">Kinesis Firehose</text>
+  <rect x="35" y="158" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="176" font-size="9" font-weight="bold" text-anchor="middle" fill="white">DynamoDB Streams</text>
+  <rect x="35" y="192" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="210" font-size="9" font-weight="bold" text-anchor="middle" fill="white">CloudWatch Logs</text>
+  <rect x="35" y="226" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="244" font-size="9" font-weight="bold" text-anchor="middle" fill="white">S3 (via Lambda)</text>
+  <rect x="35" y="260" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="278" font-size="9" font-weight="bold" text-anchor="middle" fill="white">Logstash / Fluentd</text>
+  <rect x="35" y="294" width="130" height="28" fill="#D45B07" stroke="#B04000" rx="3"/>
+  <text x="100" y="312" font-size="9" font-weight="bold" text-anchor="middle" fill="white">RDS (via DMS)</text>
+
+  <!-- Arrow from sources to domain -->
+  <line x1="180" y1="225" x2="220" y2="225" stroke="#D45B07" stroke-width="2" marker-end="url(#arro)"/>
+
+  <!-- OpenSearch Domain (center) -->
+  <rect x="220" y="50" width="510" height="410" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="475" y="72" font-size="13" font-weight="bold" text-anchor="middle" fill="#0073BB">OpenSearch Domain</text>
+  <text x="475" y="88" font-size="9" text-anchor="middle" fill="#555">VPC or public endpoint  ·  OpenSearch 2.x or Elasticsearch 7.x compatible</text>
+
+  <!-- Master nodes -->
+  <rect x="235" y="100" width="220" height="70" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="5"/>
+  <text x="345" y="122" font-size="11" font-weight="bold" text-anchor="middle" fill="white">Dedicated Master Nodes (3)</text>
+  <text x="345" y="138" font-size="9" text-anchor="middle" fill="#dce8ff">Cluster state management, not data</text>
+  <text x="345" y="153" font-size="9" text-anchor="middle" fill="#dce8ff">c6g.large.search recommended</text>
+
+  <!-- Data nodes -->
+  <rect x="235" y="185" width="480" height="160" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="475" y="205" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Data Nodes</text>
+
+  <rect x="248" y="215" width="140" height="115" fill="#A8E6C1" stroke="#1B7C42" rx="4"/>
+  <text x="318" y="233" font-size="9" font-weight="bold" text-anchor="middle" fill="#1B7C42">Node 1 (AZ-a)</text>
+  <text x="318" y="248" font-size="8" text-anchor="middle" fill="#555">Primary shards: 0,2,4</text>
+  <text x="318" y="261" font-size="8" text-anchor="middle" fill="#555">Replica shards: 1,3,5</text>
+  <text x="318" y="278" font-size="8" text-anchor="middle" fill="#888">m6g.large.search</text>
+  <text x="318" y="292" font-size="8" text-anchor="middle" fill="#888">or.r6g.large.search</text>
+  <text x="318" y="305" font-size="8" text-anchor="middle" fill="#888">100 GB–3 TB EBS</text>
+
+  <rect x="403" y="215" width="140" height="115" fill="#A8E6C1" stroke="#1B7C42" rx="4"/>
+  <text x="473" y="233" font-size="9" font-weight="bold" text-anchor="middle" fill="#1B7C42">Node 2 (AZ-b)</text>
+  <text x="473" y="248" font-size="8" text-anchor="middle" fill="#555">Primary shards: 1,3,5</text>
+  <text x="473" y="261" font-size="8" text-anchor="middle" fill="#555">Replica shards: 0,2,4</text>
+  <text x="473" y="278" font-size="8" text-anchor="middle" fill="#888">m6g.large.search</text>
+  <text x="473" y="292" font-size="8" text-anchor="middle" fill="#888">100 GB–3 TB EBS</text>
+
+  <rect x="558" y="215" width="140" height="115" fill="#A8E6C1" stroke="#1B7C42" rx="4"/>
+  <text x="628" y="233" font-size="9" font-weight="bold" text-anchor="middle" fill="#1B7C42">Node 3 (AZ-c)</text>
+  <text x="628" y="248" font-size="8" text-anchor="middle" fill="#555">Primary shards: 0,2,4</text>
+  <text x="628" y="261" font-size="8" text-anchor="middle" fill="#555">Replica shards: 1,3,5</text>
+  <text x="628" y="278" font-size="8" text-anchor="middle" fill="#888">m6g.large.search</text>
+  <text x="628" y="292" font-size="8" text-anchor="middle" fill="#888">100 GB–3 TB EBS</text>
+
+  <!-- UltraWarm / Cold -->
+  <rect x="235" y="360" width="480" height="85" fill="#F0F0FF" stroke="#6677CC" stroke-width="1.5" rx="5"/>
+  <text x="475" y="380" font-size="10" font-weight="bold" text-anchor="middle" fill="#445">Storage Tiers</text>
+  <rect x="248" y="390" width="215" height="45" fill="#E8E8FF" stroke="#6677CC" rx="3"/>
+  <text x="355" y="407" font-size="9" font-weight="bold" text-anchor="middle" fill="#445">UltraWarm (warm tier)</text>
+  <text x="355" y="422" font-size="8" text-anchor="middle" fill="#555">S3-backed, read-only  ·  $0.024/GB-month</text>
+
+  <rect x="483" y="390" width="220" height="45" fill="#E8E8FF" stroke="#6677CC" rx="3"/>
+  <text x="593" y="407" font-size="9" font-weight="bold" text-anchor="middle" fill="#445">Cold Storage</text>
+  <text x="593" y="422" font-size="8" text-anchor="middle" fill="#555">S3-backed, detached  ·  $0.01/GB-month</text>
+
+  <!-- Consumers (right) -->
+  <rect x="780" y="55" width="160" height="280" fill="#D5F4E6" stroke="#1B7C42" stroke-width="2" rx="8"/>
+  <text x="860" y="78" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Consumers</text>
+  <rect x="795" y="90" width="130" height="28" fill="#1B7C42" stroke="#155A30" rx="3"/>
+  <text x="860" y="108" font-size="9" font-weight="bold" text-anchor="middle" fill="white">OpenSearch Dashboards</text>
+  <rect x="795" y="124" width="130" height="28" fill="#1B7C42" stroke="#155A30" rx="3"/>
+  <text x="860" y="142" font-size="9" font-weight="bold" text-anchor="middle" fill="white">REST API (search)</text>
+  <rect x="795" y="158" width="130" height="28" fill="#1B7C42" stroke="#155A30" rx="3"/>
+  <text x="860" y="176" font-size="9" font-weight="bold" text-anchor="middle" fill="white">Grafana</text>
+  <rect x="795" y="192" width="130" height="28" fill="#1B7C42" stroke="#155A30" rx="3"/>
+  <text x="860" y="210" font-size="9" font-weight="bold" text-anchor="middle" fill="white">Application search</text>
+  <rect x="795" y="226" width="130" height="28" fill="#1B7C42" stroke="#155A30" rx="3"/>
+  <text x="860" y="244" font-size="9" font-weight="bold" text-anchor="middle" fill="white">SIEM / Security</text>
+
+  <!-- Arrow from domain to consumers -->
+  <line x1="730" y1="225" x2="780" y2="225" stroke="#1B7C42" stroke-width="2" marker-end="url(#arrog)"/>
+
+  <!-- Bottom note -->
+  <rect x="20" y="480" width="920" height="65" fill="#F5F5F5" stroke="#CCC" rx="5"/>
+  <text x="480" y="500" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Index Sharding</text>
+  <text x="480" y="516" font-size="9" text-anchor="middle" fill="#555">Each index is divided into primary shards (1–N) and optional replica shards</text>
+  <text x="480" y="531" font-size="9" text-anchor="middle" fill="#555">Primary shards cannot be changed after index creation · Replica shards can be added/removed at any time</text>
+  <text x="480" y="546" font-size="9" text-anchor="middle" fill="#888">Rule of thumb: shard size 10–50 GB  ·  Number of primary shards = data size / target shard size</text>
+</svg>

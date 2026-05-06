@@ -1,0 +1,79 @@
+<svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">GSI vs LSI — Index Architecture</text>
+
+  <!-- Base Table -->
+  <rect x="330" y="45" width="300" height="200" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="480" y="68" font-size="13" font-weight="bold" text-anchor="middle" fill="#0073BB">Base Table: Orders</text>
+  <rect x="350" y="78" width="130" height="28" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="3"/>
+  <text x="415" y="97" font-size="11" font-weight="bold" text-anchor="middle" fill="white">UserID (PK)</text>
+  <rect x="490" y="78" width="120" height="28" fill="#D45B07" stroke="#B04000" stroke-width="1.5" rx="3"/>
+  <text x="550" y="97" font-size="11" font-weight="bold" text-anchor="middle" fill="white">OrderID (SK)</text>
+
+  <rect x="350" y="112" width="260" height="28" fill="#FFF8E7" stroke="#DDD" stroke-width="1" rx="2"/>
+  <text x="480" y="131" font-size="10" text-anchor="middle" fill="#333">alice · ORD-001 · Status:PENDING · $45.00</text>
+  <rect x="350" y="145" width="260" height="28" fill="#FFF8E7" stroke="#DDD" stroke-width="1" rx="2"/>
+  <text x="480" y="164" font-size="10" text-anchor="middle" fill="#333">alice · ORD-002 · Status:SHIPPED · $89.99</text>
+  <rect x="350" y="178" width="260" height="28" fill="#FFF8E7" stroke="#DDD" stroke-width="1" rx="2"/>
+  <text x="480" y="197" font-size="10" text-anchor="middle" fill="#333">bob · ORD-003 · Status:PENDING · $120.00</text>
+  <rect x="350" y="211" width="260" height="28" fill="#FFF8E7" stroke="#DDD" stroke-width="1" rx="2"/>
+  <text x="480" y="230" font-size="10" text-anchor="middle" fill="#333">bob · ORD-004 · Status:DELIVERED · $35.50</text>
+
+  <!-- LSI Box -->
+  <rect x="30" y="290" width="360" height="235" fill="#D5F4E6" stroke="#1B7C42" stroke-width="2" rx="8"/>
+  <text x="210" y="314" font-size="13" font-weight="bold" text-anchor="middle" fill="#1B7C42">Local Secondary Index (LSI)</text>
+  <text x="210" y="330" font-size="10" text-anchor="middle" fill="#555">Same PK (UserID) · Different SK (CreatedAt)</text>
+
+  <rect x="50" y="340" width="130" height="28" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="3"/>
+  <text x="115" y="359" font-size="11" font-weight="bold" text-anchor="middle" fill="white">UserID (PK)</text>
+  <rect x="190" y="340" width="180" height="28" fill="#1B7C42" stroke="#155A30" stroke-width="1.5" rx="3"/>
+  <text x="280" y="359" font-size="11" font-weight="bold" text-anchor="middle" fill="white">CreatedAt (LSI SK)</text>
+
+  <rect x="50" y="374" width="320" height="28" fill="#F0FFF4" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="210" y="393" font-size="10" text-anchor="middle" fill="#333">alice · 2024-01-10T09:00 · ORD-001</text>
+  <rect x="50" y="407" width="320" height="28" fill="#F0FFF4" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="210" y="426" font-size="10" text-anchor="middle" fill="#333">alice · 2024-02-20T14:30 · ORD-002</text>
+  <rect x="50" y="440" width="320" height="28" fill="#F0FFF4" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="210" y="459" font-size="10" text-anchor="middle" fill="#333">bob · 2024-01-15T11:00 · ORD-003</text>
+
+  <!-- LSI Properties -->
+  <rect x="50" y="478" width="320" height="32" fill="#B8EAC8" stroke="#1B7C42" stroke-width="1" rx="3"/>
+  <text x="210" y="491" font-size="9" font-weight="bold" text-anchor="middle" fill="#1B7C42">Created at table creation only · Max 5 per table</text>
+  <text x="210" y="503" font-size="9" text-anchor="middle" fill="#1B7C42">Shares table capacity · Strong consistency available · 10 GB limit per PK value</text>
+
+  <!-- GSI Box -->
+  <rect x="570" y="290" width="360" height="235" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="750" y="314" font-size="13" font-weight="bold" text-anchor="middle" fill="#D45B07">Global Secondary Index (GSI)</text>
+  <text x="750" y="330" font-size="10" text-anchor="middle" fill="#555">Different PK (Status) · Different SK (CreatedAt)</text>
+
+  <rect x="590" y="340" width="130" height="28" fill="#D45B07" stroke="#B04000" stroke-width="1.5" rx="3"/>
+  <text x="655" y="359" font-size="11" font-weight="bold" text-anchor="middle" fill="white">Status (GSI PK)</text>
+  <rect x="730" y="340" width="180" height="28" fill="#D45B07" stroke="#B04000" stroke-width="1.5" rx="3"/>
+  <text x="820" y="359" font-size="11" font-weight="bold" text-anchor="middle" fill="white">CreatedAt (GSI SK)</text>
+
+  <rect x="590" y="374" width="320" height="28" fill="#FFF8E7" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="750" y="393" font-size="10" text-anchor="middle" fill="#333">DELIVERED · 2024-01-17 · bob · ORD-004</text>
+  <rect x="590" y="407" width="320" height="28" fill="#FFF8E7" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="750" y="426" font-size="10" text-anchor="middle" fill="#333">PENDING · 2024-01-10 · alice · ORD-001</text>
+  <rect x="590" y="440" width="320" height="28" fill="#FFF8E7" stroke="#CCC" stroke-width="1" rx="2"/>
+  <text x="750" y="459" font-size="10" text-anchor="middle" fill="#333">SHIPPED · 2024-02-20 · alice · ORD-002</text>
+
+  <!-- GSI Properties -->
+  <rect x="590" y="478" width="320" height="32" fill="#FFE4B2" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="750" y="491" font-size="9" font-weight="bold" text-anchor="middle" fill="#D45B07">Can be added at any time · Max 20 per table</text>
+  <text x="750" y="503" font-size="9" text-anchor="middle" fill="#D45B07">Own capacity billing · Eventually consistent only · No size limit per PK</text>
+
+  <!-- Arrows from base table -->
+  <defs>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+  <line x1="380" y1="245" x2="210" y2="288" stroke="#1B7C42" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr2)"/>
+  <text x="265" y="272" font-size="10" fill="#1B7C42" transform="rotate(-25 265 272)">replicated</text>
+  <line x1="580" y1="245" x2="750" y2="288" stroke="#D45B07" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr2)"/>
+  <text x="670" y="272" font-size="10" fill="#D45B07" transform="rotate(25 670 272)">replicated</text>
+
+  <!-- Bottom comparison row -->
+  <rect x="30" y="535" width="900" height="22" fill="#F5F5F5" stroke="#CCC" stroke-width="1" rx="3"/>
+  <text x="480" y="551" font-size="10" text-anchor="middle" fill="#444">LSI: must know all access patterns at design time · GSI: add patterns later, but each GSI costs extra RCU/WCU and storage</text>
+</svg>

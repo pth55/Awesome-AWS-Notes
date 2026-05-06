@@ -1,0 +1,74 @@
+<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">Amazon Neptune — Graph Database Architecture</text>
+
+  <defs>
+    <marker id="arrn" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#232F3E"/>
+    </marker>
+  </defs>
+
+  <!-- Application Layer -->
+  <rect x="330" y="45" width="300" height="50" fill="#FF9900" stroke="#C7510A" stroke-width="2" rx="6"/>
+  <text x="480" y="67" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <text x="480" y="83" font-size="9" text-anchor="middle" fill="white">Gremlin / SPARQL / openCypher client</text>
+
+  <!-- Cluster -->
+  <rect x="80" y="135" width="800" height="290" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="480" y="158" font-size="13" font-weight="bold" text-anchor="middle" fill="#0073BB">Neptune Cluster</text>
+
+  <!-- Primary -->
+  <rect x="110" y="175" width="230" height="90" fill="#527FFF" stroke="#2E5FAF" stroke-width="2" rx="6"/>
+  <text x="225" y="200" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Primary Instance</text>
+  <text x="225" y="217" font-size="9" text-anchor="middle" fill="#dce8ff">Reads + Writes</text>
+  <text x="225" y="232" font-size="9" text-anchor="middle" fill="#dce8ff">Cluster Endpoint</text>
+  <text x="225" y="247" font-size="9" text-anchor="middle" fill="#dce8ff">AZ: us-east-1a</text>
+
+  <!-- Replicas -->
+  <rect x="385" y="175" width="200" height="90" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="485" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Read Replica 1</text>
+  <text x="485" y="218" font-size="9" text-anchor="middle" fill="#555">Reads only</text>
+  <text x="485" y="233" font-size="9" text-anchor="middle" fill="#555">AZ: us-east-1b</text>
+  <text x="485" y="248" font-size="9" text-anchor="middle" fill="#555">Failover tier: 1</text>
+
+  <rect x="630" y="175" width="200" height="90" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="730" y="200" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Read Replica 2</text>
+  <text x="730" y="218" font-size="9" text-anchor="middle" fill="#555">Reads only</text>
+  <text x="730" y="233" font-size="9" text-anchor="middle" fill="#555">AZ: us-east-1c</text>
+  <text x="730" y="248" font-size="9" text-anchor="middle" fill="#555">Failover tier: 2</text>
+
+  <!-- Storage -->
+  <rect x="110" y="295" width="720" height="110" fill="#FFF8E7" stroke="#D45B07" stroke-width="2" rx="6"/>
+  <text x="480" y="318" font-size="12" font-weight="bold" text-anchor="middle" fill="#D45B07">Distributed Storage — 6 copies across 3 AZs</text>
+  <text x="480" y="337" font-size="10" text-anchor="middle" fill="#555">Stores graph data as property graph (PG) or RDF triples</text>
+  <text x="480" y="355" font-size="10" text-anchor="middle" fill="#555">Auto-grows in 10 GB increments · Up to 128 TiB</text>
+  <text x="480" y="373" font-size="9" text-anchor="middle" fill="#888">Storage: $0.10/GB-month  ·  I/O: $0.20/million requests</text>
+  <text x="480" y="390" font-size="9" text-anchor="middle" fill="#888">Instance (db.r6g.large): ~$0.348/hr</text>
+
+  <!-- Arrows app to cluster -->
+  <line x1="400" y1="95" x2="250" y2="175" stroke="#C7510A" stroke-width="1.5" marker-end="url(#arrn)"/>
+  <line x1="560" y1="95" x2="680" y2="175" stroke="#C7510A" stroke-width="1.5" marker-end="url(#arrn)"/>
+
+  <!-- Arrows instances to storage -->
+  <line x1="225" y1="265" x2="225" y2="295" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrn)"/>
+  <line x1="485" y1="265" x2="430" y2="295" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrn)"/>
+  <line x1="730" y1="265" x2="680" y2="295" stroke="#D45B07" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrn)"/>
+
+  <!-- Query language panels -->
+  <rect x="80" y="450" width="270" height="70" fill="#F0F0FF" stroke="#6677CC" rx="5"/>
+  <text x="215" y="472" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Property Graph (PG)</text>
+  <text x="215" y="488" font-size="9" text-anchor="middle" fill="#555">Gremlin (TinkerPop) or openCypher</text>
+  <text x="215" y="503" font-size="9" text-anchor="middle" fill="#555">Nodes, Edges, Properties</text>
+  <text x="215" y="517" font-size="9" text-anchor="middle" fill="#888">Use for: social graphs, fraud, recommendations</text>
+
+  <rect x="370" y="450" width="220" height="70" fill="#FFF4E6" stroke="#D45B07" rx="5"/>
+  <text x="480" y="472" font-size="10" font-weight="bold" text-anchor="middle" fill="#D45B07">RDF / SPARQL</text>
+  <text x="480" y="488" font-size="9" text-anchor="middle" fill="#555">Subject-Predicate-Object triples</text>
+  <text x="480" y="503" font-size="9" text-anchor="middle" fill="#555">W3C standard, linked data</text>
+  <text x="480" y="517" font-size="9" text-anchor="middle" fill="#888">Use for: knowledge graphs, semantic data</text>
+
+  <rect x="610" y="450" width="270" height="70" fill="#D5F4E6" stroke="#1B7C42" rx="5"/>
+  <text x="745" y="472" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Neptune ML</text>
+  <text x="745" y="488" font-size="9" text-anchor="middle" fill="#555">Graph Neural Networks (DGL)</text>
+  <text x="745" y="503" font-size="9" text-anchor="middle" fill="#555">Node classification, link prediction</text>
+  <text x="745" y="517" font-size="9" text-anchor="middle" fill="#888">Powered by SageMaker, built on graph data</text>
+</svg>

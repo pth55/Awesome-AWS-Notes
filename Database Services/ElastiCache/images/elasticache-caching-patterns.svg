@@ -1,0 +1,157 @@
+<svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">ElastiCache Caching Patterns — Flow Comparison</text>
+
+  <defs>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#232F3E"/>
+    </marker>
+    <marker id="arrg" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1B7C42"/>
+    </marker>
+    <marker id="arro" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#D45B07"/>
+    </marker>
+  </defs>
+
+  <!-- ===== Cache-Aside (Lazy Loading) ===== -->
+  <rect x="20" y="45" width="215" height="440" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="127" y="65" font-size="12" font-weight="bold" text-anchor="middle" fill="#0073BB">Cache-Aside</text>
+  <text x="127" y="79" font-size="9" text-anchor="middle" fill="#555">(Lazy Loading)</text>
+
+  <!-- Boxes -->
+  <rect x="62" y="88" width="130" height="32" fill="#FF9900" stroke="#E07A00" rx="4"/>
+  <text x="127" y="109" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <line x1="127" y1="120" x2="127" y2="140" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="135" y="133" font-size="8" fill="#555">GET key</text>
+  <rect x="62" y="140" width="130" height="32" fill="#C41D7F" stroke="#8A0050" rx="4"/>
+  <text x="127" y="161" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Redis Cache</text>
+
+  <!-- HIT path -->
+  <text x="35" y="188" font-size="9" fill="#1B7C42" font-weight="bold">HIT</text>
+  <line x1="62" y1="172" x2="35" y2="195" stroke="#1B7C42" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrg)"/>
+  <rect x="20" y="195" width="55" height="25" fill="#D5F4E6" stroke="#1B7C42" rx="3"/>
+  <text x="47" y="212" font-size="9" text-anchor="middle" fill="#1B7C42">Return ✓</text>
+
+  <!-- MISS path -->
+  <text x="175" y="188" font-size="9" fill="#D45B07" font-weight="bold">MISS</text>
+  <line x1="192" y1="172" x2="192" y2="215" stroke="#D45B07" stroke-width="1.5" marker-end="url(#arro)"/>
+  <rect x="152" y="215" width="70" height="25" fill="#FFF4E6" stroke="#D45B07" rx="3"/>
+  <text x="187" y="232" font-size="9" text-anchor="middle" fill="#D45B07">Query DB</text>
+  <line x1="187" y1="240" x2="187" y2="262" stroke="#D45B07" stroke-width="1.5" marker-end="url(#arro)"/>
+  <rect x="62" y="262" width="130" height="32" fill="#527FFF" stroke="#2E5FAF" rx="4"/>
+  <text x="127" y="278" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Database</text>
+  <text x="127" y="290" font-size="8" text-anchor="middle" fill="#dce8ff">(RDS, Aurora, etc.)</text>
+  <line x1="127" y1="294" x2="127" y2="315" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="62" y="315" width="130" height="25" fill="#D5F4E6" stroke="#1B7C42" rx="3"/>
+  <text x="127" y="332" font-size="9" text-anchor="middle" fill="#1B7C42">SET key (with TTL)</text>
+
+  <rect x="30" y="355" width="175" height="115" fill="#F9F9F9" stroke="#CCC" rx="3"/>
+  <text x="117" y="370" font-size="9" font-weight="bold" text-anchor="middle" fill="#333">Characteristics</text>
+  <text x="40" y="385" font-size="8" fill="#1B7C42">✓ Only caches what's requested</text>
+  <text x="40" y="398" font-size="8" fill="#1B7C42">✓ Cache failure = fallback to DB</text>
+  <text x="40" y="411" font-size="8" fill="#D45B07">✗ Cold cache on restart</text>
+  <text x="40" y="424" font-size="8" fill="#D45B07">✗ Stale data until TTL expires</text>
+  <text x="40" y="437" font-size="8" fill="#555">Best for: read-heavy, tolerate stale</text>
+  <text x="40" y="450" font-size="8" fill="#555">Most common pattern — start here</text>
+
+  <!-- ===== Write-Through ===== -->
+  <rect x="248" y="45" width="215" height="440" fill="#F0FFF4" stroke="#1B7C42" stroke-width="2" rx="8"/>
+  <text x="355" y="65" font-size="12" font-weight="bold" text-anchor="middle" fill="#1B7C42">Write-Through</text>
+  <text x="355" y="79" font-size="9" text-anchor="middle" fill="#555">(Write to cache + DB on every write)</text>
+
+  <rect x="290" y="88" width="130" height="32" fill="#FF9900" stroke="#E07A00" rx="4"/>
+  <text x="355" y="109" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <line x1="310" y1="120" x2="290" y2="140" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <line x1="400" y1="120" x2="420" y2="140" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="255" y="140" width="95" height="32" fill="#C41D7F" stroke="#8A0050" rx="4"/>
+  <text x="302" y="161" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Redis</text>
+  <rect x="358" y="140" width="95" height="32" fill="#527FFF" stroke="#2E5FAF" rx="4"/>
+  <text x="405" y="161" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Database</text>
+
+  <rect x="268" y="185" width="175" height="30" fill="#D5F4E6" stroke="#1B7C42" rx="3"/>
+  <text x="355" y="205" font-size="9" text-anchor="middle" fill="#1B7C42">Both writes succeed → ACK to client</text>
+
+  <line x1="355" y1="215" x2="355" y2="240" stroke="#555" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <rect x="268" y="240" width="175" height="25" fill="#FFF4E6" stroke="#D45B07" rx="3"/>
+  <text x="355" y="257" font-size="9" text-anchor="middle" fill="#D45B07">READ always hits cache (after write)</text>
+
+  <rect x="258" y="355" width="195" height="115" fill="#F9F9F9" stroke="#CCC" rx="3"/>
+  <text x="355" y="370" font-size="9" font-weight="bold" text-anchor="middle" fill="#333">Characteristics</text>
+  <text x="268" y="385" font-size="8" fill="#1B7C42">✓ Cache always current</text>
+  <text x="268" y="398" font-size="8" fill="#1B7C42">✓ High read hit rate after write</text>
+  <text x="268" y="411" font-size="8" fill="#D45B07">✗ Write latency increased (2 writes)</text>
+  <text x="268" y="424" font-size="8" fill="#D45B07">✗ Cache pollution (unread data)</text>
+  <text x="268" y="437" font-size="8" fill="#555">Best for: read-heavy, low write rate,</text>
+  <text x="268" y="450" font-size="8" fill="#555">data freshness required</text>
+
+  <!-- ===== Write-Behind ===== -->
+  <rect x="476" y="45" width="215" height="440" fill="#FFF8E7" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="583" y="65" font-size="12" font-weight="bold" text-anchor="middle" fill="#D45B07">Write-Behind</text>
+  <text x="583" y="79" font-size="9" text-anchor="middle" fill="#555">(Async flush to DB)</text>
+
+  <rect x="518" y="88" width="130" height="32" fill="#FF9900" stroke="#E07A00" rx="4"/>
+  <text x="583" y="109" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <line x1="583" y1="120" x2="583" y2="140" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="600" y="134" font-size="8" fill="#555">WRITE only</text>
+  <rect x="518" y="140" width="130" height="32" fill="#C41D7F" stroke="#8A0050" rx="4"/>
+  <text x="583" y="161" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Redis Cache</text>
+  <line x1="583" y1="172" x2="583" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr3)"/>
+  <text x="600" y="188" font-size="8" fill="#888">async (seconds–min later)</text>
+  <rect x="518" y="195" width="130" height="32" fill="#527FFF" stroke="#2E5FAF" rx="4"/>
+  <text x="583" y="216" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Database</text>
+
+  <rect x="498" y="238" width="175" height="40" fill="#FFE0E0" stroke="#CC0000" stroke-width="1.5" rx="3"/>
+  <text x="585" y="253" font-size="9" font-weight="bold" text-anchor="middle" fill="#CC0000">⚠ DATA LOSS RISK</text>
+  <text x="585" y="268" font-size="8" text-anchor="middle" fill="#CC0000">If Redis fails before flush → data lost</text>
+
+  <rect x="498" y="288" width="175" height="55" fill="#FFF4E6" stroke="#D45B07" rx="3"/>
+  <text x="585" y="303" font-size="9" font-weight="bold" text-anchor="middle" fill="#D45B07">Safe for:</text>
+  <text x="508" y="318" font-size="8" fill="#555">View counters, like counts, analytics</text>
+  <text x="508" y="330" font-size="8" fill="#555">Where ~30 sec data loss is acceptable</text>
+
+  <rect x="488" y="355" width="195" height="115" fill="#F9F9F9" stroke="#CCC" rx="3"/>
+  <text x="585" y="370" font-size="9" font-weight="bold" text-anchor="middle" fill="#333">Characteristics</text>
+  <text x="498" y="385" font-size="8" fill="#1B7C42">✓ Lowest write latency (&lt;1 ms)</text>
+  <text x="498" y="398" font-size="8" fill="#1B7C42">✓ Absorbs write bursts in cache</text>
+  <text x="498" y="411" font-size="8" fill="#D45B07">✗ Data loss on Redis failure</text>
+  <text x="498" y="424" font-size="8" fill="#D45B07">✗ Complex consistency to maintain</text>
+  <text x="498" y="437" font-size="8" fill="#555">NEVER use for: orders, payments,</text>
+  <text x="498" y="450" font-size="8" fill="#555">accounts, any durable state</text>
+
+  <!-- ===== Read-Through ===== -->
+  <rect x="704" y="45" width="236" height="440" fill="#F0E6FF" stroke="#8A2BE2" stroke-width="2" rx="8"/>
+  <text x="822" y="65" font-size="12" font-weight="bold" text-anchor="middle" fill="#6A0DAD">Read-Through</text>
+  <text x="822" y="79" font-size="9" text-anchor="middle" fill="#555">(Cache fetches from DB on miss)</text>
+
+  <rect x="744" y="88" width="130" height="32" fill="#FF9900" stroke="#E07A00" rx="4"/>
+  <text x="809" y="109" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Application</text>
+  <line x1="809" y1="120" x2="809" y2="140" stroke="#232F3E" stroke-width="1.5" marker-end="url(#arr3)"/>
+  <text x="825" y="134" font-size="8" fill="#555">GET key</text>
+
+  <rect x="744" y="140" width="130" height="52" fill="#C41D7F" stroke="#8A0050" rx="4"/>
+  <text x="809" y="162" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Redis / Cache Layer</text>
+  <text x="809" y="177" font-size="8" text-anchor="middle" fill="#FFD0FF">On miss: fetches DB itself</text>
+  <text x="809" y="188" font-size="8" text-anchor="middle" fill="#FFD0FF">Populates cache transparently</text>
+
+  <line x1="809" y1="192" x2="809" y2="215" stroke="#232F3E" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arr3)"/>
+  <rect x="744" y="215" width="130" height="32" fill="#527FFF" stroke="#2E5FAF" rx="4"/>
+  <text x="809" y="236" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Database</text>
+
+  <rect x="718" y="260" width="200" height="55" fill="#F5F0FF" stroke="#8A2BE2" rx="3"/>
+  <text x="818" y="277" font-size="9" font-weight="bold" text-anchor="middle" fill="#6A0DAD">AWS Native Support:</text>
+  <text x="728" y="293" font-size="9" fill="#555">DAX (DynamoDB Accelerator)</text>
+  <text x="728" y="308" font-size="9" fill="#555">True read-through for DynamoDB</text>
+
+  <rect x="714" y="325" width="210" height="22" fill="#FFF4E6" stroke="#D45B07" rx="3"/>
+  <text x="819" y="340" font-size="9" text-anchor="middle" fill="#D45B07">Standard Redis: no native support</text>
+  <text x="819" y="352" font-size="8" text-anchor="middle" fill="#888">(implement via ORM/caching library)</text>
+
+  <rect x="714" y="355" width="210" height="115" fill="#F9F9F9" stroke="#CCC" rx="3"/>
+  <text x="819" y="370" font-size="9" font-weight="bold" text-anchor="middle" fill="#333">Characteristics</text>
+  <text x="724" y="385" font-size="8" fill="#1B7C42">✓ App code simplified (no miss handling)</text>
+  <text x="724" y="398" font-size="8" fill="#1B7C42">✓ Cache always has fresh data</text>
+  <text x="724" y="411" font-size="8" fill="#D45B07">✗ Requires cache-aware middleware</text>
+  <text x="724" y="424" font-size="8" fill="#D45B07">✗ Not natively supported in Redis</text>
+  <text x="724" y="437" font-size="8" fill="#555">Best for: DynamoDB + DAX, or</text>
+  <text x="724" y="450" font-size="8" fill="#555">ORM-based caching in Spring/Django</text>
+</svg>

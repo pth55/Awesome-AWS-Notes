@@ -1,0 +1,87 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="450" y="30" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">DynamoDB Primary Key Types</text>
+
+  <!-- Simple Primary Key -->
+  <rect x="40" y="55" width="380" height="300" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="230" y="80" font-size="14" font-weight="bold" text-anchor="middle" fill="#0073BB">Simple Primary Key</text>
+  <text x="230" y="98" font-size="11" text-anchor="middle" fill="#555">(Partition Key only)</text>
+
+  <rect x="60" y="112" width="340" height="30" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="3"/>
+  <text x="230" y="132" font-size="11" font-weight="bold" text-anchor="middle" fill="white">ProductID (Partition Key)</text>
+
+  <rect x="60" y="150" width="340" height="45" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="80" y="170" font-size="11" fill="#333">PK: "p-001"</text>
+  <text x="80" y="186" font-size="10" fill="#777">name: "Laptop"  ·  price: 999.99  ·  stock: 42</text>
+
+  <rect x="60" y="200" width="340" height="45" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="80" y="220" font-size="11" fill="#333">PK: "p-002"</text>
+  <text x="80" y="236" font-size="10" fill="#777">name: "Monitor"  ·  price: 399.99  ·  stock: 15</text>
+
+  <rect x="60" y="250" width="340" height="45" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="80" y="270" font-size="11" fill="#333">PK: "p-003"</text>
+  <text x="80" y="286" font-size="10" fill="#777">name: "Keyboard"  ·  price: 79.99  ·  stock: 200</text>
+
+  <rect x="60" y="310" width="340" height="32" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1" rx="3"/>
+  <text x="230" y="325" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Access: GetItem("p-001") → exact match only</text>
+  <text x="230" y="338" font-size="9" text-anchor="middle" fill="#555">No range queries. Good for entity-by-ID lookups.</text>
+
+  <!-- Composite Primary Key -->
+  <rect x="480" y="55" width="380" height="360" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="670" y="80" font-size="14" font-weight="bold" text-anchor="middle" fill="#0073BB">Composite Primary Key</text>
+  <text x="670" y="98" font-size="11" text-anchor="middle" fill="#555">(Partition Key + Sort Key)</text>
+
+  <!-- Header row -->
+  <rect x="500" y="112" width="180" height="30" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="3"/>
+  <text x="590" y="132" font-size="11" font-weight="bold" text-anchor="middle" fill="white">UserID (PK)</text>
+  <rect x="685" y="112" width="160" height="30" fill="#D45B07" stroke="#B04000" stroke-width="1.5" rx="3"/>
+  <text x="765" y="132" font-size="11" font-weight="bold" text-anchor="middle" fill="white">OrderDate (SK)</text>
+
+  <rect x="500" y="148" width="180" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="590" y="168" font-size="11" text-anchor="middle" fill="#333">USER#alice</text>
+  <text x="590" y="182" font-size="9" text-anchor="middle" fill="#777">same partition</text>
+  <rect x="685" y="148" width="160" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="765" y="168" font-size="11" text-anchor="middle" fill="#333">2024-01-10</text>
+  <text x="765" y="182" font-size="9" text-anchor="middle" fill="#777">total: $45.00</text>
+
+  <rect x="500" y="193" width="180" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="590" y="213" font-size="11" text-anchor="middle" fill="#333">USER#alice</text>
+  <text x="590" y="227" font-size="9" text-anchor="middle" fill="#777">same partition</text>
+  <rect x="685" y="193" width="160" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="765" y="213" font-size="11" text-anchor="middle" fill="#333">2024-02-20</text>
+  <text x="765" y="227" font-size="9" text-anchor="middle" fill="#777">total: $89.99</text>
+
+  <rect x="500" y="238" width="180" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="590" y="258" font-size="11" text-anchor="middle" fill="#333">USER#bob</text>
+  <text x="590" y="272" font-size="9" text-anchor="middle" fill="#777">different partition</text>
+  <rect x="685" y="238" width="160" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="765" y="258" font-size="11" text-anchor="middle" fill="#333">2024-01-15</text>
+  <text x="765" y="272" font-size="9" text-anchor="middle" fill="#777">total: $120.00</text>
+
+  <rect x="500" y="283" width="180" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="590" y="303" font-size="11" text-anchor="middle" fill="#333">USER#bob</text>
+  <text x="590" y="317" font-size="9" text-anchor="middle" fill="#777">different partition</text>
+  <rect x="685" y="283" width="160" height="40" fill="#FFF8E7" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="765" y="303" font-size="11" text-anchor="middle" fill="#333">2024-03-01</text>
+  <text x="765" y="317" font-size="9" text-anchor="middle" fill="#777">total: $35.50</text>
+
+  <rect x="500" y="335" width="340" height="32" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1" rx="3"/>
+  <text x="670" y="350" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Query: PK="USER#alice" AND SK BETWEEN "2024-01-01" AND "2024-12-31"</text>
+  <text x="670" y="363" font-size="9" text-anchor="middle" fill="#555">Returns all alice's orders for 2024, sorted by date. Range queries enabled by Sort Key.</text>
+
+  <!-- Divider + Legend -->
+  <line x1="440" y1="55" x2="440" y2="420" stroke="#CCCCCC" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <rect x="40" y="385" width="380" height="42" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="1" rx="4"/>
+  <text x="230" y="400" font-size="10" font-weight="bold" text-anchor="middle" fill="#444">Use Simple PK when:</text>
+  <text x="230" y="415" font-size="10" text-anchor="middle" fill="#555">Items are independent entities (products, configs). No sorting needed within a partition.</text>
+
+  <rect x="480" y="425" width="380" height="42" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="1" rx="4"/>
+  <text x="670" y="440" font-size="10" font-weight="bold" text-anchor="middle" fill="#444">Use Composite PK when:</text>
+  <text x="670" y="455" font-size="10" text-anchor="middle" fill="#555">Items belong to a parent (user's orders, device's events). Range + sort queries are needed.</text>
+
+  <!-- Key -->
+  <rect x="40" y="430" width="180" height="30" fill="none" stroke="#527FFF" stroke-width="1.5" rx="3"/>
+  <text x="130" y="450" font-size="10" text-anchor="middle" fill="#527FFF">■ Blue = Partition Key</text>
+  <rect x="230" y="430" width="180" height="30" fill="none" stroke="#D45B07" stroke-width="1.5" rx="3"/>
+  <text x="320" y="450" font-size="10" text-anchor="middle" fill="#D45B07">■ Orange = Sort Key</text>
+</svg>

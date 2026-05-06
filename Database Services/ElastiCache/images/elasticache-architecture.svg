@@ -1,0 +1,110 @@
+<svg viewBox="0 0 960 580" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <text x="480" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#232F3E">ElastiCache Redis — Cluster Mode Disabled vs Enabled</text>
+
+  <!-- ===== LEFT: Cluster Mode Disabled ===== -->
+  <rect x="20" y="45" width="440" height="490" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="240" y="68" font-size="14" font-weight="bold" text-anchor="middle" fill="#0073BB">Cluster Mode DISABLED</text>
+  <text x="240" y="84" font-size="10" text-anchor="middle" fill="#555">One shard · All data on all nodes · Up to 5 replicas</text>
+
+  <!-- Replication group box -->
+  <rect x="40" y="95" width="400" height="350" fill="white" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="240" y="113" font-size="11" font-weight="bold" text-anchor="middle" fill="#444">Replication Group</text>
+
+  <!-- Primary node -->
+  <rect x="80" y="120" width="320" height="70" fill="#527FFF" stroke="#2E5FAF" stroke-width="2" rx="6"/>
+  <text x="240" y="148" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Primary Node (AZ-a)</text>
+  <text x="240" y="165" font-size="10" text-anchor="middle" fill="#dce8ff">Reads + Writes  ·  16 GB RAM  ·  cache.r6g.large</text>
+  <text x="240" y="180" font-size="10" text-anchor="middle" fill="#dce8ff">Endpoint: cluster.abc123.0001.use1.cache.amazonaws.com:6379</text>
+
+  <!-- Arrow down -->
+  <defs>
+    <marker id="arrd" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+  <line x1="140" y1="190" x2="140" y2="215" stroke="#555" stroke-width="1.5" marker-end="url(#arrd)"/>
+  <line x1="340" y1="190" x2="340" y2="215" stroke="#555" stroke-width="1.5" marker-end="url(#arrd)"/>
+  <text x="200" y="208" font-size="9" fill="#888">async replication</text>
+
+  <!-- Replica 1 -->
+  <rect x="55" y="215" width="145" height="60" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="127" y="238" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Replica 1 (AZ-b)</text>
+  <text x="127" y="253" font-size="9" text-anchor="middle" fill="#555">Read only</text>
+  <text x="127" y="265" font-size="9" text-anchor="middle" fill="#555">cache.r6g.large</text>
+
+  <!-- Replica 2 -->
+  <rect x="280" y="215" width="145" height="60" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1.5" rx="5"/>
+  <text x="352" y="238" font-size="11" font-weight="bold" text-anchor="middle" fill="#1B7C42">Replica 2 (AZ-c)</text>
+  <text x="352" y="253" font-size="9" text-anchor="middle" fill="#555">Read only</text>
+  <text x="352" y="265" font-size="9" text-anchor="middle" fill="#555">cache.r6g.large</text>
+
+  <!-- Failover arrow -->
+  <rect x="55" y="295" width="385" height="40" fill="#FFF4E6" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="247" y="312" font-size="10" font-weight="bold" text-anchor="middle" fill="#D45B07">Multi-AZ Failover: Replica promoted to primary in ~30 sec</text>
+  <text x="247" y="326" font-size="9" text-anchor="middle" fill="#888">DNS record updated automatically · Application reconnects to same endpoint</text>
+
+  <!-- Endpoints -->
+  <rect x="55" y="345" width="385" height="85" fill="#F5F5F5" stroke="#CCC" stroke-width="1" rx="3"/>
+  <text x="247" y="362" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Endpoints</text>
+  <text x="70" y="379" font-size="9" fill="#555">Primary Endpoint: routes all writes to primary node</text>
+  <text x="70" y="394" font-size="9" fill="#555">Reader Endpoint: routes reads across all replicas (load balanced)</text>
+  <text x="70" y="409" font-size="9" fill="#555">Node Endpoints: direct connection to individual nodes</text>
+  <text x="70" y="424" font-size="9" fill="#888">Recommendation: use Reader Endpoint for reads, Primary for writes</text>
+
+  <!-- Limits -->
+  <rect x="40" y="455" width="400" height="60" fill="#FFF4E6" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="240" y="472" font-size="10" font-weight="bold" text-anchor="middle" fill="#D45B07">Limits & Characteristics</text>
+  <text x="55" y="488" font-size="9" fill="#555">• Max data = single node memory size (e.g., 16 GB on r6g.large)</text>
+  <text x="55" y="503" font-size="9" fill="#555">• Simple setup · Best for &lt;100 GB datasets · Supports all Redis commands</text>
+
+  <!-- ===== RIGHT: Cluster Mode Enabled ===== -->
+  <rect x="500" y="45" width="440" height="490" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="720" y="68" font-size="14" font-weight="bold" text-anchor="middle" fill="#D45B07">Cluster Mode ENABLED</text>
+  <text x="720" y="84" font-size="10" text-anchor="middle" fill="#555">Up to 500 shards · Data partitioned across shards · Scales horizontally</text>
+
+  <!-- Shard 1 -->
+  <rect x="520" y="95" width="180" height="170" fill="white" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="610" y="113" font-size="11" font-weight="bold" text-anchor="middle" fill="#444">Shard 1 (slots 0–5460)</text>
+  <rect x="535" y="118" width="150" height="45" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="4"/>
+  <text x="610" y="138" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Primary (AZ-a)</text>
+  <text x="610" y="153" font-size="9" text-anchor="middle" fill="#dce8ff">Reads + Writes</text>
+  <line x1="610" y1="163" x2="610" y2="178" stroke="#888" stroke-width="1.5" marker-end="url(#arrd)"/>
+  <rect x="535" y="178" width="150" height="40" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1" rx="4"/>
+  <text x="610" y="196" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Replica (AZ-b)</text>
+  <text x="610" y="209" font-size="9" text-anchor="middle" fill="#555">Read only</text>
+  <text x="610" y="232" font-size="9" text-anchor="middle" fill="#888">16,384 hash slots</text>
+  <text x="610" y="247" font-size="9" text-anchor="middle" fill="#888">distributed across shards</text>
+
+  <!-- Shard 2 -->
+  <rect x="740" y="95" width="180" height="170" fill="white" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="830" y="113" font-size="11" font-weight="bold" text-anchor="middle" fill="#444">Shard 2 (slots 5461–10922)</text>
+  <rect x="755" y="118" width="150" height="45" fill="#527FFF" stroke="#2E5FAF" stroke-width="1.5" rx="4"/>
+  <text x="830" y="138" font-size="10" font-weight="bold" text-anchor="middle" fill="white">Primary (AZ-b)</text>
+  <text x="830" y="153" font-size="9" text-anchor="middle" fill="#dce8ff">Reads + Writes</text>
+  <line x1="830" y1="163" x2="830" y2="178" stroke="#888" stroke-width="1.5" marker-end="url(#arrd)"/>
+  <rect x="755" y="178" width="150" height="40" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1" rx="4"/>
+  <text x="830" y="196" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Replica (AZ-c)</text>
+  <text x="830" y="209" font-size="9" text-anchor="middle" fill="#555">Read only</text>
+
+  <!-- Shard 3 dots -->
+  <rect x="520" y="280" width="400" height="55" fill="white" stroke="#CCC" stroke-width="1" rx="5"/>
+  <text x="720" y="300" font-size="11" text-anchor="middle" fill="#888">Shard 3 · · · Shard N</text>
+  <text x="720" y="318" font-size="10" text-anchor="middle" fill="#555">(slots 10923–16383 split across additional shards)</text>
+
+  <!-- Configuration endpoint -->
+  <rect x="520" y="345" width="400" height="60" fill="#F5F5F5" stroke="#CCC" stroke-width="1" rx="3"/>
+  <text x="720" y="363" font-size="10" font-weight="bold" text-anchor="middle" fill="#333">Configuration Endpoint (single entry point)</text>
+  <text x="535" y="380" font-size="9" fill="#555">cluster.abc123.clustercfg.use1.cache.amazonaws.com:6379</text>
+  <text x="535" y="395" font-size="9" fill="#888">Client library discovers shard topology via CLUSTER NODES command</text>
+
+  <!-- Online resharding -->
+  <rect x="520" y="415" width="400" height="55" fill="#D5F4E6" stroke="#1B7C42" stroke-width="1" rx="3"/>
+  <text x="720" y="433" font-size="10" font-weight="bold" text-anchor="middle" fill="#1B7C42">Online Resharding (no downtime)</text>
+  <text x="535" y="449" font-size="9" fill="#555">Scale out: add shards, slots redistribute automatically</text>
+  <text x="535" y="463" font-size="9" fill="#555">Scale in: remove shards, slots moved to remaining shards</text>
+
+  <!-- Limits CME -->
+  <rect x="520" y="480" width="400" height="42" fill="#FFF4E6" stroke="#D45B07" stroke-width="1" rx="3"/>
+  <text x="535" y="496" font-size="9" fill="#D45B07">Limitations: MULTI/EXEC transactions only within same slot · KEYS/MGET require same slot</text>
+  <text x="535" y="510" font-size="9" fill="#D45B07">Use hash tags {user_id} to co-locate related keys on same slot</text>
+</svg>
