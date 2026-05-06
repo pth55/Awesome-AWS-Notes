@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="400" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Basic Architecture
+  </text>
+
+  <!-- VPC Container -->
+  <rect x="50" y="60" width="700" height="500" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="10"/>
+  <text x="70" y="90" font-size="16" font-weight="bold" fill="#0073BB">VPC (10.0.0.0/16)</text>
+
+  <!-- Public Subnet -->
+  <rect x="80" y="110" width="280" height="200" fill="#D5F4E6" stroke="#1B7C42" stroke-width="2" rx="5"/>
+  <text x="100" y="140" font-size="14" font-weight="bold" fill="#1B7C42">Public Subnet</text>
+
+  <!-- EC2 Instance (App Server) -->
+  <rect x="120" y="160" width="200" height="120" fill="#FF9900" stroke="#FF6600" stroke-width="2" rx="5"/>
+  <text x="150" y="190" font-size="14" font-weight="bold" fill="white">EC2 Instance</text>
+  <text x="150" y="215" font-size="12" fill="white">(Application Server)</text>
+  <text x="150" y="240" font-size="11" fill="white">• Web App</text>
+  <text x="150" y="260" font-size="11" fill="white">• API Server</text>
+
+  <!-- Private Subnet -->
+  <rect x="440" y="110" width="280" height="400" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="5"/>
+  <text x="460" y="140" font-size="14" font-weight="bold" fill="#D45B07">Private Subnet</text>
+
+  <!-- RDS Instance -->
+  <rect x="480" y="170" width="200" height="160" fill="#527FFF" stroke="#2E5FAF" stroke-width="2" rx="5"/>
+  <text x="510" y="200" font-size="14" font-weight="bold" fill="white">RDS Instance</text>
+  <text x="510" y="225" font-size="12" fill="white">MySQL 8.0</text>
+  <text x="510" y="245" font-size="11" fill="white">• Storage: 20 GB gp3</text>
+  <text x="510" y="265" font-size="11" fill="white">• Instance: db.t3.micro</text>
+  <text x="510" y="285" font-size="11" fill="white">• Automated Backups</text>
+  <text x="510" y="305" font-size="11" fill="white">• Endpoint: myapp-db...</text>
+
+  <!-- Security Group -->
+  <rect x="470" y="360" width="220" height="80" fill="none" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,5" rx="5"/>
+  <text x="490" y="385" font-size="12" font-weight="bold" fill="#FF6B6B">Security Group</text>
+  <text x="490" y="405" font-size="10" fill="#FF6B6B">• Allow port 3306</text>
+  <text x="490" y="425" font-size="10" fill="#FF6B6B">• From App SG only</text>
+
+  <!-- Connection Arrow -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#232F3E"/>
+    </marker>
+  </defs>
+  <line x1="320" y1="220" x2="480" y2="220" stroke="#232F3E" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="350" y="210" font-size="11" fill="#232F3E">SQL queries (port 3306)</text>
+
+  <!-- Internet Gateway -->
+  <rect x="150" y="520" width="140" height="30" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="170" y="542" font-size="12" font-weight="bold" fill="white">Internet Gateway</text>
+
+  <!-- User Icon -->
+  <circle cx="220" cy="590" r="10" fill="#232F3E"/>
+  <text x="190" y="625" font-size="11" text-anchor="middle" fill="#232F3E">Users/Internet</text>
+
+  <!-- Connection from IGW to User -->
+  <line x1="220" y1="550" x2="220" y2="580" stroke="#232F3E" stroke-width="2"/>
+  <line x1="220" y1="310" x2="220" y2="520" stroke="#232F3E" stroke-width="2"/>
+
+  <!-- Legend -->
+  <text x="50" y="590" font-size="12" font-weight="bold" fill="#232F3E">Key Points:</text>
+  <text x="50" y="610" font-size="10" fill="#232F3E">✓ RDS in private subnet (no public access)</text>
+  <text x="50" y="630" font-size="10" fill="#232F3E">✓ App servers in public subnet</text>
+  <text x="50" y="650" font-size="10" fill="#232F3E">✓ Security group controls database access</text>
+</svg>

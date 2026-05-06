@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="1000" height="760" fill="#F8F9FA"/>
+  <text x="500" y="35" font-size="22" font-weight="bold" text-anchor="middle" fill="#232F3E">Amazon Aurora — Complete Architecture</text>
+  <text x="500" y="57" font-size="13" text-anchor="middle" fill="#555">MySQL/PostgreSQL-compatible · Proprietary AWS engine · Shared distributed storage</text>
+
+  <!-- ══ Compute Layer ══ -->
+  <rect x="30" y="75" width="940" height="220" fill="#EAF4FF" stroke="#0073BB" stroke-width="2" rx="10"/>
+  <text x="500" y="100" font-size="14" font-weight="bold" text-anchor="middle" fill="#0073BB">① Compute Layer (DB Instances) — Scales independently from storage</text>
+
+  <!-- Writer -->
+  <rect x="60" y="115" width="160" height="155" fill="#1A5276" stroke="#0E3460" stroke-width="2" rx="8"/>
+  <text x="140" y="142" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Writer</text>
+  <text x="140" y="162" font-size="11" text-anchor="middle" fill="#AED6F1">Primary Instance</text>
+  <text x="70" y="185" font-size="10" fill="white">✓ Read + Write</text>
+  <text x="70" y="202" font-size="10" fill="white">✓ Writer endpoint</text>
+  <text x="70" y="219" font-size="10" fill="white">✓ No local storage</text>
+  <text x="70" y="236" font-size="10" fill="#AED6F1">(reads shared storage)</text>
+  <rect x="70" y="248" width="140" height="14" fill="#0E3460" rx="3"/>
+  <text x="140" y="259" font-size="9" text-anchor="middle" fill="#AED6F1">db.r6g.large</text>
+
+  <!-- Reader 1 -->
+  <rect x="260" y="115" width="145" height="155" fill="#27AE60" stroke="#1E8449" stroke-width="2" rx="8"/>
+  <text x="332" y="142" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Reader 1</text>
+  <text x="332" y="162" font-size="10" text-anchor="middle" fill="#ABEBC6">Read Replica</text>
+  <text x="270" y="185" font-size="10" fill="white">✓ Read-only</text>
+  <text x="270" y="202" font-size="10" fill="white">✓ Reader endpoint</text>
+  <text x="270" y="219" font-size="10" fill="white">✓ No local storage</text>
+  <text x="270" y="236" font-size="10" fill="#ABEBC6">milliseconds lag</text>
+
+  <!-- Reader 2 -->
+  <rect x="440" y="115" width="145" height="155" fill="#27AE60" stroke="#1E8449" stroke-width="2" rx="8"/>
+  <text x="512" y="142" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Reader 2</text>
+  <text x="512" y="162" font-size="10" text-anchor="middle" fill="#ABEBC6">Read Replica</text>
+  <text x="450" y="185" font-size="10" fill="white">✓ Read-only</text>
+  <text x="450" y="202" font-size="10" fill="white">✓ Reader endpoint</text>
+  <text x="450" y="219" font-size="10" fill="white">✓ No local storage</text>
+  <text x="450" y="236" font-size="10" fill="#ABEBC6">milliseconds lag</text>
+
+  <!-- dots -->
+  <text x="625" y="200" font-size="22" fill="#888">•••</text>
+
+  <!-- Reader N -->
+  <rect x="680" y="115" width="145" height="155" fill="#27AE60" stroke="#1E8449" stroke-width="2" rx="8"/>
+  <text x="752" y="142" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Reader 15</text>
+  <text x="752" y="162" font-size="10" text-anchor="middle" fill="#ABEBC6">Up to 15 replicas</text>
+  <text x="690" y="185" font-size="10" fill="white">✓ Read-only</text>
+  <text x="690" y="202" font-size="10" fill="white">✓ Auto-scaled</text>
+  <text x="690" y="219" font-size="10" fill="white">✓ No local storage</text>
+  <text x="690" y="236" font-size="10" fill="#ABEBC6">cross-region possible</text>
+
+  <!-- Serverless -->
+  <rect x="855" y="115" width="105" height="155" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="8"/>
+  <text x="907" y="142" font-size="12" font-weight="bold" text-anchor="middle" fill="white">Serverless</text>
+  <text x="907" y="162" font-size="10" text-anchor="middle" fill="#E8DAFF">v2</text>
+  <text x="865" y="185" font-size="10" fill="white">✓ Auto-scales</text>
+  <text x="865" y="202" font-size="10" fill="white">✓ Pay/second</text>
+  <text x="865" y="219" font-size="10" fill="white">✓ Scales to 0</text>
+  <text x="865" y="236" font-size="10" fill="#E8DAFF">0–128 ACUs</text>
+
+  <!-- ══ Shared Cluster Storage ══ -->
+  <rect x="30" y="320" width="940" height="250" fill="#FFF8E7" stroke="#FF9900" stroke-width="2.5" rx="10"/>
+  <text x="500" y="348" font-size="14" font-weight="bold" text-anchor="middle" fill="#E67E22">② Shared Distributed Storage Layer (The Real Magic of Aurora)</text>
+  <text x="500" y="368" font-size="12" text-anchor="middle" fill="#8E5410">Automatically replicates data across 3 AZs · 6 copies total · Self-healing</text>
+
+  <!-- 3 AZ storage columns -->
+  <!-- AZ-A -->
+  <rect x="60" y="385" width="250" height="160" fill="#FCF3CF" stroke="#D4AC0D" stroke-width="1.5" rx="8"/>
+  <text x="185" y="408" font-size="13" font-weight="bold" text-anchor="middle" fill="#7D6608">AZ A Storage</text>
+  <rect x="80" y="420" width="90" height="40" fill="#F1C40F" stroke="#D4AC0D" stroke-width="1" rx="4"/>
+  <text x="125" y="445" font-size="11" text-anchor="middle" fill="#333">Copy 1</text>
+  <rect x="200" y="420" width="90" height="40" fill="#F1C40F" stroke="#D4AC0D" stroke-width="1" rx="4"/>
+  <text x="245" y="445" font-size="11" text-anchor="middle" fill="#333">Copy 2</text>
+  <text x="185" y="490" font-size="10" text-anchor="middle" fill="#7D6608">2 of 6 copies here</text>
+  <text x="185" y="508" font-size="10" text-anchor="middle" fill="#7D6608">Auto striped · SSD</text>
+  <text x="185" y="526" font-size="9" text-anchor="middle" fill="#B7950B">Survives AZ failure</text>
+
+  <!-- AZ-B -->
+  <rect x="375" y="385" width="250" height="160" fill="#FDEBD0" stroke="#D45B07" stroke-width="1.5" rx="8"/>
+  <text x="500" y="408" font-size="13" font-weight="bold" text-anchor="middle" fill="#7E5109">AZ B Storage</text>
+  <rect x="395" y="420" width="90" height="40" fill="#E59866" stroke="#D45B07" stroke-width="1" rx="4"/>
+  <text x="440" y="445" font-size="11" text-anchor="middle" fill="white">Copy 3</text>
+  <rect x="515" y="420" width="90" height="40" fill="#E59866" stroke="#D45B07" stroke-width="1" rx="4"/>
+  <text x="560" y="445" font-size="11" text-anchor="middle" fill="white">Copy 4</text>
+  <text x="500" y="490" font-size="10" text-anchor="middle" fill="#7E5109">2 of 6 copies here</text>
+  <text x="500" y="508" font-size="10" text-anchor="middle" fill="#7E5109">Auto grows 10 GB steps</text>
+  <text x="500" y="526" font-size="9" text-anchor="middle" fill="#B7950B">Max 128 TB</text>
+
+  <!-- AZ-C -->
+  <rect x="690" y="385" width="250" height="160" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.5" rx="8"/>
+  <text x="815" y="408" font-size="13" font-weight="bold" text-anchor="middle" fill="#7B241C">AZ C Storage</text>
+  <rect x="710" y="420" width="90" height="40" fill="#E74C3C" stroke="#C0392B" stroke-width="1" rx="4"/>
+  <text x="755" y="445" font-size="11" text-anchor="middle" fill="white">Copy 5</text>
+  <rect x="830" y="420" width="90" height="40" fill="#E74C3C" stroke="#C0392B" stroke-width="1" rx="4"/>
+  <text x="875" y="445" font-size="11" text-anchor="middle" fill="white">Copy 6</text>
+  <text x="815" y="490" font-size="10" text-anchor="middle" fill="#7B241C">2 of 6 copies here</text>
+  <text x="815" y="508" font-size="10" text-anchor="middle" fill="#7B241C">Continuous backup → S3</text>
+  <text x="815" y="526" font-size="9" text-anchor="middle" fill="#B7950B">No performance impact</text>
+
+  <!-- Vertical connection lines compute → storage -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#999"/>
+    </marker>
+  </defs>
+  <line x1="140" y1="270" x2="140" y2="385" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+  <line x1="332" y1="270" x2="332" y2="385" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+  <line x1="512" y1="270" x2="512" y2="385" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+  <line x1="752" y1="270" x2="752" y2="385" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+  <text x="500" y="310" font-size="11" text-anchor="middle" fill="#666">All instances read/write to shared storage (no per-instance storage)</text>
+
+  <!-- ══ Endpoints ══ -->
+  <rect x="30" y="590" width="460" height="70" fill="#EAF4FF" stroke="#0073BB" stroke-width="1.5" rx="8"/>
+  <text x="260" y="614" font-size="13" font-weight="bold" text-anchor="middle" fill="#1A5276">Cluster Endpoints</text>
+  <text x="45" y="634" font-size="10" fill="#1A5276">✏️  Writer:  cluster-name.cluster-xxxxx.region.rds.amazonaws.com</text>
+  <text x="45" y="652" font-size="10" fill="#1A5276">📖  Reader: cluster-name.cluster-ro-xxxxx.region.rds.amazonaws.com</text>
+
+  <!-- ══ Cost Box ══ -->
+  <rect x="510" y="590" width="460" height="70" fill="#F5EEF8" stroke="#8C4FFF" stroke-width="1.5" rx="8"/>
+  <text x="740" y="614" font-size="13" font-weight="bold" text-anchor="middle" fill="#6A3BBF">Aurora Pricing vs RDS</text>
+  <text x="520" y="634" font-size="10" fill="#4A235A">💰 Aurora = ~20% more per instance than RDS MySQL/PG</text>
+  <text x="520" y="652" font-size="10" fill="#4A235A">💡 Serverless v2 = pay per ACU-hour (great for variable workloads)</text>
+
+  <!-- Bottom bar -->
+  <rect x="30" y="675" width="940" height="28" fill="#232F3E" rx="5"/>
+  <text x="500" y="693" font-size="11" text-anchor="middle" fill="white">
+    Aurora KEY INSIGHT: Compute and Storage are SEPARATED. Readers share same storage as writer — no replication lag for reads. Failover &lt;30s.
+  </text>
+</svg>

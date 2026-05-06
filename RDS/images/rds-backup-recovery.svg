@@ -1,0 +1,111 @@
+<svg viewBox="0 0 900 750" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="450" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    RDS Backup and Recovery Strategy
+  </text>
+
+  <!-- RDS Instance -->
+  <rect x="350" y="70" width="200" height="100" fill="#527FFF" stroke="#2E5FAF" stroke-width="3" rx="5"/>
+  <text x="410" y="100" font-size="16" font-weight="bold" fill="white">RDS Instance</text>
+  <text x="370" y="125" font-size="12" fill="white">Production Database</text>
+  <text x="370" y="145" font-size="11" fill="white">Status: Running</text>
+
+  <!-- Automated Backups Section -->
+  <rect x="80" y="240" width="350" height="200" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="8"/>
+  <text x="100" y="270" font-size="15" font-weight="bold" fill="#0073BB">🔄 Automated Backups</text>
+
+  <!-- Daily Snapshot -->
+  <rect x="100" y="290" width="150" height="60" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="120" y="312" font-size="12" font-weight="bold" fill="white">Daily Snapshot</text>
+  <text x="120" y="330" font-size="10" fill="white">Full backup</text>
+  <text x="120" y="345" font-size="10" fill="white">During backup window</text>
+
+  <!-- Transaction Logs -->
+  <rect x="260" y="290" width="150" height="60" fill="#4CAF50" stroke="#2E7D32" stroke-width="2" rx="5"/>
+  <text x="280" y="312" font-size="12" font-weight="bold" fill="white">Transaction Logs</text>
+  <text x="280" y="330" font-size="10" fill="white">Every 5 minutes</text>
+  <text x="280" y="345" font-size="10" fill="white">Enables PITR</text>
+
+  <!-- Retention -->
+  <rect x="100" y="370" width="310" height="50" fill="#FFFBCC" stroke="#FFA000" stroke-width="2" rx="5"/>
+  <text x="120" y="392" font-size="11" fill="#232F3E">Retention: 1-35 days (default: 7 days)</text>
+  <text x="120" y="408" font-size="10" fill="#232F3E">Oldest backups automatically deleted</text>
+
+  <!-- Manual Snapshots Section -->
+  <rect x="470" y="240" width="350" height="200" fill="#FFF4E6" stroke="#D45B07" stroke-width="2" rx="8"/>
+  <text x="490" y="270" font-size="15" font-weight="bold" fill="#D45B07">📸 Manual Snapshots</text>
+
+  <!-- Snapshot 1 -->
+  <rect x="490" y="290" width="140" height="50" fill="#FF9900" stroke="#FF6600" stroke-width="2" rx="5"/>
+  <text x="510" y="310" font-size="11" font-weight="bold" fill="white">Before Upgrade</text>
+  <text x="510" y="327" font-size="9" fill="white">2024-01-15</text>
+
+  <!-- Snapshot 2 -->
+  <rect x="650" y="290" width="140" height="50" fill="#FF9900" stroke="#FF6600" stroke-width="2" rx="5"/>
+  <text x="670" y="310" font-size="11" font-weight="bold" fill="white">End of Quarter</text>
+  <text x="670" y="327" font-size="9" fill="white">2024-03-31</text>
+
+  <!-- Snapshot 3 -->
+  <rect x="490" y="360" width="140" height="50" fill="#FF9900" stroke="#FF6600" stroke-width="2" rx="5"/>
+  <text x="510" y="380" font-size="11" font-weight="bold" fill="white">Pre-Migration</text>
+  <text x="510" y="397" font-size="9" fill="white">2024-06-01</text>
+
+  <!-- Retention info -->
+  <rect x="650" y="360" width="140" height="50" fill="#FFFBCC" stroke="#FFA000" stroke-width="2" rx="5"/>
+  <text x="660" y="380" font-size="10" fill="#232F3E">Persist until</text>
+  <text x="660" y="395" font-size="10" fill="#232F3E">manually deleted</text>
+
+  <!-- Arrows from RDS to backups -->
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0073BB"/>
+    </marker>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#D45B07"/>
+    </marker>
+  </defs>
+
+  <line x1="380" y1="170" x2="255" y2="240" stroke="#0073BB" stroke-width="2" marker-end="url(#arrow1)"/>
+  <text x="290" y="200" font-size="10" fill="#0073BB">Automatic</text>
+
+  <line x1="520" y1="170" x2="645" y2="240" stroke="#D45B07" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="560" y="200" font-size="10" fill="#D45B07">User-triggered</text>
+
+  <!-- Recovery Options Section -->
+  <rect x="80" y="480" width="740" height="240" fill="#F0F0F0" stroke="#232F3E" stroke-width="2" rx="8"/>
+  <text x="100" y="510" font-size="16" font-weight="bold" fill="#232F3E">💾 Recovery Options</text>
+
+  <!-- Point-in-Time Recovery -->
+  <rect x="100" y="530" width="220" height="160" fill="#8C4FFF" stroke="#6A3BBF" stroke-width="2" rx="5"/>
+  <text x="150" y="560" font-size="13" font-weight="bold" fill="white">Point-in-Time Recovery</text>
+  <text x="120" y="585" font-size="10" fill="white">Restore to any second</text>
+  <text x="120" y="605" font-size="10" fill="white">✓ Uses daily snapshot +</text>
+  <text x="120" y="620" font-size="10" fill="white">  transaction logs</text>
+  <text x="120" y="640" font-size="10" fill="white">✓ RPO: 5 minutes</text>
+  <text x="120" y="655" font-size="10" fill="white">✓ RTO: 30-60 minutes</text>
+  <text x="120" y="675" font-size="9" fill="white">Use: Accidental deletion</text>
+
+  <!-- Snapshot Restore -->
+  <rect x="340" y="530" width="220" height="160" fill="#FF6B6B" stroke="#D32F2F" stroke-width="2" rx="5"/>
+  <text x="390" y="560" font-size="13" font-weight="bold" fill="white">Snapshot Restore</text>
+  <text x="360" y="585" font-size="10" fill="white">Restore from specific</text>
+  <text x="360" y="600" font-size="10" fill="white">snapshot</text>
+  <text x="360" y="625" font-size="10" fill="white">✓ Fast recovery</text>
+  <text x="360" y="645" font-size="10" fill="white">✓ Creates new instance</text>
+  <text x="360" y="665" font-size="9" fill="white">Use: Major rollback,</text>
+  <text x="360" y="680" font-size="9" fill="white">testing, cloning</text>
+
+  <!-- Cross-Region Recovery -->
+  <rect x="580" y="530" width="220" height="160" fill="#FF9800" stroke="#F57C00" stroke-width="2" rx="5"/>
+  <text x="615" y="560" font-size="13" font-weight="bold" fill="white">Cross-Region Recovery</text>
+  <text x="600" y="585" font-size="10" fill="white">Copy snapshot to</text>
+  <text x="600" y="600" font-size="10" fill="white">different region</text>
+  <text x="600" y="625" font-size="10" fill="white">✓ Disaster recovery</text>
+  <text x="600" y="645" font-size="10" fill="white">✓ Compliance</text>
+  <text x="600" y="665" font-size="9" fill="white">Use: Regional outage,</text>
+  <text x="600" y="680" font-size="9" fill="white">data sovereignty</text>
+
+  <!-- Storage location -->
+  <rect x="300" y="735" width="300" height="30" fill="#E8F4F8" stroke="#0073BB" stroke-width="2" rx="5"/>
+  <text x="350" y="755" font-size="11" fill="#232F3E">Storage: Amazon S3 (Multi-AZ)</text>
+</svg>

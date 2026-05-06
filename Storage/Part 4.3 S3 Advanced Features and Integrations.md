@@ -215,7 +215,7 @@ Old versions (when versioning is enabled):
 ### Transition constraints
 
 Not all transitions are allowed. Objects can only move from warmer to colder tiers:
-![alt text](image.png)
+
 ```
 Standard → Standard-IA → Intelligent-Tiering → One Zone-IA → Glacier Instant
     ↓           ↓              ↓                    ↓              ↓

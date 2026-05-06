@@ -1,0 +1,180 @@
+<svg viewBox="0 0 1200 780" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <rect x="0" y="0" width="1200" height="780" fill="#F8F9FA"/>
+  <text x="600" y="38" font-size="22" font-weight="bold" text-anchor="middle" fill="#232F3E">RDS Deployment Types — Side-by-Side Comparison</text>
+
+  <!-- ═══════════════ COLUMN 1: Single-AZ ═══════════════ -->
+  <rect x="20" y="60" width="360" height="680" fill="#FFF8F8" stroke="#E74C3C" stroke-width="2" rx="10"/>
+  <rect x="20" y="60" width="360" height="44" fill="#E74C3C" rx="10"/>
+  <rect x="20" y="94" width="360" height="10" fill="#E74C3C"/>
+  <text x="200" y="89" font-size="16" font-weight="bold" text-anchor="middle" fill="white">① Single-AZ Instance</text>
+
+  <!-- AZ Box -->
+  <rect x="45" y="130" width="310" height="240" fill="#FFE8E8" stroke="#E74C3C" stroke-width="1.5" rx="8" stroke-dasharray="6,3"/>
+  <text x="200" y="158" font-size="13" font-weight="bold" text-anchor="middle" fill="#E74C3C">Availability Zone A</text>
+
+  <!-- Primary Instance -->
+  <rect x="80" y="170" width="240" height="140" fill="#C0392B" stroke="#922B21" stroke-width="2" rx="6"/>
+  <text x="200" y="195" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Primary Instance</text>
+  <text x="200" y="218" font-size="11" text-anchor="middle" fill="#FADBD8">Status: ACTIVE</text>
+  <text x="95" y="240" font-size="11" fill="white">✓ Reads and Writes</text>
+  <text x="95" y="258" font-size="11" fill="white">✓ Your endpoint</text>
+  <text x="95" y="276" font-size="11" fill="white">✗ No failover protection</text>
+  <rect x="95" y="290" width="210" height="12" fill="#922B21" rx="3"/>
+  <text x="200" y="300" font-size="9" text-anchor="middle" fill="white">EBS Volume (gp3)</text>
+
+  <!-- No Standby -->
+  <rect x="80" y="330" width="240" height="30" fill="#FADBD8" stroke="#E74C3C" stroke-width="1" rx="4"/>
+  <text x="200" y="350" font-size="12" text-anchor="middle" fill="#C0392B">✗  No Standby Instance</text>
+
+  <!-- Endpoint Box -->
+  <rect x="55" y="385" width="310" height="50" fill="#F5CBA7" stroke="#E67E22" stroke-width="1.5" rx="5"/>
+  <text x="210" y="403" font-size="11" font-weight="bold" text-anchor="middle" fill="#784212">Endpoint (1 only)</text>
+  <text x="210" y="425" font-size="9" text-anchor="middle" fill="#784212">mydb.xxxxx.us-east-1.rds.amazonaws.com</text>
+
+  <!-- Facts -->
+  <rect x="45" y="450" width="310" height="200" fill="white" stroke="#E74C3C" stroke-width="1" rx="6"/>
+  <text x="200" y="474" font-size="13" font-weight="bold" text-anchor="middle" fill="#232F3E">Key Facts</text>
+  <line x1="55" y1="480" x2="345" y2="480" stroke="#EEEEEE" stroke-width="1"/>
+  <text x="60" y="500" font-size="11" fill="#232F3E">💰 Cost:          1× instance cost</text>
+  <text x="60" y="520" font-size="11" fill="#232F3E">⚡ Failover:       None (manual restore)</text>
+  <text x="60" y="540" font-size="11" fill="#232F3E">📊 Replication:   None</text>
+  <text x="60" y="560" font-size="11" fill="#232F3E">📖 Standby reads: N/A</text>
+  <text x="60" y="580" font-size="11" fill="#232F3E">⏱ Recovery time:  Hours (from backup)</text>
+  <text x="60" y="600" font-size="11" fill="#232F3E">🎯 RPO:            Hours (last backup)</text>
+  <text x="60" y="620" font-size="11" fill="#232F3E">🏷 Use for:        Dev / Test / Non-critical</text>
+
+  <!-- ═══════════════ COLUMN 2: Multi-AZ Instance ═══════════════ -->
+  <rect x="420" y="60" width="360" height="680" fill="#F0F7FF" stroke="#0073BB" stroke-width="2" rx="10"/>
+  <rect x="420" y="60" width="360" height="44" fill="#0073BB" rx="10"/>
+  <rect x="420" y="94" width="360" height="10" fill="#0073BB"/>
+  <text x="600" y="89" font-size="16" font-weight="bold" text-anchor="middle" fill="white">② Multi-AZ DB Instance</text>
+
+  <!-- AZ-A Box -->
+  <rect x="440" y="130" width="155" height="240" fill="#EAF4FF" stroke="#0073BB" stroke-width="1.5" rx="8" stroke-dasharray="6,3"/>
+  <text x="518" y="155" font-size="11" font-weight="bold" text-anchor="middle" fill="#0073BB">AZ A (Primary)</text>
+  <rect x="455" y="165" width="125" height="145" fill="#1A5276" stroke="#0E3460" stroke-width="2" rx="5"/>
+  <text x="518" y="188" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Primary</text>
+  <text x="518" y="207" font-size="10" text-anchor="middle" fill="#AED6F1">ACTIVE</text>
+  <text x="463" y="228" font-size="10" fill="white">✓ Read + Write</text>
+  <text x="463" y="245" font-size="10" fill="white">✓ Client endpoint</text>
+  <text x="463" y="262" font-size="10" fill="white">✓ Syncs standby</text>
+  <rect x="463" y="280" width="109" height="22" fill="#0E3460" rx="3"/>
+  <text x="518" y="295" font-size="9" text-anchor="middle" fill="#AED6F1">EBS gp3</text>
+
+  <!-- Sync Arrow -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#E74C3C"/>
+    </marker>
+  </defs>
+  <line x1="597" y1="237" x2="628" y2="237" stroke="#E74C3C" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  <text x="604" y="228" font-size="9" fill="#E74C3C" font-weight="bold">SYNC</text>
+
+  <!-- AZ-B Box -->
+  <rect x="605" y="130" width="155" height="240" fill="#FFF0E6" stroke="#D45B07" stroke-width="1.5" rx="8" stroke-dasharray="6,3"/>
+  <text x="683" y="155" font-size="11" font-weight="bold" text-anchor="middle" fill="#D45B07">AZ B (Standby)</text>
+  <rect x="620" y="165" width="125" height="145" fill="#7D6608" stroke="#5D4E07" stroke-width="2" rx="5" stroke-dasharray="8,4"/>
+  <text x="683" y="188" font-size="13" font-weight="bold" text-anchor="middle" fill="white">Standby</text>
+  <text x="683" y="207" font-size="10" text-anchor="middle" fill="#F9E79F">PASSIVE</text>
+  <text x="628" y="228" font-size="10" fill="white">✗ NOT readable</text>
+  <text x="628" y="245" font-size="10" fill="white">✓ Receives writes</text>
+  <text x="628" y="262" font-size="10" fill="white">✓ Failover ready</text>
+  <rect x="628" y="280" width="109" height="22" fill="#5D4E07" rx="3"/>
+  <text x="683" y="295" font-size="9" text-anchor="middle" fill="#F9E79F">EBS gp3 (copy)</text>
+
+  <!-- Endpoint Box -->
+  <rect x="440" y="385" width="320" height="50" fill="#D6EAF8" stroke="#0073BB" stroke-width="1.5" rx="5"/>
+  <text x="600" y="403" font-size="11" font-weight="bold" text-anchor="middle" fill="#1A5276">Single Endpoint (DNS flips on failover)</text>
+  <text x="600" y="423" font-size="9" text-anchor="middle" fill="#1A5276">mydb.xxxxx.us-east-1.rds.amazonaws.com → flips IP</text>
+
+  <!-- nslookup note -->
+  <rect x="440" y="444" width="320" height="30" fill="#FDFEFE" stroke="#0073BB" stroke-width="1" rx="4"/>
+  <text x="600" y="464" font-size="10" text-anchor="middle" fill="#0073BB">💡 nslookup same DNS before/after → different IP</text>
+
+  <!-- Facts -->
+  <rect x="440" y="482" width="320" height="200" fill="white" stroke="#0073BB" stroke-width="1" rx="6"/>
+  <text x="600" y="506" font-size="13" font-weight="bold" text-anchor="middle" fill="#232F3E">Key Facts</text>
+  <line x1="450" y1="512" x2="750" y2="512" stroke="#EEEEEE" stroke-width="1"/>
+  <text x="455" y="532" font-size="11" fill="#232F3E">💰 Cost:          2× single-AZ (price doubled!)</text>
+  <text x="455" y="552" font-size="11" fill="#232F3E">⚡ Failover:       Automatic (1–2 minutes)</text>
+  <text x="455" y="572" font-size="11" fill="#232F3E">📊 Replication:   Synchronous (zero data loss)</text>
+  <text x="455" y="592" font-size="11" fill="#232F3E">📖 Standby reads: ✗ NOT readable</text>
+  <text x="455" y="612" font-size="11" fill="#232F3E">⏱ Recovery time:  1–2 minutes</text>
+  <text x="455" y="632" font-size="11" fill="#232F3E">🎯 RPO:            0 (zero data loss)</text>
+  <text x="455" y="652" font-size="11" fill="#232F3E">🏷 Use for:        Production HA</text>
+
+  <!-- ═══════════════ COLUMN 3: Multi-AZ Cluster ═══════════════ -->
+  <rect x="820" y="60" width="360" height="680" fill="#F0FFF4" stroke="#27AE60" stroke-width="2" rx="10"/>
+  <rect x="820" y="60" width="360" height="44" fill="#27AE60" rx="10"/>
+  <rect x="820" y="94" width="360" height="10" fill="#27AE60"/>
+  <text x="1000" y="89" font-size="16" font-weight="bold" text-anchor="middle" fill="white">③ Multi-AZ DB Cluster</text>
+
+  <!-- 3 AZ boxes in a row -->
+  <!-- AZ-A -->
+  <rect x="835" y="130" width="98" height="240" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5" rx="6" stroke-dasharray="6,3"/>
+  <text x="884" y="153" font-size="10" font-weight="bold" text-anchor="middle" fill="#27AE60">AZ A</text>
+  <rect x="847" y="160" width="75" height="145" fill="#1E8449" stroke="#196F3D" stroke-width="2" rx="5"/>
+  <text x="884" y="181" font-size="11" font-weight="bold" text-anchor="middle" fill="white">Primary</text>
+  <text x="884" y="198" font-size="9" text-anchor="middle" fill="#ABEBC6">Writer</text>
+  <text x="852" y="218" font-size="9" fill="white">✓ Read+Write</text>
+  <text x="852" y="234" font-size="9" fill="white">✓ Endpoint</text>
+  <text x="852" y="250" font-size="9" fill="white">✓ Sync replic.</text>
+  <rect x="852" y="285" width="65" height="14" fill="#196F3D" rx="2"/>
+  <text x="884" y="296" font-size="8" text-anchor="middle" fill="white">Local SSD</text>
+
+  <!-- Sync arrows to AZ-B and AZ-C -->
+  <line x1="934" y1="237" x2="947" y2="237" stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="1042" y1="237" x2="1055" y2="237" stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="937" y="228" font-size="8" fill="#E74C3C" font-weight="bold">SYNC</text>
+  <text x="1045" y="228" font-size="8" fill="#E74C3C" font-weight="bold">SYNC</text>
+
+  <!-- AZ-B -->
+  <rect x="940" y="130" width="98" height="240" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5" rx="6" stroke-dasharray="6,3"/>
+  <text x="989" y="153" font-size="10" font-weight="bold" text-anchor="middle" fill="#27AE60">AZ B</text>
+  <rect x="952" y="160" width="75" height="145" fill="#27AE60" stroke="#1E8449" stroke-width="2" rx="5"/>
+  <text x="989" y="181" font-size="11" font-weight="bold" text-anchor="middle" fill="white">Standby 1</text>
+  <text x="989" y="198" font-size="9" text-anchor="middle" fill="#EAFAF1">READABLE ✓</text>
+  <text x="957" y="218" font-size="9" fill="white">✓ Read queries</text>
+  <text x="957" y="234" font-size="9" fill="white">✓ Sync writes</text>
+  <text x="957" y="250" font-size="9" fill="white">✓ Failover-ready</text>
+  <rect x="957" y="285" width="65" height="14" fill="#1E8449" rx="2"/>
+  <text x="989" y="296" font-size="8" text-anchor="middle" fill="white">Local SSD</text>
+
+  <!-- AZ-C -->
+  <rect x="1048" y="130" width="112" height="240" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5" rx="6" stroke-dasharray="6,3"/>
+  <text x="1104" y="153" font-size="10" font-weight="bold" text-anchor="middle" fill="#27AE60">AZ C</text>
+  <rect x="1058" y="160" width="90" height="145" fill="#27AE60" stroke="#1E8449" stroke-width="2" rx="5"/>
+  <text x="1104" y="181" font-size="11" font-weight="bold" text-anchor="middle" fill="white">Standby 2</text>
+  <text x="1104" y="198" font-size="9" text-anchor="middle" fill="#EAFAF1">READABLE ✓</text>
+  <text x="1063" y="218" font-size="9" fill="white">✓ Read queries</text>
+  <text x="1063" y="234" font-size="9" fill="white">✓ Sync writes</text>
+  <text x="1063" y="250" font-size="9" fill="white">✓ Failover-ready</text>
+  <rect x="1063" y="285" width="77" height="14" fill="#1E8449" rx="2"/>
+  <text x="1104" y="296" font-size="8" text-anchor="middle" fill="white">Local SSD</text>
+
+  <!-- Endpoints Box -->
+  <rect x="835" y="385" width="320" height="70" fill="#D5F5E3" stroke="#27AE60" stroke-width="1.5" rx="5"/>
+  <text x="995" y="403" font-size="11" font-weight="bold" text-anchor="middle" fill="#1E8449">3 Endpoints</text>
+  <text x="845" y="422" font-size="10" fill="#196F3D">✏️  Writer:  cluster-name.cluster-xxx.rds.amazonaws.com</text>
+  <text x="845" y="440" font-size="10" fill="#196F3D">📖  Reader: cluster-name.cluster-ro-xxx.rds.amazonaws.com</text>
+
+  <!-- Facts -->
+  <rect x="835" y="462" width="320" height="220" fill="white" stroke="#27AE60" stroke-width="1" rx="6"/>
+  <text x="995" y="486" font-size="13" font-weight="bold" text-anchor="middle" fill="#232F3E">Key Facts</text>
+  <line x1="845" y1="492" x2="1145" y2="492" stroke="#EEEEEE" stroke-width="1"/>
+  <text x="845" y="512" font-size="11" fill="#232F3E">💰 Cost:          ~3× single-AZ</text>
+  <text x="845" y="532" font-size="11" fill="#232F3E">⚡ Failover:       Automatic (~35 seconds)</text>
+  <text x="845" y="552" font-size="11" fill="#232F3E">📊 Replication:   Synchronous (zero data loss)</text>
+  <text x="845" y="572" font-size="11" fill="#232F3E">📖 Standby reads: ✓ YES (2 readable standbys)</text>
+  <text x="845" y="592" font-size="11" fill="#232F3E">⏱ Recovery time:  ~35 seconds</text>
+  <text x="845" y="612" font-size="11" fill="#232F3E">🎯 RPO:            0 (zero data loss)</text>
+  <text x="845" y="632" font-size="11" fill="#232F3E">🔧 Engines:        MySQL 8.0.28+ / PG 13.4+</text>
+  <text x="845" y="652" font-size="11" fill="#232F3E">🏷 Use for:        High-traffic production</text>
+
+  <!-- Bottom legend bar -->
+  <rect x="20" y="755" width="1160" height="22" fill="#232F3E" rx="4"/>
+  <text x="600" y="770" font-size="11" text-anchor="middle" fill="white">
+    KEY DIFFERENCE: Standby in Multi-AZ Instance is NOT readable | Standbys in Multi-AZ Cluster ARE readable | Single-AZ has no standby at all
+  </text>
+</svg>
