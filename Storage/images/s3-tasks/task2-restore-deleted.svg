@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="360" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="800" height="360" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="400" y="24" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">Task 2: Restore Accidentally Deleted File Using Versioning</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="80" y="44" width="640" height="300" rx="8" fill="#f9fbe7" stroke="#558b2f" stroke-width="2"/>
+  <text x="100" y="64" font-size="10" fill="#33691e" font-weight="bold">AWS Cloud</text>
+
+  <!-- S3 Bucket -->
+  <rect x="200" y="80" width="400" height="240" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.8"/>
+  <text x="400" y="100" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">S3 Bucket (Versioning Enabled)</text>
+
+  <!-- Version stack for the file -->
+  <rect x="240" y="115" width="320" height="190" rx="4" fill="#f5f5f5" stroke="#bdbdbd" stroke-width="1"/>
+  <text x="400" y="135" text-anchor="middle" font-size="10" fill="#424242" font-weight="bold">accidentally_deleted_file.csv</text>
+
+  <!-- Version 3 (delete marker) -->
+  <rect x="260" y="148" width="280" height="32" rx="4" fill="#ffcdd2" stroke="#c62828" stroke-width="1.5"/>
+  <text x="280" y="168" font-size="9" fill="#b71c1c" font-weight="bold">Delete Marker</text>
+  <text x="470" y="168" text-anchor="end" font-size="8" fill="#c62828">Current (hides the file)</text>
+  <!-- X icon -->
+  <line x1="510" y1="155" x2="525" y2="172" stroke="#c62828" stroke-width="2"/>
+  <line x1="525" y1="155" x2="510" y2="172" stroke="#c62828" stroke-width="2"/>
+
+  <!-- Version 2 -->
+  <rect x="260" y="190" width="280" height="32" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="280" y="210" font-size="9" fill="#0d47a1">Version: v2 (def456...)</text>
+  <text x="520" y="210" text-anchor="end" font-size="8" fill="#1565c0">Latest real version</text>
+
+  <!-- Version 1 -->
+  <rect x="260" y="232" width="280" height="32" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="280" y="252" font-size="9" fill="#0d47a1">Version: v1 (abc123...)</text>
+  <text x="520" y="252" text-anchor="end" font-size="8" fill="#1565c0">Original version</text>
+
+  <!-- Action arrow: Remove delete marker -->
+  <path d="M 555,164 Q 620,164 620,210 Q 620,230 555,230" fill="none" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <defs>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#2e7d32"/>
+    </marker>
+  </defs>
+  <text x="640" y="195" font-size="9" fill="#2e7d32" font-weight="bold">Remove</text>
+  <text x="640" y="208" font-size="9" fill="#2e7d32" font-weight="bold">delete marker</text>
+  <text x="640" y="221" font-size="9" fill="#2e7d32">= File restored!</text>
+
+  <!-- Result label -->
+  <rect x="260" y="274" width="280" height="26" rx="4" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="400" y="291" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">Result: v2 becomes current — file is visible again</text>
+
+</svg>

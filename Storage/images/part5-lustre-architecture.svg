@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="920" height="480" viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="920" height="480" fill="#ffffff"/>
+  <text x="460" y="26" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">FSx for Lustre — Parallel File System with S3 Data Repository</text>
+
+  <!-- S3 Data Repository (left side) -->
+  <rect x="10" y="50" width="180" height="380" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="100" y="72" text-anchor="middle" font-size="10" fill="#1b5e20" font-weight="bold">S3 Data Repository</text>
+  <text x="100" y="86" text-anchor="middle" font-size="8" fill="#2e7d32">training-data-bucket</text>
+
+  <!-- S3 object items -->
+  <rect x="28" y="100" width="144" height="16" rx="3" fill="#a5d6a7" stroke="#43a047" stroke-width="1"/>
+  <text x="100" y="112" text-anchor="middle" font-size="8" fill="#1b5e20">dataset/shard-001.tar</text>
+  <rect x="28" y="122" width="144" height="16" rx="3" fill="#a5d6a7" stroke="#43a047" stroke-width="1"/>
+  <text x="100" y="134" text-anchor="middle" font-size="8" fill="#1b5e20">dataset/shard-002.tar</text>
+  <rect x="28" y="144" width="144" height="16" rx="3" fill="#a5d6a7" stroke="#43a047" stroke-width="1"/>
+  <text x="100" y="156" text-anchor="middle" font-size="8" fill="#1b5e20">dataset/shard-003.tar</text>
+  <rect x="28" y="166" width="144" height="16" rx="3" fill="#c8e6c9" stroke="#43a047" stroke-width="0.8"/>
+  <text x="100" y="178" text-anchor="middle" font-size="8" fill="#2e7d32">... 500 TB total ...</text>
+  <rect x="28" y="188" width="144" height="16" rx="3" fill="#a5d6a7" stroke="#43a047" stroke-width="1"/>
+  <text x="100" y="200" text-anchor="middle" font-size="8" fill="#1b5e20">model/checkpoint.pt</text>
+
+  <text x="100" y="228" text-anchor="middle" font-size="8" fill="#616161" font-style="italic">Auto import on access</text>
+  <text x="100" y="241" text-anchor="middle" font-size="8" fill="#616161" font-style="italic">(lazy loading)</text>
+
+  <!-- Export back arrow label -->
+  <text x="100" y="290" text-anchor="middle" font-size="8" fill="#1565c0" font-weight="bold">Auto export</text>
+  <text x="100" y="303" text-anchor="middle" font-size="8" fill="#1565c0">results written in</text>
+  <text x="100" y="316" text-anchor="middle" font-size="8" fill="#1565c0">Lustre → pushed</text>
+  <text x="100" y="329" text-anchor="middle" font-size="8" fill="#1565c0">back to S3</text>
+
+  <!-- Arrows S3 <-> Lustre -->
+  <defs>
+    <marker id="arrowG5" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#2e7d32"/></marker>
+    <marker id="arrowB5" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#1565c0"/></marker>
+    <marker id="arrowP5" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#6a1b9a"/></marker>
+  </defs>
+
+  <!-- Import arrow S3 → Lustre -->
+  <line x1="192" y1="185" x2="228" y2="185" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowG5)"/>
+  <text x="210" y="176" text-anchor="middle" font-size="7.5" fill="#2e7d32">import</text>
+
+  <!-- Export arrow Lustre → S3 -->
+  <line x1="228" y1="310" x2="192" y2="310" stroke="#1565c0" stroke-width="2" marker-end="url(#arrowB5)"/>
+  <text x="210" y="302" text-anchor="middle" font-size="7.5" fill="#1565c0">export</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="228" y="50" width="682" height="420" rx="8" fill="#f9fbe7" stroke="#558b2f" stroke-width="2"/>
+  <text x="248" y="70" font-size="10" fill="#33691e" font-weight="bold">AWS Cloud</text>
+
+  <!-- FSx for Lustre file system -->
+  <rect x="250" y="84" width="400" height="220" rx="6" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="450" y="106" text-anchor="middle" font-size="12" fill="#4a148c" font-weight="bold">FSx for Lustre File System</text>
+  <text x="450" y="120" text-anchor="middle" font-size="9" fill="#6a1b9a">fs-0abc1234  ·  eu-west-1a</text>
+
+  <!-- Scratch vs Persistent tabs -->
+  <rect x="268" y="130" width="170" height="50" rx="4" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.2"/>
+  <text x="353" y="148" text-anchor="middle" font-size="9" fill="#283593" font-weight="bold">Scratch (Temp)</text>
+  <text x="268" y="162" font-size="7.5" fill="#424242">  No replication</text>
+  <text x="268" y="174" font-size="7.5" fill="#424242">  Lost on hardware failure</text>
+
+  <rect x="448" y="130" width="184" height="50" rx="4" fill="#ede7f6" stroke="#6a1b9a" stroke-width="1.2"/>
+  <text x="540" y="148" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">Persistent (HA)</text>
+  <text x="450" y="162" font-size="7.5" fill="#424242">  Replicated within AZ</text>
+  <text x="450" y="174" font-size="7.5" fill="#424242">  Auto-healed on failure</text>
+
+  <!-- Lustre internals: OSTs, MDT -->
+  <rect x="268" y="194" width="64" height="50" rx="4" fill="#ce93d8" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="300" y="214" text-anchor="middle" font-size="8" fill="white" font-weight="bold">MDT</text>
+  <text x="300" y="228" text-anchor="middle" font-size="7" fill="white">Metadata</text>
+  <text x="300" y="239" text-anchor="middle" font-size="7" fill="white">Target</text>
+
+  <rect x="344" y="194" width="54" height="50" rx="4" fill="#ab47bc" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="371" y="214" text-anchor="middle" font-size="8" fill="white" font-weight="bold">OST-1</text>
+  <text x="371" y="228" text-anchor="middle" font-size="7" fill="white">Object</text>
+  <text x="371" y="239" text-anchor="middle" font-size="7" fill="white">Storage</text>
+
+  <rect x="408" y="194" width="54" height="50" rx="4" fill="#ab47bc" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="435" y="214" text-anchor="middle" font-size="8" fill="white" font-weight="bold">OST-2</text>
+  <text x="435" y="228" text-anchor="middle" font-size="7" fill="white">Object</text>
+  <text x="435" y="239" text-anchor="middle" font-size="7" fill="white">Storage</text>
+
+  <rect x="472" y="194" width="54" height="50" rx="4" fill="#ab47bc" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="499" y="214" text-anchor="middle" font-size="8" fill="white" font-weight="bold">OST-3</text>
+  <text x="499" y="228" text-anchor="middle" font-size="7" fill="white">Object</text>
+  <text x="499" y="239" text-anchor="middle" font-size="7" fill="white">Storage</text>
+
+  <rect x="536" y="194" width="54" height="50" rx="4" fill="#8e24aa" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="563" y="214" text-anchor="middle" font-size="8" fill="white" font-weight="bold">OST-N</text>
+  <text x="563" y="228" text-anchor="middle" font-size="7" fill="white">scales</text>
+  <text x="563" y="239" text-anchor="middle" font-size="7" fill="white">out</text>
+
+  <!-- Throughput note -->
+  <rect x="268" y="258" width="364" height="30" rx="3" fill="#ede7f6"/>
+  <text x="450" y="273" text-anchor="middle" font-size="8.5" fill="#4a148c" font-weight="bold">Aggregate throughput: up to 1 TB/s · Sub-millisecond latency · Parallel striping across OSTs</text>
+
+  <!-- EC2 instances on the right -->
+  <rect x="680" y="84" width="210" height="220" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="785" y="104" text-anchor="middle" font-size="10" fill="#0d47a1" font-weight="bold">Compute Clients</text>
+  <text x="785" y="118" text-anchor="middle" font-size="8" fill="#1565c0">All parallel-mount /fsx</text>
+
+  <!-- GPU instances -->
+  <rect x="698" y="126" width="174" height="34" rx="4" fill="#1565c0"/>
+  <text x="785" y="141" text-anchor="middle" font-size="9" fill="white" font-weight="bold">GPU Instance (p4d.24xl)</text>
+  <text x="785" y="154" text-anchor="middle" font-size="7.5" fill="#bbdefb">Training job node 1</text>
+
+  <rect x="698" y="166" width="174" height="34" rx="4" fill="#1565c0"/>
+  <text x="785" y="181" text-anchor="middle" font-size="9" fill="white" font-weight="bold">GPU Instance (p4d.24xl)</text>
+  <text x="785" y="194" text-anchor="middle" font-size="7.5" fill="#bbdefb">Training job node 2</text>
+
+  <rect x="698" y="206" width="174" height="34" rx="4" fill="#1565c0"/>
+  <text x="785" y="221" text-anchor="middle" font-size="9" fill="white" font-weight="bold">GPU Instance (p4d.24xl)</text>
+  <text x="785" y="234" text-anchor="middle" font-size="7.5" fill="#bbdefb">Training job node 3</text>
+
+  <rect x="698" y="246" width="174" height="34" rx="4" fill="#5c6bc0"/>
+  <text x="785" y="261" text-anchor="middle" font-size="9" fill="white" font-weight="bold">HPC Cluster Node N</text>
+  <text x="785" y="274" text-anchor="middle" font-size="7.5" fill="#c5cae9">parallel mount</text>
+
+  <!-- Arrow EC2 cluster → Lustre (parallel) -->
+  <line x1="678" y1="194" x2="653" y2="194" stroke="#6a1b9a" stroke-width="2.5" marker-end="url(#arrowP5)"/>
+  <text x="665" y="183" text-anchor="middle" font-size="7.5" fill="#6a1b9a">Lustre</text>
+  <text x="665" y="195" text-anchor="middle" font-size="7.5" fill="#6a1b9a">client</text>
+
+  <!-- Performance box (bottom) -->
+  <rect x="250" y="318" width="640" height="136" rx="6" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.2"/>
+  <text x="570" y="337" text-anchor="middle" font-size="10" fill="#212121" font-weight="bold">Deployment Options and Performance Tiers</text>
+
+  <!-- Table-like rows -->
+  <rect x="268" y="346" width="86" height="22" rx="3" fill="#6a1b9a"/>
+  <text x="311" y="361" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Type</text>
+  <rect x="360" y="346" width="100" height="22" rx="3" fill="#6a1b9a"/>
+  <text x="410" y="361" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Replication</text>
+  <rect x="466" y="346" width="120" height="22" rx="3" fill="#6a1b9a"/>
+  <text x="526" y="361" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Throughput/TB</text>
+  <rect x="592" y="346" width="120" height="22" rx="3" fill="#6a1b9a"/>
+  <text x="652" y="361" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Best For</text>
+  <rect x="718" y="346" width="160" height="22" rx="3" fill="#6a1b9a"/>
+  <text x="798" y="361" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Survive HW Failure?</text>
+
+  <text x="311" y="385" text-anchor="middle" font-size="8" fill="#424242">Scratch 1</text>
+  <text x="410" y="385" text-anchor="middle" font-size="8" fill="#424242">None</text>
+  <text x="526" y="385" text-anchor="middle" font-size="8" fill="#424242">200 MB/s</text>
+  <text x="652" y="385" text-anchor="middle" font-size="8" fill="#424242">Short burst jobs</text>
+  <text x="798" y="385" text-anchor="middle" font-size="8" fill="#c62828">No</text>
+
+  <text x="311" y="403" text-anchor="middle" font-size="8" fill="#424242">Scratch 2</text>
+  <text x="410" y="403" text-anchor="middle" font-size="8" fill="#424242">None</text>
+  <text x="526" y="403" text-anchor="middle" font-size="8" fill="#424242">500 MB/s (6× faster)</text>
+  <text x="652" y="403" text-anchor="middle" font-size="8" fill="#424242">Temp large jobs</text>
+  <text x="798" y="403" text-anchor="middle" font-size="8" fill="#c62828">No</text>
+
+  <text x="311" y="421" text-anchor="middle" font-size="8" fill="#424242">Persistent 1</text>
+  <text x="410" y="421" text-anchor="middle" font-size="8" fill="#424242">Within AZ</text>
+  <text x="526" y="421" text-anchor="middle" font-size="8" fill="#424242">200 / 500 MB/s</text>
+  <text x="652" y="421" text-anchor="middle" font-size="8" fill="#424242">Long-running jobs</text>
+  <text x="798" y="421" text-anchor="middle" font-size="8" fill="#2e7d32">Yes (auto-healed)</text>
+
+  <text x="311" y="439" text-anchor="middle" font-size="8" fill="#424242">Persistent 2</text>
+  <text x="410" y="439" text-anchor="middle" font-size="8" fill="#424242">Within AZ</text>
+  <text x="526" y="439" text-anchor="middle" font-size="8" fill="#424242">Up to 1,000 MB/s</text>
+  <text x="652" y="439" text-anchor="middle" font-size="8" fill="#424242">Max perf workloads</text>
+  <text x="798" y="439" text-anchor="middle" font-size="8" fill="#2e7d32">Yes (auto-healed)</text>
+
+</svg>

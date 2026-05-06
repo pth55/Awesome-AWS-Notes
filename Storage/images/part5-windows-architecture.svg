@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="920" height="480" viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="920" height="480" fill="#ffffff"/>
+  <text x="460" y="26" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">FSx for Windows File Server — Multi-AZ Architecture</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="10" y="40" width="900" height="424" rx="8" fill="#f9fbe7" stroke="#558b2f" stroke-width="2"/>
+  <text x="30" y="58" font-size="10" fill="#33691e" font-weight="bold">AWS Cloud  (eu-west-1)</text>
+
+  <!-- AWS Managed Active Directory -->
+  <rect x="320" y="62" width="280" height="70" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.8"/>
+  <text x="460" y="84" text-anchor="middle" font-size="11" fill="#0d47a1" font-weight="bold">AWS Managed Microsoft AD</text>
+  <text x="460" y="99" text-anchor="middle" font-size="9" fill="#1565c0">corp.example.com  ·  eu-west-1</text>
+  <text x="460" y="113" text-anchor="middle" font-size="8" fill="#1565c0">Domain Controllers in 2 AZs (managed by AWS)</text>
+
+  <!-- Connector lines AD to AZ boxes (drawn before AZ boxes for layering) -->
+  <defs>
+    <marker id="arrowAD" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#1565c0"/></marker>
+    <marker id="arrowFail" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#e65100"/></marker>
+    <marker id="arrowSMB" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#2e7d32"/></marker>
+    <marker id="arrowSync" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#9e9e9e"/></marker>
+  </defs>
+
+  <!-- AZ 1 box (left) -->
+  <rect x="20" y="150" width="380" height="300" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="210" y="170" text-anchor="middle" font-size="10" fill="#1b5e20" font-weight="bold">Availability Zone: eu-west-1a</text>
+
+  <!-- Primary FSx file server (AZ1) -->
+  <rect x="40" y="184" width="340" height="130" rx="6" fill="#c8e6c9" stroke="#1b5e20" stroke-width="1.8"/>
+  <text x="210" y="204" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">FSx Primary File Server</text>
+  <text x="210" y="218" text-anchor="middle" font-size="9" fill="#2e7d32">\\\\amznfsxABCDEFGH.corp.example.com</text>
+  <rect x="60" y="226" width="130" height="22" rx="4" fill="#1565c0"/>
+  <text x="125" y="241" text-anchor="middle" font-size="9" fill="white" font-weight="bold">SMB: Active</text>
+  <rect x="202" y="226" width="160" height="22" rx="4" fill="#2e7d32"/>
+  <text x="282" y="241" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Role: Active (R/W)</text>
+  <text x="60" y="272" font-size="8.5" fill="#424242">• NTFS permissions enforced</text>
+  <text x="60" y="286" font-size="8.5" fill="#424242">• Shadow Copies (VSS) enabled</text>
+  <text x="60" y="300" font-size="8.5" fill="#424242">• Backed by SSD storage (HDD optional)</text>
+
+  <!-- EC2 Windows in AZ1 -->
+  <rect x="40" y="330" width="340" height="100" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="210" y="348" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">Windows EC2 Instances (AZ 1a)</text>
+  <rect x="60" y="358" width="90" height="34" rx="4" fill="#1565c0"/>
+  <text x="105" y="373" text-anchor="middle" font-size="8" fill="white">win-server-01</text>
+  <text x="105" y="385" text-anchor="middle" font-size="7" fill="#bbdefb">10.0.1.10</text>
+  <rect x="162" y="358" width="90" height="34" rx="4" fill="#1565c0"/>
+  <text x="207" y="373" text-anchor="middle" font-size="8" fill="white">win-server-02</text>
+  <text x="207" y="385" text-anchor="middle" font-size="7" fill="#bbdefb">10.0.1.11</text>
+  <rect x="264" y="358" width="90" height="34" rx="4" fill="#1565c0"/>
+  <text x="309" y="373" text-anchor="middle" font-size="8" fill="white">win-server-03</text>
+  <text x="309" y="385" text-anchor="middle" font-size="7" fill="#bbdefb">10.0.1.12</text>
+  <text x="210" y="420" text-anchor="middle" font-size="8" fill="#616161">Mount: Z:\ → \\server\share (SMB)</text>
+
+  <!-- AZ 2 box (right) -->
+  <rect x="520" y="150" width="380" height="300" rx="6" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="710" y="170" text-anchor="middle" font-size="10" fill="#bf360c" font-weight="bold">Availability Zone: eu-west-1b</text>
+
+  <!-- Standby FSx file server (AZ2) -->
+  <rect x="540" y="184" width="340" height="130" rx="6" fill="#ffe0b2" stroke="#e65100" stroke-width="1.8"/>
+  <text x="710" y="204" text-anchor="middle" font-size="11" fill="#bf360c" font-weight="bold">FSx Standby File Server</text>
+  <text x="710" y="218" text-anchor="middle" font-size="9" fill="#e65100">same DNS alias → auto-updated on failover</text>
+  <rect x="560" y="226" width="130" height="22" rx="4" fill="#9e9e9e"/>
+  <text x="625" y="241" text-anchor="middle" font-size="9" fill="white" font-weight="bold">SMB: Standby</text>
+  <rect x="702" y="226" width="160" height="22" rx="4" fill="#e65100"/>
+  <text x="782" y="241" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Role: Standby (RO sync)</text>
+  <text x="560" y="272" font-size="8.5" fill="#424242">• Data replicated synchronously from primary</text>
+  <text x="560" y="286" font-size="8.5" fill="#424242">• Takes over in &lt;30 seconds on AZ failure</text>
+  <text x="560" y="300" font-size="8.5" fill="#424242">• DNS CNAME automatically updated</text>
+
+  <!-- EC2 in AZ2 -->
+  <rect x="540" y="330" width="340" height="100" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="1.2"/>
+  <text x="710" y="348" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">Windows EC2 Instances (AZ 1b)</text>
+  <rect x="560" y="358" width="90" height="34" rx="4" fill="#e65100"/>
+  <text x="605" y="373" text-anchor="middle" font-size="8" fill="white">win-server-04</text>
+  <text x="605" y="385" text-anchor="middle" font-size="7" fill="#ffe0b2">10.0.2.10</text>
+  <rect x="662" y="358" width="90" height="34" rx="4" fill="#e65100"/>
+  <text x="707" y="373" text-anchor="middle" font-size="8" fill="white">win-server-05</text>
+  <text x="707" y="385" text-anchor="middle" font-size="7" fill="#ffe0b2">10.0.2.11</text>
+  <rect x="764" y="358" width="90" height="34" rx="4" fill="#e65100"/>
+  <text x="809" y="373" text-anchor="middle" font-size="8" fill="white">win-server-06</text>
+  <text x="809" y="385" text-anchor="middle" font-size="7" fill="#ffe0b2">10.0.2.12</text>
+  <text x="710" y="420" text-anchor="middle" font-size="8" fill="#616161">Reconnects to same DNS alias after failover</text>
+
+  <!-- AD lines to file servers -->
+  <line x1="320" y1="110" x2="210" y2="184" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAD)"/>
+  <text x="252" y="143" font-size="8" fill="#1565c0">AD auth</text>
+  <line x1="600" y1="110" x2="710" y2="184" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowAD)"/>
+
+  <!-- Sync arrow between primary and standby -->
+  <line x1="385" y1="248" x2="535" y2="248" stroke="#616161" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowSync)"/>
+  <text x="460" y="240" text-anchor="middle" font-size="8" fill="#424242" font-weight="bold">Synchronous replication</text>
+  <text x="460" y="262" text-anchor="middle" font-size="8" fill="#424242">(dedicated ENI, same region)</text>
+
+  <!-- SMB mounts from EC2 to Primary -->
+  <line x1="210" y1="328" x2="210" y2="316" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowSMB)"/>
+  <line x1="710" y1="328" x2="710" y2="316" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrowSMB)"/>
+
+  <!-- Failover label -->
+  <rect x="385" y="285" width="150" height="30" rx="4" fill="#ffecb3" stroke="#ffa000" stroke-width="1"/>
+  <text x="460" y="300" text-anchor="middle" font-size="8" fill="#e65100" font-weight="bold">Auto Failover &lt; 30 sec</text>
+  <text x="460" y="311" text-anchor="middle" font-size="8" fill="#424242">DNS CNAME redirected</text>
+
+</svg>

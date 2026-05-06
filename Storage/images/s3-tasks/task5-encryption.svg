@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="440" viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text x="450" y="26" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">Task 5: Server-Side Encryption — SSE-S3 vs SSE-KMS</text>
+
+  <!-- ── AWS Cloud boundary ── -->
+  <rect x="20" y="44" width="860" height="382" rx="8" fill="#f9fbe7" stroke="#558b2f" stroke-width="2"/>
+  <text x="40" y="64" font-size="10" fill="#33691e" font-weight="bold">AWS Cloud</text>
+
+  <!-- DIVIDER -->
+  <line x1="450" y1="60" x2="450" y2="412" stroke="#bdbdbd" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="225" y="80" text-anchor="middle" font-size="11" fill="#1565c0" font-weight="bold">SSE-S3 (AES-256, S3-managed key)</text>
+  <text x="675" y="80" text-anchor="middle" font-size="11" fill="#6a1b9a" font-weight="bold">SSE-KMS (Customer-managed key)</text>
+
+  <!-- ══ LEFT SIDE: SSE-S3 ══ -->
+
+  <!-- Upload arrow -->
+  <rect x="40" y="100" width="100" height="38" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="90" y="116" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">PUT Object</text>
+  <text x="90" y="130" text-anchor="middle" font-size="8" fill="#1565c0">file.txt (plaintext)</text>
+  <line x1="140" y1="119" x2="195" y2="119" stroke="#1565c0" stroke-width="1.8" marker-end="url(#aB1)"/>
+  <defs>
+    <marker id="aB1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#1565c0"/></marker>
+    <marker id="aG1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#2e7d32"/></marker>
+    <marker id="aP1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#6a1b9a"/></marker>
+    <marker id="aO1" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#e65100"/></marker>
+  </defs>
+
+  <!-- S3 encrypts inline -->
+  <rect x="195" y="92" width="120" height="54" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="255" y="112" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">S3 Encrypts</text>
+  <text x="255" y="125" text-anchor="middle" font-size="8" fill="#e65100">AES-256</text>
+  <text x="255" y="138" text-anchor="middle" font-size="8" fill="#e65100">S3-managed key</text>
+
+  <!-- Arrow to S3 bucket storage -->
+  <line x1="315" y1="119" x2="368" y2="119" stroke="#e65100" stroke-width="1.8" marker-end="url(#aO1)"/>
+
+  <!-- S3 Bucket (SSE-S3) -->
+  <rect x="368" y="92" width="62" height="54" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="399" y="114" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">S3</text>
+  <text x="399" y="128" text-anchor="middle" font-size="8" fill="#2e7d32">Bucket</text>
+  <text x="399" y="140" text-anchor="middle" font-size="8" fill="#2e7d32">🔒 enc</text>
+
+  <!-- S3-managed key box -->
+  <rect x="100" y="175" width="190" height="52" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="195" y="193" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">S3-Managed Key (opaque)</text>
+  <text x="195" y="207" text-anchor="middle" font-size="8" fill="#1565c0">Rotated automatically by S3</text>
+  <text x="195" y="220" text-anchor="middle" font-size="8" fill="#1565c0">No CloudTrail log per-object</text>
+
+  <!-- GET path SSE-S3 -->
+  <line x1="399" y1="146" x2="399" y2="268" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="399" y1="268" x2="142" y2="268" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#aG1)"/>
+  <rect x="40" y="252" width="102" height="32" rx="4" fill="#c8e6c9" stroke="#43a047" stroke-width="1"/>
+  <text x="91" y="266" text-anchor="middle" font-size="8" fill="#1b5e20" font-weight="bold">GET Object</text>
+  <text x="91" y="278" text-anchor="middle" font-size="8" fill="#2e7d32">(S3 decrypts auto)</text>
+
+  <!-- SSE-S3 notes -->
+  <rect x="40" y="310" width="390" height="90" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="235" y="328" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">Key Points — SSE-S3</text>
+  <text x="52" y="344" font-size="8" fill="#424242">• Header:  x-amz-server-side-encryption: AES256</text>
+  <text x="52" y="358" font-size="8" fill="#424242">• No extra cost — free with S3</text>
+  <text x="52" y="372" font-size="8" fill="#424242">• No IAM permission needed for the key itself</text>
+  <text x="52" y="386" font-size="8" fill="#424242">• No CloudTrail audit log per API call on the key</text>
+
+  <!-- ══ RIGHT SIDE: SSE-KMS ══ -->
+
+  <!-- PUT Object KMS -->
+  <rect x="460" y="100" width="100" height="38" rx="5" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1.2"/>
+  <text x="510" y="116" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">PUT Object</text>
+  <text x="510" y="130" text-anchor="middle" font-size="8" fill="#6a1b9a">file.txt (plaintext)</text>
+  <line x1="560" y1="119" x2="615" y2="119" stroke="#6a1b9a" stroke-width="1.8" marker-end="url(#aP1)"/>
+
+  <!-- KMS box -->
+  <rect x="615" y="86" width="140" height="66" rx="5" fill="#fce4ec" stroke="#880e4f" stroke-width="1.5"/>
+  <text x="685" y="106" text-anchor="middle" font-size="10" fill="#880e4f" font-weight="bold">AWS KMS</text>
+  <text x="685" y="120" text-anchor="middle" font-size="8" fill="#880e4f">GenerateDataKey call</text>
+  <text x="685" y="133" text-anchor="middle" font-size="8" fill="#880e4f">Returns: plaintext DEK</text>
+  <text x="685" y="146" text-anchor="middle" font-size="8" fill="#880e4f">         + encrypted DEK</text>
+
+  <!-- Arrow KMS → S3 Bucket -->
+  <line x1="755" y1="119" x2="808" y2="119" stroke="#880e4f" stroke-width="1.8" marker-end="url(#aPink)"/>
+  <defs>
+    <marker id="aPink" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#880e4f"/></marker>
+    <marker id="aG2" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#2e7d32"/></marker>
+  </defs>
+
+  <!-- S3 Bucket KMS -->
+  <rect x="808" y="92" width="62" height="54" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="839" y="114" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">S3</text>
+  <text x="839" y="128" text-anchor="middle" font-size="8" fill="#2e7d32">Bucket</text>
+  <text x="839" y="140" text-anchor="middle" font-size="8" fill="#2e7d32">🔒 enc</text>
+
+  <!-- CMK box -->
+  <rect x="580" y="175" width="200" height="52" rx="5" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1.2"/>
+  <text x="680" y="193" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">CMK (Customer Managed Key)</text>
+  <text x="680" y="207" text-anchor="middle" font-size="8" fill="#6a1b9a">Rotation: yearly or on-demand</text>
+  <text x="680" y="220" text-anchor="middle" font-size="8" fill="#6a1b9a">Every call logged in CloudTrail</text>
+
+  <!-- GET path SSE-KMS -->
+  <line x1="839" y1="146" x2="839" y2="268" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="839" y1="268" x2="562" y2="268" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#aG2)"/>
+  <rect x="460" y="252" width="102" height="32" rx="4" fill="#c8e6c9" stroke="#43a047" stroke-width="1"/>
+  <text x="511" y="266" text-anchor="middle" font-size="8" fill="#1b5e20" font-weight="bold">GET Object</text>
+  <text x="511" y="278" text-anchor="middle" font-size="8" fill="#2e7d32">(KMS Decrypt call)</text>
+
+  <!-- SSE-KMS notes -->
+  <rect x="460" y="310" width="415" height="90" rx="5" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="668" y="328" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">Key Points — SSE-KMS</text>
+  <text x="472" y="344" font-size="8" fill="#424242">• Header:  x-amz-server-side-encryption: aws:kms</text>
+  <text x="472" y="358" font-size="8" fill="#424242">• Requires kms:GenerateDataKey + kms:Decrypt IAM permission</text>
+  <text x="472" y="372" font-size="8" fill="#424242">• Every GET/PUT logs a CloudTrail event — full audit trail</text>
+  <text x="472" y="386" font-size="8" fill="#c62828">• KMS API calls count toward quota — watch throttling at scale</text>
+
+</svg>

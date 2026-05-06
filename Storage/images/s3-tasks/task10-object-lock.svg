@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="450" y="26" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">Task 10: S3 Object Lock — WORM Compliance</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="20" y="44" width="860" height="360" rx="8" fill="#f9fbe7" stroke="#558b2f" stroke-width="2"/>
+  <text x="40" y="64" font-size="10" fill="#33691e" font-weight="bold">AWS Cloud</text>
+
+  <!-- S3 Bucket with Object Lock -->
+  <rect x="60" y="80" width="340" height="290" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.8"/>
+  <text x="230" y="102" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">S3 Bucket (Object Lock Enabled)</text>
+  <text x="230" y="116" text-anchor="middle" font-size="9" fill="#2e7d32">Must be enabled at bucket creation</text>
+
+  <!-- Object Lock badge -->
+  <rect x="80" y="126" width="140" height="22" rx="4" fill="#c62828"/>
+  <text x="150" y="141" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Object Lock: ON</text>
+
+  <!-- Versioning required -->
+  <rect x="232" y="126" width="150" height="22" rx="4" fill="#1565c0"/>
+  <text x="307" y="141" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Versioning: ON (auto)</text>
+
+  <!-- Object with Compliance mode -->
+  <rect x="80" y="162" width="300" height="90" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="230" y="180" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">compliance-report.csv</text>
+
+  <!-- Lock icon simplified -->
+  <rect x="86" y="188" width="18" height="14" rx="2" fill="#616161"/>
+  <path d="M 90,188 Q 90,182 95,182 Q 100,182 100,188" fill="none" stroke="#616161" stroke-width="2"/>
+
+  <text x="116" y="198" font-size="8" fill="#424242">Mode: <tspan fill="#c62828" font-weight="bold">COMPLIANCE</tspan></text>
+  <text x="116" y="211" font-size="8" fill="#424242">Retain until: <tspan fill="#e65100">2027-01-01</tspan></text>
+  <text x="116" y="224" font-size="8" fill="#424242">Legal Hold: <tspan fill="#c62828">ON</tspan></text>
+  <text x="116" y="237" font-size="8" fill="#616161">Version ID: abc123-locked</text>
+
+  <!-- Governance mode object -->
+  <rect x="80" y="264" width="300" height="74" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="230" y="282" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">internal-audit.pdf</text>
+
+  <rect x="86" y="290" width="18" height="14" rx="2" fill="#1565c0"/>
+  <path d="M 90,290 Q 90,284 95,284 Q 100,284 100,290" fill="none" stroke="#1565c0" stroke-width="2"/>
+
+  <text x="116" y="300" font-size="8" fill="#424242">Mode: <tspan fill="#1565c0" font-weight="bold">GOVERNANCE</tspan></text>
+  <text x="116" y="313" font-size="8" fill="#424242">Retain until: <tspan fill="#1565c0">2026-06-01</tspan></text>
+  <text x="116" y="326" font-size="8" fill="#616161">Bypass: s3:BypassGovernanceRetention</text>
+
+  <!-- Mode comparison -->
+  <rect x="430" y="80" width="420" height="170" rx="6" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.5"/>
+  <text x="640" y="100" text-anchor="middle" font-size="11" fill="#212121" font-weight="bold">Mode Comparison</text>
+
+  <!-- Headers -->
+  <rect x="450" y="110" width="160" height="22" rx="3" fill="#c62828"/>
+  <text x="530" y="125" text-anchor="middle" font-size="9" fill="white" font-weight="bold">COMPLIANCE</text>
+  <rect x="622" y="110" width="210" height="22" rx="3" fill="#1565c0"/>
+  <text x="727" y="125" text-anchor="middle" font-size="9" fill="white" font-weight="bold">GOVERNANCE</text>
+
+  <text x="452" y="148" font-size="8" fill="#424242">Nobody can delete,</text>
+  <text x="452" y="160" font-size="8" fill="#424242">not even root account</text>
+  <text x="452" y="172" font-size="8" fill="#424242">Cannot shorten period</text>
+  <text x="452" y="184" font-size="8" fill="#424242">Strictest — for audits</text>
+  <text x="452" y="196" font-size="8" fill="#c62828">Cannot be removed</text>
+  <text x="452" y="208" font-size="8" fill="#c62828">even by AWS Support</text>
+
+  <text x="624" y="148" font-size="8" fill="#424242">Privileged users can</text>
+  <text x="624" y="160" font-size="8" fill="#424242">bypass with IAM perm</text>
+  <text x="624" y="172" font-size="8" fill="#424242">s3:BypassGovernance...</text>
+  <text x="624" y="184" font-size="8" fill="#424242">Good for testing WORM</text>
+  <text x="624" y="196" font-size="8" fill="#1565c0">Can be extended</text>
+  <text x="624" y="208" font-size="8" fill="#1565c0">but not shortened</text>
+
+  <!-- Legal Hold box -->
+  <rect x="430" y="268" width="420" height="80" rx="6" fill="#fce4ec" stroke="#880e4f" stroke-width="1.5"/>
+  <text x="640" y="288" text-anchor="middle" font-size="11" fill="#880e4f" font-weight="bold">Legal Hold</text>
+  <text x="442" y="306" font-size="8" fill="#424242">• Independent of retention period — does not expire automatically</text>
+  <text x="442" y="320" font-size="8" fill="#424242">• Requires s3:PutObjectLegalHold permission to set or remove</text>
+  <text x="442" y="334" font-size="8" fill="#424242">• Use during active litigation — protects specific object versions indefinitely</text>
+
+  <!-- Delete attempt blocked -->
+  <rect x="430" y="366" width="420" height="54" rx="5" fill="#ffebee" stroke="#c62828" stroke-width="1.5"/>
+  <text x="640" y="384" text-anchor="middle" font-size="9" fill="#b71c1c" font-weight="bold">Delete Attempt on Locked Object</text>
+  <text x="442" y="400" font-size="8" fill="#c62828">→ 403 Access Denied (Compliance mode) — cannot be overridden</text>
+  <text x="442" y="413" font-size="8" fill="#424242">→ DELETE inserts delete marker on the version; locked version remains intact</text>
+
+  <!-- Definitions: defs -->
+  <defs>
+    <marker id="arrowR10" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#c62828"/></marker>
+  </defs>
+
+  <!-- Arrow: delete blocked -->
+  <line x1="400" y1="210" x2="450" y2="210" stroke="#c62828" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowR10)"/>
+  <text x="425" y="200" text-anchor="middle" font-size="8" fill="#c62828" font-weight="bold">DELETE</text>
+  <line x1="440" y1="202" x2="452" y2="218" stroke="#c62828" stroke-width="2"/>
+  <line x1="452" y1="202" x2="440" y2="218" stroke="#c62828" stroke-width="2"/>
+
+  <!-- Note: versioning auto-enabled -->
+  <text x="230" y="388" text-anchor="middle" font-size="8" fill="#616161" font-style="italic">Versioning is enabled automatically when Object Lock is enabled at bucket creation.</text>
+  <text x="230" y="400" text-anchor="middle" font-size="8" fill="#c62828" font-weight="bold">Object Lock cannot be enabled on an existing bucket.</text>
+
+</svg>

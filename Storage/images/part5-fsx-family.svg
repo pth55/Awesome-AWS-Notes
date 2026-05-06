@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="920" height="500" viewBox="0 0 920 500" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="920" height="500" fill="#ffffff"/>
+  <text x="460" y="28" text-anchor="middle" font-size="15" fill="#1a237e" font-weight="bold">Amazon FSx — Four Fully-Managed File System Services</text>
+  <text x="460" y="46" text-anchor="middle" font-size="10" fill="#757575">Choose by protocol, OS requirement, and workload — not by preference</text>
+
+  <!-- ─── FSx for Windows File Server ─── -->
+  <rect x="20" y="60" width="210" height="420" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <rect x="20" y="60" width="210" height="44" rx="8" fill="#1565c0"/>
+  <rect x="20" y="92" width="210" height="12" rx="0" fill="#1565c0"/>
+  <text x="125" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="bold">FSx for Windows</text>
+  <text x="125" y="95" text-anchor="middle" font-size="9" fill="#bbdefb">File Server</text>
+
+  <text x="125" y="124" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">PROTOCOL</text>
+  <rect x="60" y="130" width="130" height="20" rx="4" fill="#1565c0"/>
+  <text x="125" y="143" text-anchor="middle" font-size="9" fill="white">SMB 2.0 – 3.1.1</text>
+
+  <text x="125" y="170" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">OS SUPPORT</text>
+  <text x="35" y="186" font-size="9" fill="#424242">• Windows Server / Desktop</text>
+  <text x="35" y="200" font-size="9" fill="#424242">• Linux (via CIFS/SMB client)</text>
+
+  <text x="125" y="224" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">KEY FEATURES</text>
+  <text x="35" y="240" font-size="8.5" fill="#424242">• Active Directory integration</text>
+  <text x="35" y="255" font-size="8.5" fill="#424242">• Windows ACLs (NTFS permissions)</text>
+  <text x="35" y="270" font-size="8.5" fill="#424242">• Shadow Copies (VSS)</text>
+  <text x="35" y="285" font-size="8.5" fill="#424242">• DFS Namespaces supported</text>
+  <text x="35" y="300" font-size="8.5" fill="#424242">• Multi-AZ for HA</text>
+  <text x="35" y="315" font-size="8.5" fill="#424242">• Throughput up to 2 GB/s</text>
+  <text x="35" y="330" font-size="8.5" fill="#424242">• Storage: up to 65 TB</text>
+
+  <text x="125" y="358" text-anchor="middle" font-size="9" fill="#0d47a1" font-weight="bold">USE CASES</text>
+  <text x="35" y="374" font-size="8.5" fill="#1565c0">• Corporate file shares</text>
+  <text x="35" y="389" font-size="8.5" fill="#1565c0">• SQL Server storage</text>
+  <text x="35" y="404" font-size="8.5" fill="#1565c0">• Home directories</text>
+  <text x="35" y="419" font-size="8.5" fill="#1565c0">• .NET applications</text>
+  <text x="35" y="434" font-size="8.5" fill="#1565c0">• SharePoint backends</text>
+  <text x="35" y="449" font-size="8.5" fill="#1565c0">• Lift-and-shift Windows apps</text>
+  <text x="35" y="464" font-size="8.5" fill="#1565c0">• IIS web servers</text>
+
+  <!-- ─── FSx for Lustre ─── -->
+  <rect x="248" y="60" width="210" height="420" rx="8" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+  <rect x="248" y="60" width="210" height="44" rx="8" fill="#6a1b9a"/>
+  <rect x="248" y="92" width="210" height="12" rx="0" fill="#6a1b9a"/>
+  <text x="353" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="bold">FSx for Lustre</text>
+  <text x="353" y="95" text-anchor="middle" font-size="9" fill="#e1bee7">Parallel HPC File System</text>
+
+  <text x="353" y="124" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">PROTOCOL</text>
+  <rect x="288" y="130" width="130" height="20" rx="4" fill="#6a1b9a"/>
+  <text x="353" y="143" text-anchor="middle" font-size="9" fill="white">Lustre (POSIX)</text>
+
+  <text x="353" y="170" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">OS SUPPORT</text>
+  <text x="263" y="186" font-size="9" fill="#424242">• Linux only</text>
+  <text x="263" y="200" font-size="9" fill="#424242">• Kernel module required</text>
+
+  <text x="353" y="224" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">KEY FEATURES</text>
+  <text x="263" y="240" font-size="8.5" fill="#424242">• Hundreds of GB/s throughput</text>
+  <text x="263" y="255" font-size="8.5" fill="#424242">• Millions of IOPS</text>
+  <text x="263" y="270" font-size="8.5" fill="#424242">• S3 data repository (lazy load)</text>
+  <text x="263" y="285" font-size="8.5" fill="#424242">• Scratch (temp) or Persistent</text>
+  <text x="263" y="300" font-size="8.5" fill="#424242">• Sub-millisecond latency</text>
+  <text x="263" y="315" font-size="8.5" fill="#424242">• Storage: up to 100s TB</text>
+  <text x="263" y="330" font-size="8.5" fill="#424242">• SSD or HDD-backed</text>
+
+  <text x="353" y="358" text-anchor="middle" font-size="9" fill="#4a148c" font-weight="bold">USE CASES</text>
+  <text x="263" y="374" font-size="8.5" fill="#6a1b9a">• HPC — genomics, seismics</text>
+  <text x="263" y="389" font-size="8.5" fill="#6a1b9a">• ML/AI training at scale</text>
+  <text x="263" y="404" font-size="8.5" fill="#6a1b9a">• Video rendering / VFX</text>
+  <text x="263" y="419" font-size="8.5" fill="#6a1b9a">• Financial risk modeling</text>
+  <text x="263" y="434" font-size="8.5" fill="#6a1b9a">• Autonomous vehicle data</text>
+  <text x="263" y="449" font-size="8.5" fill="#6a1b9a">• EDA chip design</text>
+  <text x="263" y="464" font-size="8.5" fill="#6a1b9a">• Large-scale analytics</text>
+
+  <!-- ─── FSx for NetApp ONTAP ─── -->
+  <rect x="476" y="60" width="210" height="420" rx="8" fill="#e0f2f1" stroke="#00695c" stroke-width="2"/>
+  <rect x="476" y="60" width="210" height="44" rx="8" fill="#00695c"/>
+  <rect x="476" y="92" width="210" height="12" rx="0" fill="#00695c"/>
+  <text x="581" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="bold">FSx for NetApp ONTAP</text>
+  <text x="581" y="95" text-anchor="middle" font-size="9" fill="#b2dfdb">Multi-Protocol Enterprise</text>
+
+  <text x="581" y="124" text-anchor="middle" font-size="9" fill="#004d40" font-weight="bold">PROTOCOLS</text>
+  <rect x="491" y="130" width="60" height="20" rx="4" fill="#00695c"/>
+  <text x="521" y="143" text-anchor="middle" font-size="8" fill="white">NFS v3/4</text>
+  <rect x="559" y="130" width="60" height="20" rx="4" fill="#1565c0"/>
+  <text x="589" y="143" text-anchor="middle" font-size="8" fill="white">SMB 2–3</text>
+  <rect x="625" y="130" width="55" height="20" rx="4" fill="#e65100"/>
+  <text x="652" y="143" text-anchor="middle" font-size="8" fill="white">iSCSI</text>
+
+  <text x="581" y="170" text-anchor="middle" font-size="9" fill="#004d40" font-weight="bold">OS SUPPORT</text>
+  <text x="491" y="186" font-size="9" fill="#424242">• Linux (NFS)</text>
+  <text x="491" y="200" font-size="9" fill="#424242">• Windows (SMB)</text>
+
+  <text x="581" y="224" text-anchor="middle" font-size="9" fill="#004d40" font-weight="bold">KEY FEATURES</text>
+  <text x="491" y="240" font-size="8.5" fill="#424242">• NFS + SMB + iSCSI on one FS</text>
+  <text x="491" y="255" font-size="8.5" fill="#424242">• SnapMirror replication</text>
+  <text x="491" y="270" font-size="8.5" fill="#424242">• Data dedup + compression</text>
+  <text x="491" y="285" font-size="8.5" fill="#424242">• Storage Virtual Machines</text>
+  <text x="491" y="300" font-size="8.5" fill="#424242">• FlexClone (instant clones)</text>
+  <text x="491" y="315" font-size="8.5" fill="#424242">• Tiering to S3 (FabricPool)</text>
+  <text x="491" y="330" font-size="8.5" fill="#424242">• Multi-AZ and Single-AZ</text>
+
+  <text x="581" y="358" text-anchor="middle" font-size="9" fill="#004d40" font-weight="bold">USE CASES</text>
+  <text x="491" y="374" font-size="8.5" fill="#00695c">• Hybrid NetApp migration</text>
+  <text x="491" y="389" font-size="8.5" fill="#00695c">• Mixed Linux + Windows apps</text>
+  <text x="491" y="404" font-size="8.5" fill="#00695c">• Oracle databases (NFS/iSCSI)</text>
+  <text x="491" y="419" font-size="8.5" fill="#00695c">• VMware Cloud on AWS</text>
+  <text x="491" y="434" font-size="8.5" fill="#00695c">• SAP workloads</text>
+  <text x="491" y="449" font-size="8.5" fill="#00695c">• Dev/test cloning</text>
+  <text x="491" y="464" font-size="8.5" fill="#00695c">• Multi-tenant storage</text>
+
+  <!-- ─── FSx for OpenZFS ─── -->
+  <rect x="704" y="60" width="200" height="420" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <rect x="704" y="60" width="200" height="44" rx="8" fill="#e65100"/>
+  <rect x="704" y="92" width="200" height="12" rx="0" fill="#e65100"/>
+  <text x="804" y="82" text-anchor="middle" font-size="11" fill="white" font-weight="bold">FSx for OpenZFS</text>
+  <text x="804" y="95" text-anchor="middle" font-size="9" fill="#ffe0b2">ZFS for Linux Workloads</text>
+
+  <text x="804" y="124" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">PROTOCOL</text>
+  <rect x="744" y="130" width="120" height="20" rx="4" fill="#e65100"/>
+  <text x="804" y="143" text-anchor="middle" font-size="9" fill="white">NFS v3 / v4.1 / v4.2</text>
+
+  <text x="804" y="170" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">OS SUPPORT</text>
+  <text x="719" y="186" font-size="9" fill="#424242">• Linux only</text>
+  <text x="719" y="200" font-size="9" fill="#424242">• macOS (via NFS)</text>
+
+  <text x="804" y="224" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">KEY FEATURES</text>
+  <text x="719" y="240" font-size="8.5" fill="#424242">• Instant ZFS snapshots</text>
+  <text x="719" y="255" font-size="8.5" fill="#424242">• Zero-cost clones</text>
+  <text x="719" y="270" font-size="8.5" fill="#424242">• Transparent compression</text>
+  <text x="719" y="285" font-size="8.5" fill="#424242">• Block-level checksums</text>
+  <text x="719" y="300" font-size="8.5" fill="#424242">• Up to 1 million IOPS</text>
+  <text x="719" y="315" font-size="8.5" fill="#424242">• Up to 12.5 GB/s throughput</text>
+  <text x="719" y="330" font-size="8.5" fill="#424242">• Multi-AZ support</text>
+
+  <text x="804" y="358" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">USE CASES</text>
+  <text x="719" y="374" font-size="8.5" fill="#e65100">• Migrate on-prem ZFS</text>
+  <text x="719" y="389" font-size="8.5" fill="#e65100">• Dev/test with fast clones</text>
+  <text x="719" y="404" font-size="8.5" fill="#e65100">• Low-latency web serving</text>
+  <text x="719" y="419" font-size="8.5" fill="#e65100">• Database testing</text>
+  <text x="719" y="434" font-size="8.5" fill="#e65100">• Build caches</text>
+  <text x="719" y="449" font-size="8.5" fill="#e65100">• Media ingest pipelines</text>
+  <text x="719" y="464" font-size="8.5" fill="#e65100">• Container ephemeral stores</text>
+
+</svg>

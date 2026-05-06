@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="920" height="480" viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <rect width="920" height="480" fill="#ffffff"/>
+  <text x="460" y="26" text-anchor="middle" font-size="14" fill="#1a237e" font-weight="bold">FSx for NetApp ONTAP — Multi-Protocol Hybrid Architecture</text>
+
+  <!-- On-Premises box -->
+  <rect x="10" y="50" width="200" height="320" rx="8" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+  <text x="110" y="72" text-anchor="middle" font-size="10" fill="#212121" font-weight="bold">On-Premises DC</text>
+
+  <rect x="28" y="88" width="164" height="80" rx="5" fill="#546e7a"/>
+  <text x="110" y="110" text-anchor="middle" font-size="10" fill="white" font-weight="bold">NetApp ONTAP</text>
+  <text x="110" y="124" text-anchor="middle" font-size="8" fill="#b0bec5">Primary storage</text>
+  <text x="110" y="138" text-anchor="middle" font-size="8" fill="#b0bec5">NFS + SMB + iSCSI</text>
+  <text x="110" y="151" text-anchor="middle" font-size="8" fill="#b0bec5">volumes: prod-vol-01…</text>
+
+  <!-- On-prem clients -->
+  <rect x="28" y="180" width="164" height="24" rx="3" fill="#1565c0"/>
+  <text x="110" y="196" text-anchor="middle" font-size="8" fill="white">Linux NFS clients</text>
+  <rect x="28" y="210" width="164" height="24" rx="3" fill="#1565c0"/>
+  <text x="110" y="225" text-anchor="middle" font-size="8" fill="white">Windows SMB clients</text>
+  <rect x="28" y="240" width="164" height="24" rx="3" fill="#546e7a"/>
+  <text x="110" y="255" text-anchor="middle" font-size="8" fill="white">vSphere / VMware VMs</text>
+  <rect x="28" y="270" width="164" height="24" rx="3" fill="#e65100"/>
+  <text x="110" y="285" text-anchor="middle" font-size="8" fill="white">iSCSI initiators (databases)</text>
+
+  <!-- SnapMirror arrow -->
+  <defs>
+    <marker id="aSM" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#00695c"/></marker>
+    <marker id="aNFS" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#2e7d32"/></marker>
+    <marker id="aSMB" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#1565c0"/></marker>
+    <marker id="aiSCSI" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#e65100"/></marker>
+  </defs>
+
+  <line x1="210" y1="165" x2="286" y2="165" stroke="#00695c" stroke-width="2.5" stroke-dasharray="7,3" marker-end="url(#aSM)"/>
+  <text x="248" y="155" text-anchor="middle" font-size="8" fill="#00695c" font-weight="bold">SnapMirror</text>
+  <text x="248" y="167" text-anchor="middle" font-size="7.5" fill="#00695c">async replication</text>
+
+  <!-- VPN/DX -->
+  <line x1="210" y1="340" x2="286" y2="340" stroke="#616161" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="248" y="334" text-anchor="middle" font-size="7.5" fill="#616161">VPN / Direct</text>
+  <text x="248" y="346" text-anchor="middle" font-size="7.5" fill="#616161">Connect</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="286" y="50" width="624" height="420" rx="8" fill="#e0f2f1" stroke="#00695c" stroke-width="2"/>
+  <text x="306" y="70" font-size="10" fill="#004d40" font-weight="bold">AWS Cloud  (eu-west-1)</text>
+
+  <!-- FSx for ONTAP filesystem -->
+  <rect x="306" y="82" width="420" height="280" rx="7" fill="#b2dfdb" stroke="#00695c" stroke-width="2"/>
+  <text x="516" y="104" text-anchor="middle" font-size="12" fill="#004d40" font-weight="bold">FSx for NetApp ONTAP</text>
+  <text x="516" y="118" text-anchor="middle" font-size="9" fill="#00695c">fs-0xyzABCD  ·  Multi-AZ deployment</text>
+
+  <!-- HA pair boxes -->
+  <rect x="324" y="128" width="180" height="50" rx="4" fill="#00695c"/>
+  <text x="414" y="148" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Primary File Server (AZ 1a)</text>
+  <text x="414" y="163" text-anchor="middle" font-size="8" fill="#b2dfdb">Active  ·  NVMe SSD</text>
+
+  <rect x="516" y="128" width="190" height="50" rx="4" fill="#004d40"/>
+  <text x="611" y="148" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Standby File Server (AZ 1b)</text>
+  <text x="611" y="163" text-anchor="middle" font-size="8" fill="#80cbc4">Sync replication · Failover &lt;60s</text>
+
+  <!-- SVM boxes -->
+  <rect x="324" y="192" width="380" height="80" rx="4" fill="#e0f2f1" stroke="#00695c" stroke-width="1.2"/>
+  <text x="514" y="210" text-anchor="middle" font-size="9" fill="#004d40" font-weight="bold">Storage Virtual Machine (SVM) — "svm1"</text>
+  <text x="514" y="225" text-anchor="middle" font-size="8" fill="#00695c">Isolated namespace · Independent AD auth · Multiple SVMs per FS allowed</text>
+
+  <!-- Volume boxes inside SVM -->
+  <rect x="332" y="234" width="90" height="30" rx="3" fill="#26a69a"/>
+  <text x="377" y="252" text-anchor="middle" font-size="8" fill="white" font-weight="bold">vol-nfs</text>
+  <rect x="432" y="234" width="90" height="30" rx="3" fill="#00897b"/>
+  <text x="477" y="252" text-anchor="middle" font-size="8" fill="white" font-weight="bold">vol-smb</text>
+  <rect x="532" y="234" width="90" height="30" rx="3" fill="#00695c"/>
+  <text x="577" y="252" text-anchor="middle" font-size="8" fill="white" font-weight="bold">vol-iscsi</text>
+  <rect x="632" y="234" width="64" height="30" rx="3" fill="#004d40"/>
+  <text x="664" y="252" text-anchor="middle" font-size="8" fill="white" font-weight="bold">FlexClone</text>
+
+  <!-- Tiering note -->
+  <rect x="324" y="286" width="380" height="56" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="1"/>
+  <text x="514" y="304" text-anchor="middle" font-size="9" fill="#bf360c" font-weight="bold">FabricPool Tiering to S3</text>
+  <text x="336" y="320" font-size="8" fill="#424242">• Cold data auto-tiered to S3 Standard or S3 Glacier based on access patterns</text>
+  <text x="336" y="334" font-size="8" fill="#424242">• Transparent — applications see full ONTAP volume with no code changes</text>
+
+  <!-- Right side: AWS clients -->
+  <rect x="748" y="82" width="152" height="370" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="824" y="102" text-anchor="middle" font-size="9" fill="#1b5e20" font-weight="bold">AWS Clients</text>
+
+  <!-- Linux NFS -->
+  <rect x="760" y="112" width="128" height="38" rx="4" fill="#2e7d32"/>
+  <text x="824" y="128" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Linux EC2</text>
+  <text x="824" y="143" text-anchor="middle" font-size="8" fill="#c8e6c9">NFS v3 / v4.1</text>
+
+  <!-- Windows SMB -->
+  <rect x="760" y="158" width="128" height="38" rx="4" fill="#1565c0"/>
+  <text x="824" y="174" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Windows EC2</text>
+  <text x="824" y="189" text-anchor="middle" font-size="8" fill="#bbdefb">SMB 2 / 3</text>
+
+  <!-- iSCSI -->
+  <rect x="760" y="204" width="128" height="38" rx="4" fill="#e65100"/>
+  <text x="824" y="220" text-anchor="middle" font-size="9" fill="white" font-weight="bold">RDS Custom</text>
+  <text x="824" y="235" text-anchor="middle" font-size="8" fill="#ffe0b2">iSCSI (block)</text>
+
+  <!-- VMware / EKS -->
+  <rect x="760" y="250" width="128" height="38" rx="4" fill="#546e7a"/>
+  <text x="824" y="266" text-anchor="middle" font-size="9" fill="white" font-weight="bold">VMware Cloud</text>
+  <text x="824" y="281" text-anchor="middle" font-size="8" fill="#eceff1">NFS datastore</text>
+
+  <!-- EKS -->
+  <rect x="760" y="296" width="128" height="38" rx="4" fill="#0d47a1"/>
+  <text x="824" y="312" text-anchor="middle" font-size="9" fill="white" font-weight="bold">EKS Pods</text>
+  <text x="824" y="327" text-anchor="middle" font-size="8" fill="#bbdefb">Trident CSI driver</text>
+
+  <!-- S3 (tiering target) -->
+  <rect x="760" y="342" width="128" height="38" rx="4" fill="#558b2f"/>
+  <text x="824" y="358" text-anchor="middle" font-size="9" fill="white" font-weight="bold">S3 Bucket</text>
+  <text x="824" y="373" text-anchor="middle" font-size="8" fill="#dcedc8">FabricPool tiering</text>
+
+  <!-- Protocol arrows: ONTAP → clients -->
+  <line x1="706" y1="240" x2="748" y2="240" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#aNFS)"/>
+  <line x1="706" y1="177" x2="748" y2="177" stroke="#1565c0" stroke-width="1.5" marker-end="url(#aSMB)"/>
+  <line x1="706" y1="223" x2="748" y2="223" stroke="#e65100" stroke-width="1.5" marker-end="url(#aiSCSI)"/>
+
+  <!-- Feature callouts at bottom -->
+  <rect x="286" y="380" width="460" height="80" rx="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1"/>
+  <text x="516" y="398" text-anchor="middle" font-size="9" fill="#212121" font-weight="bold">ONTAP Enterprise Features Available in FSx</text>
+  <text x="298" y="414" font-size="8" fill="#424242">• Instant FlexClone volumes — zero-copy, zero-cost dev/test copies</text>
+  <text x="298" y="428" font-size="8" fill="#424242">• Snapshot policies — point-in-time recovery at volume level</text>
+  <text x="298" y="442" font-size="8" fill="#424242">• Data deduplication + transparent compression — reduces storage by 30–70%</text>
+  <text x="298" y="456" font-size="8" fill="#424242">• SnapLock compliance (WORM) · NetApp Cloud Tiering · Harvest REST API</text>
+
+</svg>
