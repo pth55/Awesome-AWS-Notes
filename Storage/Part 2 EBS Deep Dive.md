@@ -150,8 +150,6 @@ Always use `lsblk` to confirm the actual device name inside the OS.
 
 ![Volume attached — lsblk output](images/image%201.png)
 
-![Device visible in instance](images/image%202.png)
-
 ---
 
 ## 4. Formatting, Mounting, and Persistent Mounts
@@ -182,6 +180,7 @@ sudo file -s /dev/xvdf
 ```bash
 sudo mkfs -t xfs /dev/xvdf
 ```
+![Device visible in instance](images/image%202.png)
 
 > **XFS** is the default and recommended filesystem for Amazon Linux. Use `ext4` if you need to shrink the filesystem later (XFS cannot be shrunk, only grown).
 
