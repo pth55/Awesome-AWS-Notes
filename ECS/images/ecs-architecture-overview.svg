@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900">
+  <!-- Title -->
+  <text x="700" y="40" font-size="28" font-weight="bold" text-anchor="middle" fill="#232F3E">
+    Amazon ECS Architecture Overview
+  </text>
+
+  <!-- AWS Cloud Border -->
+  <rect x="50" y="80" width="1300" height="780" fill="#E8F4F8" stroke="#FF9900" stroke-width="4" rx="10"/>
+  <text x="80" y="110" font-size="18" font-weight="bold" fill="#FF9900">AWS Cloud</text>
+
+  <!-- Region Border -->
+  <rect x="80" y="130" width="1240" height="710" fill="#FFF" stroke="#3F51B5" stroke-width="3" rx="8"/>
+  <text x="110" y="160" font-size="16" font-weight="bold" fill="#3F51B5">Region: us-east-1</text>
+
+  <!-- ECS Cluster -->
+  <rect x="110" y="190" width="1180" height="480" fill="#F5F5F5" stroke="#232F3E" stroke-width="3" rx="6"/>
+  <text x="140" y="220" font-size="20" font-weight="bold" fill="#232F3E">ECS Cluster: production-cluster</text>
+
+  <!-- Availability Zone 1 -->
+  <rect x="140" y="250" width="550" height="400" fill="#E3F2FD" stroke="#1976D2" stroke-width="2" rx="5"/>
+  <text x="160" y="280" font-size="16" font-weight="bold" fill="#1976D2">Availability Zone: us-east-1a</text>
+
+  <!-- Container Instance 1 (EC2) -->
+  <rect x="170" y="300" width="230" height="320" fill="#FFF" stroke="#FF9900" stroke-width="2" rx="4"/>
+  <text x="285" y="325" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF9900">Container Instance</text>
+  <text x="285" y="345" font-size="12" text-anchor="middle" fill="#666">(EC2 t3.medium)</text>
+
+  <!-- ECS Agent -->
+  <rect x="185" y="360" width="200" height="35" fill="#00BCD4" stroke="#000" stroke-width="1"/>
+  <text x="285" y="383" font-size="12" text-anchor="middle" fill="#FFF">ECS Agent</text>
+
+  <!-- Task 1 on Instance 1 -->
+  <rect x="185" y="410" width="200" height="90" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="285" y="430" font-size="13" font-weight="bold" text-anchor="middle" fill="#4CAF50">Task: web-app</text>
+
+  <rect x="195" y="445" width="180" height="45" fill="#FFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="285" y="463" font-size="11" text-anchor="middle">Container: nginx</text>
+  <text x="285" y="478" font-size="10" text-anchor="middle" fill="#666">Port: 80</text>
+
+  <!-- Task 2 on Instance 1 -->
+  <rect x="185" y="515" width="200" height="90" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="285" y="535" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF9800">Task: api-service</text>
+
+  <rect x="195" y="550" width="180" height="45" fill="#FFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="285" y="568" font-size="11" text-anchor="middle">Container: node</text>
+  <text x="285" y="583" font-size="10" text-anchor="middle" fill="#666">Port: 3000</text>
+
+  <!-- Fargate Task 1 -->
+  <rect x="430" y="300" width="230" height="150" fill="#F3E5F5" stroke="#9C27B0" stroke-width="2" rx="4"/>
+  <text x="545" y="325" font-size="14" font-weight="bold" text-anchor="middle" fill="#9C27B0">Fargate Task</text>
+  <text x="545" y="345" font-size="12" text-anchor="middle" fill="#666">(Serverless)</text>
+
+  <rect x="445" y="360" width="200" height="70" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="545" y="380" font-size="13" font-weight="bold" text-anchor="middle" fill="#4CAF50">Task: ml-inference</text>
+
+  <rect x="455" y="395" width="180" height="25" fill="#FFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="545" y="412" font-size="10" text-anchor="middle">Container: tensorflow</text>
+
+  <!-- Availability Zone 2 -->
+  <rect x="720" y="250" width="550" height="400" fill="#FFF3E0" stroke="#F57C00" stroke-width="2" rx="5"/>
+  <text x="740" y="280" font-size="16" font-weight="bold" fill="#F57C00">Availability Zone: us-east-1b</text>
+
+  <!-- Container Instance 2 (EC2) -->
+  <rect x="750" y="300" width="230" height="320" fill="#FFF" stroke="#FF9900" stroke-width="2" rx="4"/>
+  <text x="865" y="325" font-size="14" font-weight="bold" text-anchor="middle" fill="#FF9900">Container Instance</text>
+  <text x="865" y="345" font-size="12" text-anchor="middle" fill="#666">(EC2 t3.medium)</text>
+
+  <!-- ECS Agent -->
+  <rect x="765" y="360" width="200" height="35" fill="#00BCD4" stroke="#000" stroke-width="1"/>
+  <text x="865" y="383" font-size="12" text-anchor="middle" fill="#FFF">ECS Agent</text>
+
+  <!-- Task 3 on Instance 2 -->
+  <rect x="765" y="410" width="200" height="90" fill="#E8F5E9" stroke="#4CAF50" stroke-width="2"/>
+  <text x="865" y="430" font-size="13" font-weight="bold" text-anchor="middle" fill="#4CAF50">Task: web-app</text>
+
+  <rect x="775" y="445" width="180" height="45" fill="#FFF" stroke="#4CAF50" stroke-width="1"/>
+  <text x="865" y="463" font-size="11" text-anchor="middle">Container: nginx</text>
+  <text x="865" y="478" font-size="10" text-anchor="middle" fill="#666">Port: 80</text>
+
+  <!-- Task 4 on Instance 2 -->
+  <rect x="765" y="515" width="200" height="90" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="865" y="535" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF9800">Task: worker</text>
+
+  <rect x="775" y="550" width="180" height="45" fill="#FFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="865" y="568" font-size="11" text-anchor="middle">Container: python</text>
+  <text x="865" y="583" font-size="10" text-anchor="middle" fill="#666">Background job</text>
+
+  <!-- Fargate Task 2 -->
+  <rect x="1010" y="300" width="230" height="150" fill="#F3E5F5" stroke="#9C27B0" stroke-width="2" rx="4"/>
+  <text x="1125" y="325" font-size="14" font-weight="bold" text-anchor="middle" fill="#9C27B0">Fargate Task</text>
+  <text x="1125" y="345" font-size="12" text-anchor="middle" fill="#666">(Serverless)</text>
+
+  <rect x="1025" y="360" width="200" height="70" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+  <text x="1125" y="380" font-size="13" font-weight="bold" text-anchor="middle" fill="#FF9800">Task: api-service</text>
+
+  <rect x="1035" y="395" width="180" height="25" fill="#FFF" stroke="#FF9800" stroke-width="1"/>
+  <text x="1125" y="412" font-size="10" text-anchor="middle">Container: node</text>
+
+  <!-- ECS Control Plane -->
+  <rect x="140" y="700" width="1120" height="60" fill="#232F3E" stroke="#FF9900" stroke-width="2"/>
+  <text x="700" y="725" font-size="16" font-weight="bold" text-anchor="middle" fill="#FFF">ECS Control Plane</text>
+  <text x="700" y="745" font-size="12" text-anchor="middle" fill="#CCC">(Scheduling, Health Monitoring, API, State Management)</text>
+
+  <!-- Integration Services -->
+  <text x="140" y="800" font-size="16" font-weight="bold" fill="#232F3E">AWS Service Integration:</text>
+
+  <!-- ECR -->
+  <rect x="140" y="810" width="130" height="50" fill="#FF9900" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="205" y="840" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFF">ECR</text>
+
+  <!-- ALB -->
+  <rect x="290" y="810" width="130" height="50" fill="#3F51B5" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="355" y="840" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFF">ALB/NLB</text>
+
+  <!-- IAM -->
+  <rect x="440" y="810" width="130" height="50" fill="#E91E63" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="505" y="840" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFF">IAM</text>
+
+  <!-- CloudWatch -->
+  <rect x="590" y="810" width="130" height="50" fill="#00BCD4" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="655" y="840" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFF">CloudWatch</text>
+
+  <!-- Secrets Manager -->
+  <rect x="740" y="810" width="150" height="50" fill="#4CAF50" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="815" y="835" font-size="13" font-weight="bold" text-anchor="middle" fill="#FFF">Secrets</text>
+  <text x="815" y="850" font-size="13" font-weight="bold" text-anchor="middle" fill="#FFF">Manager</text>
+
+  <!-- VPC -->
+  <rect x="910" y="810" width="130" height="50" fill="#9C27B0" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="975" y="840" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFF">VPC</text>
+
+  <!-- Auto Scaling -->
+  <rect x="1060" y="810" width="130" height="50" fill="#FF5722" stroke="#000" stroke-width="1" rx="3"/>
+  <text x="1125" y="835" font-size="12" font-weight="bold" text-anchor="middle" fill="#FFF">Auto</text>
+  <text x="1125" y="850" font-size="12" font-weight="bold" text-anchor="middle" fill="#FFF">Scaling</text>
+</svg>
