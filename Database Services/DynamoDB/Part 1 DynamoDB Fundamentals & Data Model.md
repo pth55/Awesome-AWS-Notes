@@ -39,6 +39,50 @@ DynamoDB is a **key-value and document store**. It supports flexible item schema
 
 ![DynamoDB Architecture](images/dynamodb-architecture.svg)
 
+### Why multiple "servers"?
+***when your table has 500 million items, where does each item live, and how does DynamoDB find it in under a millisecond?***
+The answer is **hashing**. Let me show you the mechanism
+![Hashing](images/dynamodb_hashing_mechanism.svg)
+
+So when you call ```GetItem("user-7821")```, DynamoDB doesn't scan anything. It hashes ```"user-7821"``` → gets ```0x7A3F...``` → looks at the partition map → goes directly to Partition 2. One hop. That's why it's always sub-millisecond regardless of whether you have 100 items or 100 billion.
+
+![dynamodb_single_partition_internals](images/dynamodb_single_partition_internals.svg)
+
+So every partition is actually 3 physical machines — one primary (takes writes), two replicas (stay in sync, serve reads). This is how DynamoDB gets its "automatically replicated across 3 AZs" guarantee without you doing anything.
+
+## Now zoom out — your whole table
+
+Your table doesn't live on one of these partitions. It's split across many of them automatically. Here's the full picture:
+
+```text
+Your table "Users"  (say, 50 million items)
+│
+├── Partition 1  →  items whose PK hashes to 0x0000–0x5555
+│     ├── Primary (AZ-a)
+│     ├── Replica (AZ-b)
+│     └── Replica (AZ-c)
+│
+├── Partition 2  →  items whose PK hashes to 0x5556–0xAAAA
+│     ├── Primary (AZ-b)       ← note: different AZ leads each partition
+│     ├── Replica (AZ-c)
+│     └── Replica (AZ-a)
+│
+└── Partition N  →  items whose PK hashes to 0xAAAB–0xFFFF
+      ├── Primary (AZ-c)
+      ├── Replica (AZ-a)
+      └── Replica (AZ-b)
+```
+
+You never choose how many partitions. AWS manages it. Each partition holds up to 10 GB and handles up to 3,000 RCU / 1,000 WCU. When you grow past that, DynamoDB silently splits a partition into two and rebalances. You never see it happen.
+
+Everything in DynamoDB relies on the key
+That's not an oversimplification. It's literally the design constraint. Because of the hashing:
+
+- You can only do a direct `GetItem` if you know the exact PK.
+- You can only do a `Query` within one partition key value (because one PK = one partition = one place to look).
+- A `Scan` is expensive because it has to visit every partition, every item — you're paying for the hash to not work for you.
+- A `GSI` is just a second hash table — same mechanism, different key. DynamoDB maintains a separate copy of your data hashed by the GSI key, so you can do fast lookups on that attribute too.
+
 ---
 
 ## 2. How DynamoDB Differs from Relational Databases
